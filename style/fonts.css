@@ -1,0 +1,61 @@
+@font-face {
+    font-family: "Nordica";
+    src: url("../font/nordica/NordicaRegular.otf") format("opentype");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "Nordica";
+    src: url("../font/nordica/NordicaBlack.otf") format("opentype");
+    font-weight: bolder;
+}
+
+@font-face {
+    font-family: "Nordica";
+    src: url("../font/nordica/NordicaThin.otf") format("opentype");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Nordica";
+    src: url("../font/nordica/NordicaHairline.otf") format("opentype");
+    font-weight: lighter;
+}
+
+@font-face {
+    font-family: "PetiteFrance";
+    src: url("../font/PetiteFrance-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "TaxiDriver";
+    src: url("../font/TaxiDriver.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "NTSAkkhara";
+    src: url("../font/nts_akkhara/NTSAkkhara.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "NTSAkkhara";
+    src: url("../font/nts_akkhara/NTSAkkhara-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "NTSAkkhara";
+    src: url("../font/nts_akkhara/NTSAkkhara-BoldItalic.ttf") format("truetype");
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "NTSAkkhara";
+    src: url("../font/nts_akkhara/NTSAkkhara-Italic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: italic;
+}

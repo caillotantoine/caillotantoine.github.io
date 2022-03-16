@@ -1,0 +1,49 @@
+@import './fonts.css';
+@import './colors.css';
+
+li {
+    display: inline;
+    list-style: none;
+}
+
+#about_author {
+    display: inline-block;
+    text-align: left;
+    /* border: 2pt solid black; */
+
+    vertical-align: middle;
+    line-height: normal;
+    margin-top: calc(35vh - calc(150pt / 2));
+}
+
+#profile_img_cont {
+    width: 150pt;
+    height: 150pt;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2pt solid lightgray;
+    box-shadow: 0 0 5pt black;
+}
+
+#profile_img {
+    width: 150pt;
+    height: 150pt;
+}
+
+#author {
+    display: inline-block;
+    margin-left: 20pt;
+}
+
+#authorName {
+    font-family: Nordica;
+    font-size: 52pt;
+    font-weight: normal;
+}
+
+#authorWelcomeMsg {
+    font-family: Nordica;
+    font-size: 16pt;
+    font-weight: lighter;
+}
+
