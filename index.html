@@ -30,41 +30,45 @@
                 <ul class="idx_nav">
                     <li>
                         <div class="idx_nav_elem">
-                            <span class="idx_nav_elem_inner" style="color: var(--comp); text-decoration: underline;">Home</span>
+                            <a href="index.html" class="idx_nav_elem_inner" style="color: var(--comp); text-decoration: underline;">Home</a>
                         </div>
                     </li>
                     <li>
                         <div class="idx_nav_elem" >
-                            <span class="idx_nav_elem_inner">Who am I</span>
+                            <a href="whoami.html" class="idx_nav_elem_inner">Who am I</a>
                         </div>
                     </li>
                     <li>
                         <div class="idx_nav_elem">
-                            <span class="idx_nav_elem_inner">Research</span>
+                            <!-- <span class="idx_nav_elem_inner">Research</span> -->
+                            <a href="research.html" class="idx_nav_elem_inner">Research</a>
                         </div>
                     </li>
                     <li>
                         <div class="idx_nav_elem">
-                            <span class="idx_nav_elem_inner">Projects</span>
+                            <!-- <span class="idx_nav_elem_inner">Projects</span> -->
+                            <a href="projects.html" class="idx_nav_elem_inner">Projects</a>
                         </div>
                     </li>
                     <li>
                         <div class="idx_nav_elem">
-                            <span class="idx_nav_elem_inner">Gallery</span>
+                            <!-- <span class="idx_nav_elem_inner">Gallery</span> -->
+                            <a href="gallery.html" class="idx_nav_elem_inner">Gallery</a>
                         </div>
                     </li>
                     
                     <li>
                         <div class="idx_nav_elem">
-                            <span class="idx_nav_elem_inner">Contact</span>
+                            <!-- <span class="idx_nav_elem_inner">Contact</span> -->
+                            <a href="contact.html" class="idx_nav_elem_inner">Contact</a>
                         </div>
                     </li>
                 </ul>
             </nav>
-            <menu label="Language" style="display: inline;">
+            <menu label="Language" style="display: inline; top: 2.8vh;">
                 <command onclick=""><p style="display: inline; text-decoration: underline;">EN</p></command> | 
-                <command onclick=""><p style="display: inline; text-decoration: none;">FR</p></command> | 
-                <command onclick=""><p style="display: inline; text-decoration: none;">JP</p></command>
+                <command onclick=""><p style="display: inline; text-decoration: none;"><s>FR</s></p></command> | 
+                <command onclick=""><p style="display: inline; text-decoration: none;"><s>JP</s></p></command>
             </menu>
         </header>
 
@@ -73,53 +77,25 @@
                 <ul>
                     <li>
                         <div style="display: inline-block;">
-                            <div id="profile_img_cont"> <img src="./image/antoine_bwis.jpeg" id="profile_img"/> </div>
+                            <div id="profile_img_cont"> <img src="./image/antoine_bw_sq.jpeg" id="profile_img"/> </div>
                         </div>
                     </li>
-                    <li>
                         <div id="author">
                                 <h1 id="authorName">Antoine CAILLOT</h1>
-                                <p id="authorWelcomeMsg">Do not hesitate to navigate through my projects and hobbies.</p>
+                                <p id="authorWelcomeMsg">Ph. D. student working on cooperative perception <br />for autonomous navigation.</p>
+                                <!-- <p id="authorWelcomeMsg">Do not hesitate to navigate through my projects and hobbies.</p> -->
                         </div>
                     </li>
                 </ul>
             </div>
         </section>
 
-        <section> <!--Introduction-->
-            <h1>Currently, I am a PhD student.</h1>
-            <svg height="100" width="800" style="margin: auto; border: 1 solid black; margin-top: 10vh;">
-                <defs>
-                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style="stop-color: var(--main); stop-opacity: 0;" />
-                        <stop offset="5%" style="stop-color: var(--main); stop-opacity: 1;" />
-                        <stop offset="95%" style="stop-color: var(--main); stop-opacity: 1;" />
-                        <stop offset="100%" style="stop-color: var(--main); stop-opacity: 0;" />
-                    </linearGradient>
-                    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" style="stop-color: var(--main); stop-opacity: 0;" />
-                        <stop offset="20%" style="stop-color: var(--main); stop-opacity: 1;" />
-                    </linearGradient>
-                </defs>
-                <line x1="0%" y1="66%" x2="100%" y2="66%" style="stroke: url(#grad1); stroke-width: 2;"/>
-                <rect width="800" height="2" y="65" style="fill:url(#grad1);" />
-                <rect width="200" height="2" y="95" style="fill:url(#grad2);" />
-                <polygon points="395,45 405,45 405,59 400,65 395,59" style="fill: var(--comp);stroke:var(--comp);stroke-width:0" />
-                <text x="48%" y="12" fill="var(--dark)">PhD</text>
-                <text x="26%" y="35" fill="var(--dark)">Cooperative V2X Perception for Autonomous Navigation</text>
-                <image 
-                    href="https://www.esigelec.fr/profiles/createur_profil/themes/createur/dist/images/logo.svg" 
-                    width="20%" 
-                    x="40%"
-                    y="70%"/>
-            </svg> 
+            
 
-            <!-- <a data-flickr-embed="true" href="https://www.flickr.com/photos/187223441@N04/49764300596/" title="Tokyo dusk"><img src="https://live.staticflickr.com/65535/49764300596_1dd3286898_m.jpg" width="240" height="160" alt="Tokyo dusk"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script> -->
-            <!-- <a data-flickr-embed="true" href="https://www.flickr.com/photos/187223441@N04/49764300596/" title="Tokyo dusk"><img src="https://live.staticflickr.com/65535/49764300596_1dd3286898_w.jpg" width="400" height="267" alt="Tokyo dusk"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script> -->
+            <!-- <a data-flickr-embed="true" href="https://www.flickr.com/photos/187223441@N04/49764300596/" title="Tokyo dusk"><img src="https://live.staticflickr.com/65535/49764300596_1dd3286898_m.jpg" width="240" height="160" alt="Tokyo dusk"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script> 
+            <a data-flickr-embed="true" href="https://www.flickr.com/photos/187223441@N04/49764300596/" title="Tokyo dusk"><img src="https://live.staticflickr.com/65535/49764300596_1dd3286898_w.jpg" width="400" height="267" alt="Tokyo dusk"></a><script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script> -->
 
-        </section>
-
-        <footer>
+        <footer style="position: absolute; bottom: 0;">
             Website by Antoine CAILLOT <br>
             Edited April 2021 <br>
             Images are not free to use. Contact me for any authorization.

@@ -47,3 +47,49 @@ li {
     font-weight: lighter;
 }
 
+#experience {
+    border-style: solid; 
+    width: 90%;
+    margin: auto;
+    /* border-collapse: collapse; */
+}
+
+#experience td {
+    /* padding-top: 2vh;
+    padding-bottom: 2vh; */
+    /* height: max-content; */
+    border-collapse: collapse;
+    /* border-style: solid;
+    border-color: black; */
+    /* border-width: pt; */
+    vertical-align: middle;
+    height: 100px;
+    color: var(--main);
+}
+
+/* tr{
+    border-collapse: collapse;
+} */
+
+
+
+#experience h2 {
+    font-family: PetiteFrance;
+    font-weight: lighter;
+    font-size: 12pt;
+    color: var(--dark)
+}
+
+.accademic{
+    text-align: left;
+    width: 45%
+}
+.pro{
+    text-align: right;
+    width: 45%;
+}
+
+.middle{
+    width: 10%;
+    padding: 0;
+}
