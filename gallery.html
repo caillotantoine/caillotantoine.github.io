@@ -129,7 +129,7 @@
             $.getJSON("https://caillotantoine.github.io/content/photo.json", function(json) {
                 console.log(json);
                 json.photos.forEach(element => {
-                    document.getElementById(element.tag).innerHTML += "<a id=\"flickrImg\" data-flickr-embed=\"true\" data-footer=\"true\" href=\"https://www.flickr.com/photos/" + element.user + "@N04/" + element.id.high + "/in/dateposted-public/\" title=\"" + element.title + "\"><img src=\"https://live.staticflickr.com/65535/" + element.id.high + "_" + element.id.low + "_c.jpg\" width=\"" + element.size.width + "\" height=\"" + element.size.height + "\" alt=\"" + element.title + "\"></a><script async src=\"//embedr.flickr.com/assets/client-code.js\" charset=\"utf-8\">\<\/\s\c\r\i\p\t\><br />"
+                    document.getElementById(element.tag).innerHTML += "<a id=\"flickrImg\" data-flickr-embed=\"true\" data-footer=\"true\" href=\"https://www.flickr.com/photos/" + element.user + "@N04/" + element.id.high + "/in/dateposted-public/\" title=\"" + element.title + "\"><img src=\"https://live.staticflickr.com/65535/" + element.id.high + "_" + element.id.low + "_c.jpg\" width=\"" + element.size.width + "\" height=\"" + element.size.height + "\" alt=\"" + element.title + "\"></a><script async src=\"//embedr.flickr.com/assets/client-code.js\" charset=\"utf-8\">\<\/\s\c\r\i\p\t\> <br />"
                 });
             });
 
