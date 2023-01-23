@@ -21,11 +21,18 @@
 }
 
 #gallery h2 {
-    font-size: 2vh;
+    font-size: 3vh;
     letter-spacing: 1vh;
     color: var(--light);
     font-family: 'Times New Roman', Times, serif;
     padding-top: 10px;
     padding-bottom: 50px;
     margin-bottom: 6vh;
+    margin-top: 6vh;
+    /* text-decoration: underline; */
+}
+
+#flickrImg {
+    display: block;
+    padding-bottom: 6vh;
 }
