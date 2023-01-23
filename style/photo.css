@@ -11,13 +11,13 @@
 }
 
 #gallery h1 {
-    font-size: 4vh;
+    font-size: 10vh;
     letter-spacing: 1vh;
     color: var(--light);
     font-family: 'Times New Roman', Times, serif;
     padding-top: 10px;
     padding-bottom: 50px;
-    margin-bottom: 12vh;
+    margin-bottom: 6vh;
 }
 
 #gallery h2 {
