@@ -34,5 +34,11 @@
 
 #flickrImg {
     display: block;
-    padding-bottom: 6vh;
+    margin-bottom: 6vh;
+    /* background-color: rgb(200, 200, 200); */
+}
+#flickrImg p{
+    text-align: left;
+    margin: auto;
+    background-color: rgb(200, 200, 200);
 }
