@@ -1,0 +1,41 @@
+{
+    "projets" : 
+    [
+        {
+            "name"  : "CARLA Dataset Generator",
+            "link"  : "https://github.com/caillotantoine/carla-V2X-dataset-generator",
+            "image" : "image/CARLA_2.png",
+            "text"  : "This project aims to help to generate dataset with the CARLA simulator. I used it in my Ph.D. project to build cooperative dataset featuring vehicles and road side (infrastructure) ooint of view.",
+            "class" : "pro",
+            "pin"   : true,
+            "tags"  : ["CARLA", "Vehicle", "Infrastructure", "Simulation"]
+        },
+        {
+            "name"  : "Cooperative Semantic Mapping",
+            "link"  : "https://github.com/caillotantoine/Coop-Evidential-Semantic-Grid",
+            "image" : "image/CARLA_2.png",
+            "text"  : "Core of the work ofd my Ph.D. work, this project generates a semantic grid map from multiple points of view, either from vehicles or from road side infrastructure. Several approaches are considered for the fusion. One is based on a probabilistic approache while the other one is based on Dempster Shafer Theory.",
+            "class" : "pro",
+            "pin"   : true,
+            "tags"  : ["Vehicle", "Infrastructure", "V2X", "Dempster Shafer Theory"]
+        },
+        {
+            "name"  : "Meteor Decoding Pipeline",
+            "link"  : "https://github.com/caillotantoine/Coop-Evidential-Semantic-Grid",
+            "image" : "image/METEOR.jpg",
+            "text"  : "This side project is a GNU Radio companion receiving and processing pipeline to decode the Russian weather satellite METEOR-M2. A set of software to use is also proposed for a full image processing on MacOS.",
+            "class" : "perso",
+            "pin"   : true,
+            "tags"  : ["Radio", "GNU Radio", "Weather", "Satellite"]
+        },
+        {
+            "name"  : "Core POSIT",
+            "link"  : "https://github.com/caillotantoine/CorePosit",
+            "image" : "image/Posit_Fig2.png",
+            "text"  : "POSIT is a new representation for floating number. This project aims to create an hardware acceleration core to compute them.",
+            "class" : "perso",
+            "pin"   : false,
+            "tags"  : ["FPGA", "C", "Computing"]
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "publication" : [
+        {
+            "name" : "Survey on Cooperative Perception in an Automotive Context",
+            "authors" : "Caillot Antoine, Safa Ouerghi, Pascal Vasseur, Rémi Boutteau, and Yohan Dupuis.", 
+            "link": "https://doi.org/10.1109/TITS.2022.3153815",
+            "pub": "IEEE Transactions on Intelligent Transportation Systems (2022)",
+            "class": "journal"
+        },
+        {
+            "name" : "Multi-Agent Cooperative Camera-Based Evidential Occupancy Grid Generation",
+            "authors" : "Antoine Caillot, Safa Ouerghi, Pascal Vasseur, Yohan Dupuis, and Rémi Boutteau.", 
+            "link": "https://doi.org/10.1109/ITSC55140.2022.9921855",
+            "pub": "IEEE 25th International Conference on Intelligent Transportation Systems (ITSC) (2022)",
+            "class": "conference"
+        }
+    ]
+}
