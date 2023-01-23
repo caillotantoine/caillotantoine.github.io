@@ -26,6 +26,7 @@
         <link rel="stylesheet" href="./style/style.css">
         <link rel="stylesheet" href="./style/index.css">
         <link rel="stylesheet" href="./style/colors.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     </head>
     <body>
         <header>
@@ -227,12 +228,24 @@
             </table>
         </section>
             
-        <footer style="position: relative; top: 20vh;">
-            Website by Antoine CAILLOT <br>
-            Edited April 2021 <br>
+        <footer style="position: absolute; bottom: 0;">
+            Website by <span id="webmaster"></span> <br>
+            Edited <span id="lastedited"></span> <br>
             Images are not free to use. Contact me for any authorization.
-            Font used: ... 
+            Font used: <span id="fontused"></span> 
         </footer>
-        
+        <script>
+            $.getJSON("https://caillotantoine.github.io/content/footer.json", function(json) {
+                console.log(json);
+                document.getElementById("webmaster").innerText = json.webmaster;
+                document.getElementById("lastedited").innerText = json.edited;
+                json.font.forEach(element => {
+                    document.getElementById("fontused").innerText += element + ",";
+                });
+            });
+            // console.log(footer_json_obj);
+            // document.getElementById("demo").innerHTML = "Oui";
+        </script>
+
     </body>
 </html>
