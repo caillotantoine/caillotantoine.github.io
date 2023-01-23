@@ -1,0 +1,31 @@
+#gallery {
+    width: 75%; 
+    display: inline-block; 
+    position: relative; 
+    top: 10vh; 
+    text-align: center; 
+    margin-bottom: 5vh; 
+    margin-top: 5vh;
+    font-family: NTSAkkhara;
+    font-size: 18pt;
+}
+
+#gallery h1 {
+    font-size: 4vh;
+    letter-spacing: 1vh;
+    color: var(--light);
+    font-family: 'Times New Roman', Times, serif;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    margin-bottom: 12vh;
+}
+
+#gallery h2 {
+    font-size: 2vh;
+    letter-spacing: 1vh;
+    color: var(--light);
+    font-family: 'Times New Roman', Times, serif;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    margin-bottom: 6vh;
+}
