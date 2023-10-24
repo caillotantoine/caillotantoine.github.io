@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Camera model converter</title>
+        <!-- <link rel="stylesheet" type="text/css" href=""> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.2/math.js" integrity="sha512-SZF47arYfRSVmLDgkgsUNkKNha7brZ5WTCEIPNga3sh0Vw+Vs8hkslDKz0hvmovPqJrCKdH/4OlkxOFzueC+DA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </head>
+    <body>
+        <h1>Camera converter</h1>
+        <p>Version &#x3B1; 0.1 : For now, only equidistant to omnidirectional conversion is supported</p>
+        <form id="cam_param" name="Camera parameter" action="" method="GET">
+            <label for="f_length">Focal length (in m) </label><br>
+            <input type="text" id="f_length" name="f_length" value="2.7e-3"><br>
+            <label for="fov">Field of view (in degrees)</label><br>
+            <input type="text" id="fov" name="fov" value="185"><br>
+            <label for="pix_elem_size">Size of a pixel (in meter)</label><br>
+            <input type="text" id="pix_elem_size" name="pix_elem_size" value="5.5e-6"><br>
+            <label for="sensor_width">Width of the sensor (in pixel)</label><br>
+            <input type="number" id="sensor_width" name="sensor_width"><br>
+            <label for="sensor_height">Height of the sensor (in pixel)</label><br>
+            <input type="number" id="sensor_height" name="sensor_height"><br><br>
+            <input type="submit">
+        </form>
+        <br>
+        <h2>Omnidirectional parameters:</h2>
+        <table>
+            <tr>
+                <td>f factor : </td>
+                <td id="f_au">-1</td>
+            </tr>
+            <tr>
+                <td>ξ (Xi) : </td>
+                <td id="Xi">-1</td>
+            </tr>
+            <tr>
+                <td>Residual : </td>
+                <td id="residual">-1</td>
+            </tr>
+        </table>
+        <script src="script/cam_convert.js"></script>
+
+
+        <footer style="position:absolute; bottom: 10px;">
+            Algorithm from <a href="https://github.com/PerceptionRobotique/libPeR_base">LibPER</a>.
+        </footer>
+    </body>
+</html>
