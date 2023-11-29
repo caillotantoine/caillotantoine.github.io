@@ -1,24 +1,36 @@
 @import './fonts.css';
 @import './colors.css';
 
-li {
-    display: inline;
-    list-style: none;
+@media (orientation: portrait)
+{
+    #about_author {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        /* border: 2pt solid black; */
+    
+        vertical-align: middle;
+        line-height: normal;
+        margin-top: 20vh;
+        margin-bottom: 20vh;
+    }
+    #img_cont {
+        margin: auto;
+        width: 50%
+    }
+
+    #img_cont + #author {
+        margin-top: 5vh;
+    }
 }
 
-#about_author {
-    display: inline-block;
-    text-align: left;
-    /* border: 2pt solid black; */
 
-    vertical-align: middle;
-    line-height: normal;
-    margin-top: calc(35vh - calc(150pt / 2));
-}
 
 #profile_img_cont {
-    width: 150pt;
-    height: 150pt;
+    margin: auto;
+    width: 100%;
+    max-width: 150pt;
+    aspect-ratio: 1;
     overflow: hidden;
     border-radius: 50%;
     border: 2pt solid lightgray;
@@ -26,22 +38,24 @@ li {
 }
 
 #profile_img {
-    width: 150pt;
-    height: 150pt;
+    width: 100%;
 }
 
 #author {
-    display: inline-block;
-    margin-left: 20pt;
+    width: 90%;
+    margin: auto;
+    text-align: justify;
 }
 
 #authorName {
     font-family: Nordica;
-    font-size: 52pt;
+    font-size: 10vw;
     font-weight: normal;
 }
 
 #authorWelcomeMsg {
+    padding-left: 2vh;
+    border-left: 1px solid black;
     font-family: Nordica;
     font-size: 16pt;
     font-weight: lighter;

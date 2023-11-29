@@ -27,88 +27,38 @@
     </head>
     <body>
         <header>
-            <nav>
-                <ul class="idx_nav">
-                    <li>
-                        <div class="idx_nav_elem">
-                            <a href="index.html" class="idx_nav_elem_inner" style="color: var(--comp); text-decoration: underline;">Home</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="idx_nav_elem" >
-                            <a href="whoami.html" class="idx_nav_elem_inner">Who am I</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="idx_nav_elem">
-                            <!-- <span class="idx_nav_elem_inner">Research</span> -->
-                            <a href="research.html" class="idx_nav_elem_inner">Research</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="idx_nav_elem">
-                            <!-- <span class="idx_nav_elem_inner">Projects</span> -->
-                            <a href="projects.html" class="idx_nav_elem_inner">Projects</a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="idx_nav_elem">
-                            <!-- <span class="idx_nav_elem_inner">Gallery</span> -->
-                            <a href="gallery.html" class="idx_nav_elem_inner">Gallery</a>
-                        </div>
-                    </li>
-                    
-                    <li>
-                        <div class="idx_nav_elem">
-                            <!-- <span class="idx_nav_elem_inner">Contact</span> -->
-                            <a href="contact.html" class="idx_nav_elem_inner">Contact</a>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-            <menu label="Language" style="display: inline; top: 2.8vh;">
-                <command onclick=""><p style="display: inline; text-decoration: underline;">EN</p></command> | 
-                <command onclick=""><p style="display: inline; text-decoration: none;"><s>FR</s></p></command> | 
-                <command onclick=""><p style="display: inline; text-decoration: none;"><s>JP</s></p></command>
-            </menu>
-        </header>
-
-        <section>
-            <div id="about_author">
-                <ul>
-                    <li>
-                        <div style="display: inline-block;">
-                            <div id="profile_img_cont"> <img src="./image/antoine_bw_sq.jpeg" id="profile_img"/> </div>
-                        </div>
-                    </li>
-                        <div id="author">
-                                <h1 id="authorName">Antoine CAILLOT</h1>
-                                <p id="authorWelcomeMsg">I am a postdoctoral fellow working at the <a href="https://unit.aist.go.jp/jrl-22022/index_en.html" alt="Link to the Joint Robotics Laboratory website">JRL</a> on <a href="https://en.wikipedia.org/wiki/Simultaneous_localization_and_mapping" alt="Link to SLAM">SLAM</a> with <br />emergent image sensors. Beside, I am interested in <br />(astro)photography and have some computer sciences <br />related side project.</p>
-                                <!-- <p id="authorWelcomeMsg">Do not hesitate to navigate through my projects and hobbies.</p> -->
-                        </div>
-                    </li>
-                </ul>
+            <div id="header_content">
+                <div id="website_title">Antoine CAILLOT</div>
+                <div id="menu">Menu</div>
             </div>
-        </section>
+        </header>
+        <div id="content" style="margin-top: 7vh;">
 
-        <section id="links"
-        style="
-        
-        /* border: 1px solid black; */
-        ">
-            
-            <a href="https://github.com/caillotantoine"><img src="image/github-mark.png" alt="Github" height="100px"/></a>
-            <a href="https://cv.hal.science/antoine-caillot#"><img src="https://hal.science/assets/img/hal-logo-header.png" alt="HAL" height="100px"/></a>
-            <a href="https://orcid.org/0000-0002-6843-7255"><img src="https://orcid.org/assets/vectors/orcid.logo.icon.svg" alt="ORCID" height="100px"/></a>
-            <a href="https://www.researchgate.net/profile/Antoine-Caillot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/ResearchGate_icon_SVG.svg/1200px-ResearchGate_icon_SVG.svg.png" alt="ResearchGate" height="100px"/></a>
-            <a href="https://scholar.google.com/citations?user=872afecAAAAJ&hl=en"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Google_Scholar_logo.svg/2048px-Google_Scholar_logo.svg.png" alt="Google Scholar" height="100px"/></a>
-            <a href="https://www.linkedin.com/in/caillotantoine"><img src="https://www.pngfind.com/pngs/m/57-571935_linkedin-icon-vector-png-linkedin-circle-logo-transparent.png" alt="LinkedIN" height="100px"/></a>
+            <section id="about_author">
+                <div id="img_cont">
+                    <div id="profile_img_cont"> <img src="./image/tmp_sq.jpg" id="profile_img"/> </div>
+                </div>
+                <div id="author">
+                    <h1 id="authorName">Antoine CAILLOT</h1>
+                    <p id="authorWelcomeMsg">I am a postdoctoral fellow working at the <a href="https://unit.aist.go.jp/jrl-22022/index_en.html" alt="Link to the Joint Robotics Laboratory website">JRL</a> on <a href="https://en.wikipedia.org/wiki/Simultaneous_localization_and_mapping" alt="Link to SLAM">SLAM</a> with <br />emergent image sensors. Beside, I am interested in <br />(astro)photography and have some computer sciences <br />related side project.</p>
+                    <!-- <p id="authorWelcomeMsg">Do not hesitate to navigate through my projects and hobbies.</p> -->
+                </div>
+            </section>
+
+            <section id="links">
+                
+                <!-- <a href="https://github.com/caillotantoine"><img src="image/github-mark.png" alt="Github" height="100px"/></a>
+                <a href="https://cv.hal.science/antoine-caillot#"><img src="https://hal.science/assets/img/hal-logo-header.png" alt="HAL" height="100px"/></a>
+                <a href="https://orcid.org/0000-0002-6843-7255"><img src="https://orcid.org/assets/vectors/orcid.logo.icon.svg" alt="ORCID" height="100px"/></a>
+                <a href="https://www.researchgate.net/profile/Antoine-Caillot"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/ResearchGate_icon_SVG.svg/1200px-ResearchGate_icon_SVG.svg.png" alt="ResearchGate" height="100px"/></a>
+                <a href="https://scholar.google.com/citations?user=872afecAAAAJ&hl=en"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Google_Scholar_logo.svg/2048px-Google_Scholar_logo.svg.png" alt="Google Scholar" height="100px"/></a>
+                <a href="https://www.linkedin.com/in/caillotantoine"><img src="https://www.pngfind.com/pngs/m/57-571935_linkedin-icon-vector-png-linkedin-circle-logo-transparent.png" alt="LinkedIN" height="100px"/></a> -->
 
 
-        </section>
+            </section>
 
-            
-        <footer style="position: absolute; bottom: 0;">
+        </div>
+        <footer>
             Website by <span id="webmaster"></span> <br>
             Edited <span id="lastedited"></span> <br>
             Images are not free to use. Contact me for any authorization.
