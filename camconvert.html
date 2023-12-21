@@ -8,7 +8,7 @@
     </head>
     <body>
         <h1>Camera converter</h1>
-        <p>Version &#x3B1; 0.1 : For now, only equidistant to omnidirectional conversion is supported</p>
+        <p>Version &#x3B1; 0.2 : For now, only equidistant to omnidirectional and Kannala-Brandt conversion are supported</p>
         <form id="cam_param" name="Camera parameter" action="" method="GET">
             <label for="f_length">Focal length (in m) </label><br>
             <input type="text" id="f_length" name="f_length" value="2.7e-3"><br>
@@ -23,6 +23,13 @@
             <input type="submit">
         </form>
         <br>
+        <h2>Equidistant parameters:</h2>
+        <table>
+            <tr>
+                <td>f factor : </td>
+                <td id="f_au_equi">-1</td>
+            </tr>
+        </table>
         <h2>Omnidirectional parameters:</h2>
         <table>
             <tr>
@@ -38,10 +45,35 @@
                 <td id="residual">-1</td>
             </tr>
         </table>
+
+        <h2>OpenCV Kannala-Brandt parameters:</h2>
+        <table>
+            <tr>
+                <td>f factor : </td>
+                <td id="f_au_kb">-1</td>
+            </tr>
+            <tr>
+                <td>k1 : </td>
+                <td id="k1_kb">0</td>
+            </tr>
+            <tr>
+                <td>k2 : </td>
+                <td id="k2_kb">0</td>
+            </tr>
+            <tr>
+                <td>k3 : </td>
+                <td id="k3_kb">0</td>
+            </tr>
+            <tr>
+                <td>k4 : </td>
+                <td id="k4_kb">0</td>
+            </tr>
+        </table>
         <script src="script/cam_convert.js"></script>
+        <br/><br/><br/><br/>
 
-
-        <footer style="position:absolute; bottom: 10px;">
+        <footer > 
+            <!-- style="position:absolute; bottom: 10px;" -->
             Algorithm from <a href="https://github.com/PerceptionRobotique/libPeR_base">LibPER</a>.
         </footer>
     </body>

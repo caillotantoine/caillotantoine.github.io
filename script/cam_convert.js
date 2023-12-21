@@ -15,6 +15,7 @@ cam_param.onsubmit = async (e) => {
     const phi = (n) => (- radians(fov) / 2.0) + (parseFloat(n) * radians(1));
 
     const ufe = (n) => phi(n) * f / k;
+    const fau_equi = f / k;
 
     var A = math.ones(N, 2);
     A = math.multiply(A, -1.0);
@@ -38,6 +39,8 @@ cam_param.onsubmit = async (e) => {
     }
     residual = Math.sqrt(residual) / parseFloat(N);
     document.getElementById("f_au").innerHTML = fau;
+    document.getElementById("f_au_equi").innerHTML = fau_equi;
+    document.getElementById("f_au_kb").innerHTML = fau_equi;
     document.getElementById("Xi").innerHTML = xi;
     document.getElementById("residual").innerHTML = residual;
 }
