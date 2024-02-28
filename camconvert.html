@@ -8,7 +8,7 @@
     </head>
     <body>
         <h1>Camera converter</h1>
-        <p>Version &#x3B1; 0.2 : For now, only equidistant to omnidirectional and Kannala-Brandt conversion are supported</p>
+        <p>Version &#x3B1; 0.3 : For now, only equidistant to omnidirectional and Kannala-Brandt conversion are supported</p>
         <form id="cam_param" name="Camera parameter" action="" method="GET">
             <label for="f_length">Focal length (in m) </label><br>
             <input type="text" id="f_length" name="f_length" value="2.7e-3"><br>
@@ -16,12 +16,18 @@
             <input type="text" id="fov" name="fov" value="185"><br>
             <label for="pix_elem_size">Size of a pixel (in meter)</label><br>
             <input type="text" id="pix_elem_size" name="pix_elem_size" value="5.5e-6"><br>
-            <label for="sensor_width">Width of the sensor (in pixel)</label><br>
-            <input type="number" id="sensor_width" name="sensor_width"><br>
+            <label for="zoomFactor">Zoom factor</label><br>
+            <input type="text" id="zoomFactor" name="zoomFactor" value="1"><br>
+            <!-- <label for="sensor_width">Width of the sensor (in pixel)</label><br>
+            <input type="number" id="sensor_width" name="sensor_width" value="2048"><br>
             <label for="sensor_height">Height of the sensor (in pixel)</label><br>
-            <input type="number" id="sensor_height" name="sensor_height"><br><br>
+            <input type="number" id="sensor_height" name="sensor_height" value="2048"><br><br> -->
+            <input type="file" name="filename" id="file"><br><br>
             <input type="submit">
         </form>
+        <br>
+        <canvas id="canvas" hidden="true"></canvas>
+        <div id="noImg">Select an image to preview the image circle.</div>
         <br>
         <h2>Equidistant parameters:</h2>
         <table>
@@ -69,6 +75,12 @@
                 <td id="k4_kb">0</td>
             </tr>
         </table>
+
+        <!-- style="display:none;" -->
+        <div style="display:none;"> 
+            <img id="imgContainer"/>
+        </div>
+
         <script src="script/cam_convert.js"></script>
         <br/><br/><br/><br/>
 
