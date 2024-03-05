@@ -8,32 +8,41 @@
     </head>
     <body>
         <h1>Camera converter</h1>
-        <p>Version &#x3B1; 0.3 : For now, only equidistant to omnidirectional and Kannala-Brandt conversion are supported</p>
-        <form id="cam_param" name="Camera parameter" action="" method="GET">
+        <p>Version &#x3B1; 0.4 : For now, only equidistant to omnidirectional and Kannala-Brandt conversion are supported</p>
+        <form id="cam_param" name="Camera parameter" action="" method="GET" style="border: 1px solid black; width: 250px; border-radius: 5px; padding: 10px;">
             <label for="f_length">Focal length (in m) </label><br>
             <input type="text" id="f_length" name="f_length" value="2.7e-3"><br>
             <label for="fov">Field of view (in degrees)</label><br>
             <input type="text" id="fov" name="fov" value="185"><br>
             <label for="pix_elem_size">Size of a pixel (in meter)</label><br>
             <input type="text" id="pix_elem_size" name="pix_elem_size" value="5.5e-6"><br>
-            <label for="zoomFactor">Zoom factor</label><br>
-            <input type="text" id="zoomFactor" name="zoomFactor" value="1"><br>
+            <!-- <label for="zoomFactor">Zoom factor</label><br>
+            <input type="text" id="zoomFactor" name="zoomFactor" value="1"><br><br> -->
             <!-- <label for="sensor_width">Width of the sensor (in pixel)</label><br>
             <input type="number" id="sensor_width" name="sensor_width" value="2048"><br>
             <label for="sensor_height">Height of the sensor (in pixel)</label><br>
             <input type="number" id="sensor_height" name="sensor_height" value="2048"><br><br> -->
-            <input type="file" name="filename" id="file"><br><br>
+            <input type="file" name="filename" id="file" onchange="load_img()"><br><br>
             <input type="submit">
         </form>
         <br>
-        <canvas id="canvas" hidden="true"></canvas>
         <div id="noImg">Select an image to preview the image circle.</div>
+        <canvas id="canvas" hidden="true"></canvas>
+        <div id="img_center">
+            <label for="zoomFactor">Zoom factor</label> : &nbsp;&nbsp;<input type="text" id="zoomFactor" name="zoomFactor" value="1"><br><br>
+            <label for="Cu">Center pixel Cu</label> : &nbsp;&nbsp;<input type="number" name="Cu" id="Cu" value=0><br>
+            <label for="Cv">Center pixel Cv</label> : &nbsp;&nbsp;<input type="number" name="Cv" id="Cv" value=0>
+        </div>
         <br>
         <h2>Equidistant parameters:</h2>
         <table>
             <tr>
                 <td>f factor : </td>
                 <td id="f_au_equi">-1</td>
+            </tr>
+            <tr>
+                <td>image circle : </td>
+                <td id="img_circ_equ">0</td>
             </tr>
         </table>
         <h2>Omnidirectional parameters:</h2>
@@ -49,6 +58,10 @@
             <tr>
                 <td>Residual : </td>
                 <td id="residual">-1</td>
+            </tr>
+            <tr>
+                <td>Image circle : </td>
+                <td id="img_circ">0</td>
             </tr>
         </table>
 

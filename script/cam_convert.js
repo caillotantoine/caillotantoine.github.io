@@ -1,13 +1,20 @@
-cam_param.onsubmit = async (e) => {
-    e.preventDefault();
-    form = new FormData(cam_param)
+var imgLoaded = false;
 
+var radius = -1;
+var radius_equ = -1;
+var zf = 1;
+
+var bigImg = false;
+
+const computeParam = () => {
+    form = new FormData(cam_param);
     const f = parseFloat(form.get("f_length"));
     const fov = parseFloat(form.get("fov"));
     const k = parseFloat(form.get("pix_elem_size"));
     const w = parseFloat(form.get("sensor_width"));
     const h = parseFloat(form.get("sensor_height"));
-    const zf = parseFloat(form.get("zoomFactor"));
+    // const zf = parseFloat(form.get("zoomFactor"));
+    zf = zoomFactor.value;
 
     const N = Math.round(fov) + 1;
 
@@ -33,68 +40,111 @@ cam_param.onsubmit = async (e) => {
     param = math.multiply(pinvA, b);
     fau = math.subset(param, math.index(0, 0));
     xi = math.subset(param, math.index(1, 0));
-    residual = 0.0;
+    residual_ = 0.0;
     for(let i = 0; i<N; i ++)
     {
-        residual += Math.pow(((fau * Math.sin(phi(i))) / (Math.cos(phi(i)) + xi) - ufe(i)), 2);
+        residual_ += Math.pow(((fau * Math.sin(phi(i))) / (Math.cos(phi(i)) + xi) - ufe(i)), 2);
     }
-    residual = Math.sqrt(residual) / parseFloat(N);
+    residual_ = Math.sqrt(residual_) / parseFloat(N);
 
-    document.getElementById("f_au").innerHTML = fau + (zf != 1 ? " (corrected: " + (fau * zf) + " )" : "");
-    document.getElementById("f_au_equi").innerHTML = fau_equi + (zf != 1 ? " (corrected: " + (fau_equi * zf) + " )" : "");
-    document.getElementById("f_au_kb").innerHTML = fau_equi + (zf != 1 ? " (corrected: " + (fau_equi * zf) + " )" : "");
-    document.getElementById("Xi").innerHTML = xi;
-    document.getElementById("residual").innerHTML = residual;
+    f_au.innerHTML = fau + (zf != 1 ? " (corrected: " + (fau * zf) + " )" : "");
+    f_au_equi.innerHTML = fau_equi + (zf != 1 ? " (corrected: " + (fau_equi * zf) + " )" : "");
+    f_au_kb.innerHTML = fau_equi + (zf != 1 ? " (corrected: " + (fau_equi * zf) + " )" : "");
+    Xi.innerHTML = xi;
+    residual.innerHTML = residual_;
 
-    const angle_max = radians(90) - (radians(fov) / 2.0);
-    const xlim = Math.cos(angle_max);
-    const zlim = Math.sin(angle_max);
-    const diameter = fau * xlim / (xi - zlim);
+    const angle_max = radians(fov) / 2.0;
+    const xlim = Math.cos(radians(90) - angle_max);
+    const zlim = Math.sin(radians(90) - angle_max);
+    radius = fau * xlim / (xi + zlim);
 
-    var imgValid = true;
+    radius_equ = fau_equi * angle_max;
 
-    try
-    {
-        var file = document.getElementById('file').files[0];
-        var reader  = new FileReader();
-        reader.onload = function(e)  {
-            var imgCont = document.getElementById("imgContainer");
-            imgCont.src = e.target.result;
-        }
-        reader.readAsDataURL(file);
+    img_circ.innerHTML = radius * 2.0;
+    img_circ_equ.innerHTML = radius_equ * 2.0;  
+}
 
-        
+const drawImg = () => {
+    // const canvas = document.getElementById("canvas");
+    // var noImg = document.getElementById("noImg");
+    
+    if(imgLoaded) {
+        canvas.hidden = false;
+        noImg.hidden = true;   
+        const biggestimg = (imgContainer.width + window.innerWidth * 0.05) / window.innerWidth;
+        const img_div = bigImg ? biggestimg : 8;
+        // const img_div = bigImg ? 2 : 8;
+        canvas.setAttribute("width", imgContainer.width/img_div);
+        canvas.setAttribute("height", imgContainer.height/img_div);
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(imgContainer, 0, 0, imgContainer.width/img_div, imgContainer.height/img_div);
 
-        const image = document.getElementById("imgContainer");
-        image.addEventListener("load", (e) => {
-            const canvas = document.getElementById("canvas");
-            canvas.hidden = false;
-            var noImg = document.getElementById("noImg");
-            noImg.hidden = true;   
-            canvas.setAttribute("width", image.width/8+20);
-            canvas.setAttribute("height", image.height/8+20);
-            const ctx = canvas.getContext("2d");
-            ctx.drawImage(image, 10, 10, image.width/8, image.height/8);
+        if(radius != -1){
             ctx.strokeStyle = "lightgreen";
             ctx.beginPath();
-            ctx.ellipse((image.width/8+20) / 2, (image.height/8+20) / 2, diameter / 8, diameter / 8, 0, 0, 2 * Math.PI);
+            ctx.ellipse(((Cu.value*2.0)/img_div) / 2, ((Cv.value*2.0)/img_div) / 2, radius / img_div, radius / img_div, 0, 0, 2 * Math.PI);
             ctx.stroke();
-            if(zf != 1)
-            {
-                ctx.strokeStyle = "red";
-                ctx.beginPath();
-                ctx.ellipse((image.width/8+20) / 2, (image.height/8+20) / 2, diameter * zf / 8, diameter * zf / 8, 0, 0, 2 * Math.PI);
-                ctx.stroke();
-            }
-            
-        });
+        }
+        if(radius_equ != -1)
+        {
+            ctx.strokeStyle = "blue";
+            ctx.beginPath();
+            ctx.ellipse(((Cu.value*2.0)/img_div) / 2, ((Cv.value*2.0)/img_div) / 2, radius_equ / img_div, radius_equ / img_div, 0, 0, 2 * Math.PI);
+            ctx.stroke();
+        }
+        if(zf != 1)
+        {
+            ctx.strokeStyle = "red";
+            ctx.beginPath();
+            ctx.ellipse(((Cu.value*2.0)/img_div) / 2, ((Cv.value*2.0)/img_div) / 2, radius * zf / img_div, radius * zf / img_div, 0, 0, 2 * Math.PI);
+            ctx.stroke();
+        }
     }
-    catch 
-    {
-        var canvas = document.getElementById("canvas");
+    else {
+        // var canvas = document.getElementById("canvas");
         canvas.hidden = true;
-        var noImg = document.getElementById("noImg");
+        // var noImg = document.getElementById("noImg");
         noImg.hidden = false;
-        // canvas.parentNode.replaceChild(noImg, canvas);
     }
+}
+
+canvas.onclick = async (e) => {
+    bigImg = !bigImg;
+    drawImg();
+}
+
+imgContainer.addEventListener("load", (e) => {
+    imgLoaded = true;
+    Cu.value = imgContainer.width / 2;
+    Cv.value = imgContainer.height / 2;
+    drawImg();
+});
+
+Cu.onchange = async (e) => {
+    drawImg();
+}
+
+Cv.onchange = async (e) => {
+    drawImg();
+}
+
+zoomFactor.onchange = async (e) => {
+    computeParam();
+    drawImg();
+}
+
+const load_img = () => {
+    var file = document.getElementById('file').files[0];
+    var reader  = new FileReader();
+    reader.onload = function(e)  {
+
+        imgContainer.src = e.target.result;
+    }
+    reader.readAsDataURL(file);
+}
+
+cam_param.onsubmit = async (e) => {
+    e.preventDefault();
+    computeParam();
+    drawImg();
 }
