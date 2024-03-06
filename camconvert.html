@@ -3,13 +3,34 @@
     <head>
         <meta charset="utf-8">
         <title>Camera model converter</title>
+        <link rel="stylesheet" href="./style/reset.css">
         <!-- <link rel="stylesheet" type="text/css" href=""> -->
+        <style>
+            body {
+                width: 95%;
+                max-width: 1024px;
+                min-width: 256px;
+                margin-left: 2%;
+            }
+            h1{
+                font-weight: bold;
+                font-size: larger;
+            }
+            h2 {
+                font-weight: bold;
+            }
+            p{
+                word-wrap: normal;
+            }
+        </style>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.2/math.js" integrity="sha512-SZF47arYfRSVmLDgkgsUNkKNha7brZ5WTCEIPNga3sh0Vw+Vs8hkslDKz0hvmovPqJrCKdH/4OlkxOFzueC+DA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
     <body>
         <h1>Camera converter</h1>
-        <p>Version &#x3B1; 0.4 : For now, only equidistant to omnidirectional and Kannala-Brandt conversion are supported</p>
-        <form id="cam_param" name="Camera parameter" action="" method="GET" style="border: 1px solid black; width: 250px; border-radius: 5px; padding: 10px;">
+        <br>
+        <p>Version &#x3B1; 0.4.1 : For now, only equidistant to omnidirectional and Kannala-Brandt conversion are supported</p>
+        <br>
+        <form id="cam_param" name="Camera parameter" action="" method="GET" style="border: 1px solid black; width: 256px; border-radius: 5px; padding: 10px;">
             <label for="f_length">Focal length (in m) </label><br>
             <input type="text" id="f_length" name="f_length" value="2.7e-3"><br>
             <label for="fov">Field of view (in degrees)</label><br>
@@ -44,7 +65,7 @@
                 <td>image circle : </td>
                 <td id="img_circ_equ">0</td>
             </tr>
-        </table>
+        </table><br>
         <h2>Omnidirectional parameters:</h2>
         <table>
             <tr>
@@ -64,7 +85,7 @@
                 <td id="img_circ">0</td>
             </tr>
         </table>
-
+        <br>
         <h2>OpenCV Kannala-Brandt parameters:</h2>
         <table>
             <tr>

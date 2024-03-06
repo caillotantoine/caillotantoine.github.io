@@ -47,9 +47,9 @@ const computeParam = () => {
     }
     residual_ = Math.sqrt(residual_) / parseFloat(N);
 
-    f_au.innerHTML = fau + (zf != 1 ? " (corrected: " + (fau * zf) + " )" : "");
-    f_au_equi.innerHTML = fau_equi + (zf != 1 ? " (corrected: " + (fau_equi * zf) + " )" : "");
-    f_au_kb.innerHTML = fau_equi + (zf != 1 ? " (corrected: " + (fau_equi * zf) + " )" : "");
+    f_au.innerHTML = (fau).toFixed(2) + (zf != 1 ? " (corrected: " + (fau * zf).toFixed(2) + " )" : "");
+    f_au_equi.innerHTML = (fau_equi).toFixed(2) + (zf != 1 ? " (corrected: " + (fau_equi * zf).toFixed(2) + " )" : "");
+    f_au_kb.innerHTML = (fau_equi).toFixed(2) + (zf != 1 ? " (corrected: " + (fau_equi * zf).toFixed(2) + " )" : "");
     Xi.innerHTML = xi;
     residual.innerHTML = residual_;
 
@@ -60,8 +60,8 @@ const computeParam = () => {
 
     radius_equ = fau_equi * angle_max;
 
-    img_circ.innerHTML = radius * 2.0;
-    img_circ_equ.innerHTML = radius_equ * 2.0;  
+    img_circ.innerHTML = (radius * 2.0).toFixed(2) + " px (" + (radius * 2.0 * k * 1000).toFixed(2) + " mm)";
+    img_circ_equ.innerHTML = (radius_equ * 2.0).toFixed(2) + " px (" + (radius_equ * 2.0 * k * 1000).toFixed(2) + " mm)";  
 }
 
 const drawImg = () => {
@@ -71,7 +71,8 @@ const drawImg = () => {
     if(imgLoaded) {
         canvas.hidden = false;
         noImg.hidden = true;   
-        const biggestimg = (imgContainer.width + window.innerWidth * 0.05) / window.innerWidth;
+        // const imgSizeAndMarg = imgContainer.width - window.innerWidth * 0.1;
+        const biggestimg = imgContainer.width / (window.innerWidth * 0.95 > 1024 ? 1024 : window.innerWidth * 0.95);
         const img_div = bigImg ? biggestimg : 8;
         // const img_div = bigImg ? 2 : 8;
         canvas.setAttribute("width", imgContainer.width/img_div);
