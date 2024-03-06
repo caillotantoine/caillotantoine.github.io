@@ -109,6 +109,46 @@ const drawImg = () => {
     }
 }
 
+const drawMask = (radius_) => {
+    if(radius_ == -1)
+    {
+        alert("You must compute the parameter first by pressing button Submit.");
+        return;
+    }
+    if(imgLoaded == false)
+    {
+        alert("You must upload an image first.");
+        return;
+    }
+    maskCanvas.setAttribute("width", imgContainer.width);
+    maskCanvas.setAttribute("height", imgContainer.height);
+    const ctx = maskCanvas.getContext("2d");
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, imgContainer.width, imgContainer.height);
+    ctx.fill();
+    ctx.fillStyle = "white";
+    ctx.beginPath();
+    ctx.ellipse(Cu.value, Cv.value, radius_, radius_, 0, 0, 2 * Math.PI);
+    ctx.fill();
+
+    let canvasUrl = maskCanvas.toDataURL("image/png");
+    maskExport.hidden = false;
+    maskExport.src = canvasUrl;
+}
+
+maskUCM.onclick = async (e) => {
+    drawMask(radius);
+}
+
+maskEqu.onclick = async (e) => {
+    drawMask(radius_equ);
+}
+
+maskZF.onclick = async (e) => {
+    drawMask(radius_equ * zf);
+}
+
+
 canvas.onclick = async (e) => {
     bigImg = !bigImg;
     drawImg();

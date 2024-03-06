@@ -24,11 +24,12 @@
             }
         </style>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.2/math.js" integrity="sha512-SZF47arYfRSVmLDgkgsUNkKNha7brZ5WTCEIPNga3sh0Vw+Vs8hkslDKz0hvmovPqJrCKdH/4OlkxOFzueC+DA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="script/opencv.js"></script>
     </head>
     <body>
         <h1>Camera converter</h1>
         <br>
-        <p>Version &#x3B1; 0.4.1 : For now, only equidistant to omnidirectional and Kannala-Brandt conversion are supported</p>
+        <p>Version &#x3B1; 0.5 : For now, only equidistant to omnidirectional and Kannala-Brandt conversion are supported</p>
         <br>
         <form id="cam_param" name="Camera parameter" action="" method="GET" style="border: 1px solid black; width: 256px; border-radius: 5px; padding: 10px;">
             <label for="f_length">Focal length (in m) </label><br>
@@ -50,10 +51,11 @@
         <div id="noImg">Select an image to preview the image circle.</div>
         <canvas id="canvas" hidden="true"></canvas>
         <div id="img_center">
-            <label for="zoomFactor">Zoom factor</label> : &nbsp;&nbsp;<input type="text" id="zoomFactor" name="zoomFactor" value="1"><br><br>
+            <label for="zoomFactor">Zoom factor</label> : &nbsp;&nbsp;<input type="text" id="zoomFactor" name="zoomFactor" value="1"> <button id="maskZF">Export the mask</button><br><br>
             <label for="Cu">Center pixel Cu</label> : &nbsp;&nbsp;<input type="number" name="Cu" id="Cu" value=0><br>
             <label for="Cv">Center pixel Cv</label> : &nbsp;&nbsp;<input type="number" name="Cv" id="Cv" value=0>
         </div>
+        <img hidden="true" id="maskExport" width="256px"/>
         <br>
         <h2>Equidistant parameters:</h2>
         <table>
@@ -66,6 +68,10 @@
                 <td id="img_circ_equ">0</td>
             </tr>
         </table><br>
+        <button id="maskEqu">Export the mask</button>
+        <br>
+        <br>
+        <br>
         <h2>Omnidirectional parameters:</h2>
         <table>
             <tr>
@@ -85,6 +91,10 @@
                 <td id="img_circ">0</td>
             </tr>
         </table>
+        <br>
+        <button id="maskUCM">Export the mask</button>
+        <br>
+        <br>
         <br>
         <h2>OpenCV Kannala-Brandt parameters:</h2>
         <table>
@@ -109,10 +119,14 @@
                 <td id="k4_kb">0</td>
             </tr>
         </table>
-
+        <br>
         <!-- style="display:none;" -->
         <div style="display:none;"> 
             <img id="imgContainer"/>
+        </div>
+
+        <div hidden="true">
+            <canvas id="maskCanvas"></canvas>
         </div>
 
         <script src="script/cam_convert.js"></script>
