@@ -6,9 +6,7 @@ body {
     background-color: var(--white);
     text-align: center;
     color: var(--black);
-    max-width: 1024px;
 }
-
 
 @media (orientation: portrait)
 {
@@ -18,7 +16,7 @@ body {
         width: 100%;
         background-color: var(--main);
         color: var(--white);
-        height: 7%;
+        height: 10%;
         font-size: 18pt;
     }
 
@@ -26,22 +24,22 @@ body {
         width: 100%;
         margin: 0;
         position: absolute;
-        top: calc(50% - 9pt);
+        top: calc(50% - 2vh);
+        font-size: 4vh;
         /* -ms-transform: translateY(-50%);
         transform: translateY(-50%); */
     }
 
     #menu {
         position: absolute;
-        right: 12pt;
+        right: 2vw;
         font-weight: lighter;
     }
     
     #website_title {
         position: absolute;
-        left: 12pt;
+        left: 2vw;
         font-family: "Cormorant Garamond";
-        font-size: larger;
     }
 
     footer {
@@ -51,14 +49,14 @@ body {
         /* padding-bottom: 2vh; */
         /* bottom: 5vh; */
         width: 100%;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        padding-top: 1vh;
+        padding-bottom: 1vh;
         background-color: var(--main);
         color: var(--white);
         font-family: sans-serif;
         font-style: italic;
         font-weight: lighter;
-        font-size: small;
+        font-size: 1vh;
 
     } 
 }
