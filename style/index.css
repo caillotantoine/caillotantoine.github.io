@@ -48,15 +48,15 @@
 }
 
 #authorName {
-    font-family: Nordica;
+    font-family: Helvetica;
     font-size: 10vw;
-    font-weight: normal;
+    font-weight: lighter;
 }
 
 #authorWelcomeMsg {
     padding-left: 2vh;
     border-left: 1px solid black;
-    font-family: Nordica;
+    font-family: Helvetica;
     font-size: 16pt;
     font-weight: lighter;
 }

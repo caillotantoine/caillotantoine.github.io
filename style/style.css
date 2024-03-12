@@ -6,6 +6,7 @@ body {
     background-color: var(--white);
     text-align: center;
     color: var(--black);
+    max-width: 1024px;
 }
 
 
@@ -33,22 +34,32 @@ body {
     #menu {
         position: absolute;
         right: 12pt;
+        font-weight: lighter;
     }
     
     #website_title {
         position: absolute;
         left: 12pt;
+        font-family: "Cormorant Garamond";
+        font-size: larger;
     }
 
     footer {
-        /* position: absolute; */
+        position: absolute;
+        bottom: 0;
         /* margin-top: 10vh; */
-        padding-bottom: 2vh;
+        /* padding-bottom: 2vh; */
         /* bottom: 5vh; */
-        /* height: fit-content; */
         width: 100%;
-        color: var(--black);
+        padding-top: 5px;
+        padding-bottom: 5px;
+        background-color: var(--main);
+        color: var(--white);
+        font-family: sans-serif;
         font-style: italic;
+        font-weight: lighter;
+        font-size: small;
+
     } 
 }
 
@@ -56,8 +67,6 @@ body {
 {
 
 }
-
-
 
 
 
