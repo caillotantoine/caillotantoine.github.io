@@ -24,16 +24,59 @@ header {
     font-weight: 500;
 }
 
-.open{
-    display: visible;
+#open{
+    display: block;
+    /* visibility: visible; */
 }
 
-.close {
+#close {
     display: none;
+    /* visibility: hidden; */
+}
+
+#website_title a{
+    text-decoration: none;
+    color: var(--white);
+}
+
+footer {
+    /* position: absolute; */
+    bottom: 0;
+    /* margin-top: 10vh; */
+    /* padding-bottom: 2vh; */
+    /* bottom: 5vh; */
+    width: 100%;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    background-color: var(--main);
+    color: var(--white);
+    font-family: sans-serif;
+    font-style: italic;
+    font-weight: lighter;
+    font-size: 1vh;
+} 
+
+.idx_nav_elem:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.idx_nav_elem_inner {
+    display: block;
+    width: 100%;
+    height:100%;
+    text-align: center;
 }
 
 @media (orientation: portrait)
 {
+    #menu{
+        display: block;
+    }
+
+    #landscapeMenu{
+        display: none;
+    }
+
     nav {
         display: none;
         position: absolute;
@@ -57,12 +100,14 @@ header {
       }
 
     .idx_nav_elem{
-        padding: 1vh;
-        border-bottom: 1px solid var(--comp);
+        border-bottom: 0.125rem solid var(--comp);
     }
 
     .idx_nav_elem_inner {
-        font-size: 42pt;
+        /* padding: 2rem; */
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        font-size: 5rem;
         color: var(--comp);
         text-decoration: none;
     }
@@ -93,7 +138,7 @@ header {
     }
 
     footer {
-        position: absolute;
+        /* position: absolute; */
         bottom: 0;
         /* margin-top: 10vh; */
         /* padding-bottom: 2vh; */
@@ -113,7 +158,88 @@ header {
 
 @media (orientation: landscape)
 {
+    #menu{
+        display: none;
+    }
 
+    #landscapeMenu{
+        font-family: "Cormorant Garamond";
+        position: absolute;
+        display: block;
+        right: 1rem;
+        width: fit-content;
+    }
+    #landscapeMenu a{
+        color: var(--white);
+        text-decoration: none;
+        margin-left: 3rem;
+    }
+    #landscapeMenu a:hover{
+        text-decoration: underline;
+    }
+
+    nav {
+        display: none;
+        position: absolute;
+        top: 7vh;
+        width: 25vw;
+        right:0;
+        animation: createBox .5s;
+        z-index: 1;
+        backdrop-filter: blur(50px);
+        -webkit-backdrop-filter: blur(50px);
+    }
+    @keyframes createBox {
+        from {
+            top: -1000%;
+        }
+        to {
+            top: 7vh;
+        }
+      }
+
+    .idx_nav_elem{
+        border-bottom: 0.1rem solid var(--comp);
+        border-left: 0.1rem solid var(--comp);
+    }
+
+    .idx_nav_elem_inner {
+        /* padding: 1rem; */
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        font-size: 2rem;
+        color: var(--comp);
+        text-decoration: none;
+    }
+
+
+    #header_content{
+        width: 100%;
+        margin: 0;
+        position: absolute;
+        top: calc(50% - 2vh);
+        font-size: 4vh;
+        /* -ms-transform: translateY(-50%);
+        transform: translateY(-50%); */
+    }
+
+    #menu {
+        position: absolute;
+        right: 1vw;
+        font-weight: lighter;
+        padding-left: 1vw;
+        padding-right: 1vw;
+    }
+    
+    #website_title {
+        position: absolute;
+        left: 2vw;
+        font-family: "Cormorant Garamond";
+    }
+
+    #website_title:hover {
+        text-decoration: underline;
+    }
 }
 
 

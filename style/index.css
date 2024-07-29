@@ -1,18 +1,63 @@
 @import './fonts.css';
 @import './colors.css';
 
+
+#about_author {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    vertical-align: middle;
+    line-height: normal;
+    margin-top: 24vh;
+    margin-bottom: 20vh;
+}
+
+#authorName {
+    font-family: Helvetica;
+    font-size: 10vw;
+    font-weight: lighter;
+}
+
+#profile_img_cont {
+    margin: auto;
+    width: 50%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2pt solid lightgray;
+}
+
+#profile_img {
+    width: 100%;
+}
+
+#authorWelcomeMsg {
+    border-left: 0.125rem solid black;
+    font-family: Helvetica;
+    font-weight: lighter;
+    text-align: justify;
+}
+
+#links {
+    display: flex;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 20vh;
+}
+
+#links img {
+    width: 8rem;
+    margin-bottom: 5vh;
+    margin-left: 2vw;
+    margin-right: 2vw;
+}
+
+
 @media (orientation: portrait)
 {
-    #about_author {
-        display: flex;
-        flex-direction: column;
-        text-align: left;
-        /* border: 2pt solid black; */
     
-        vertical-align: middle;
-        line-height: normal;
-        margin-top: 20vh;
-        margin-bottom: 20vh;
+    #about_author {
+        flex-direction: column;
     }
     #img_cont {
         margin: auto;
@@ -22,98 +67,62 @@
     #img_cont + #author {
         margin-top: 5vh;
     }
+
+    #authorName {
+        font-size: 10vw;
+    }
+
+    #author {
+        width: 90%;
+        margin-left: auto;
+        text-align: justify;
+    }
+
+    #authorWelcomeMsg{
+        line-height: 3rem;
+        width: 82%;
+        padding-left: 1rem;
+        font-size: 2rem;
+    }
+
+    #link{
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 
+@media (orientation: landscape)
+{
+    #about_author {
+        flex-direction: row;
+        align-items: center;
+        max-width: 80rem;
+        margin-left: calc(50% - 40rem);
+    }
+    #img_cont {
+        width: 26%;
+        margin-left: 12.5%;
+    }
 
-#profile_img_cont {
-    margin: auto;
-    width: 50%;
-    /* max-width: 300pt; */
-    aspect-ratio: 1;
-    overflow: hidden;
-    border-radius: 50%;
-    border: 2pt solid lightgray;
-    box-shadow: 0 0 5pt black;
+    #authorName {
+        font-size: 4rem;
+    }
+
+    #author {
+        width: 50%;
+        margin: left;
+        text-align: justify;
+    }
+
+    #authorWelcomeMsg{
+        font-size: 1.25rem;
+        width: 95%;
+        padding-left: 1rem;
+    }
+
+    #link{
+        flex-direction: row;
+        align-items: center;
+    }
 }
-
-#profile_img {
-    width: 100%;
-}
-
-#author {
-    width: 90%;
-    margin: auto;
-    text-align: justify;
-}
-
-#authorName {
-    font-family: Helvetica;
-    font-size: 10vw;
-    font-weight: lighter;
-}
-
-#authorWelcomeMsg {
-    padding-left: 2vh;
-    border-left: 1px solid black;
-    font-family: Helvetica;
-    font-size: 16pt;
-    font-weight: lighter;
-}
-
-#experience {
-    /* border-style: solid;  */
-    width: 90%;
-    margin: auto;
-    /* border-collapse: collapse; */
-}
-
-#experience td {
-    /* padding-top: 2vh;
-    padding-bottom: 2vh; */
-    /* height: max-content; */
-    border-collapse: collapse;
-    /* border-style: solid;
-    border-color: black; */
-    /* border-width: pt; */
-    vertical-align: middle;
-    height: 100px;
-    color: var(--main);
-    /* background-color: rgb(200, 200, 255) */
-}
-
-/* tr{
-    border-collapse: collapse;
-} */
-
-
-
-#experience h2 {
-    font-family: PetiteFrance;
-    font-weight: lighter;
-    font-size: 12pt;
-    color: var(--dark)
-}
-
-.accademic{
-    text-align: left;
-    width: 45%
-}
-.pro{
-    text-align: right;
-    width: 45%;
-}
-
-.middle{
-    width: 10%;
-    padding: 0;
-}
-
-#links {
-    display: flex;
-    width: 60%;
-    margin: auto;
-    margin-top: 15vh;
-    justify-content: space-between;
-}
-

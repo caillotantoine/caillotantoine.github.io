@@ -1,16 +1,26 @@
 var menuState = false;
 
+function openNavMenu() {
+    document.querySelector("nav").style.setProperty('display', 'block');
+    document.getElementById("open").style["display"] = "none";
+    document.getElementById("close").style["display"] = "block";
+    menuState = true;
+}
+
+function closeNavMenu() {
+    document.querySelector("nav").style.setProperty('display', 'none');
+    document.getElementById("open").style["display"] = "block";
+    document.getElementById("close").style["display"] = "none";
+        
+    menuState = false;
+}
+
 function toggleMenu() {
     if(menuState)
     {
-        document.getElementById("open").style["display"] = "visible";
-        document.getElementById("close").style["display"] = "none";
-        menuState = false;
+        closeNavMenu();
     }
     else{
-        document.getElementById("open").style["display"] = "none";
-        document.getElementById("close").style["display"] = "visible";
-        menuState = true;
-        // document.querySelector("nav").style.setProperty('display', 'visible');
+        openNavMenu();
     }
 }
