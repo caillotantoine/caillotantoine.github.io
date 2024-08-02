@@ -1,41 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <!--
-        For dev : -->
-        <!-- <meta http-equiv="refresh" content="10"> -->
-        <!---->
-
-        <!-- 
-            file:///Users/caillotantoine/Documents/Projets/site_antoine/index.html
-            https://taishiro70okazaki.com
-            https://www.boutteau.fr/index.php
-            http://www.mauriciokugler.com
-            https://robinlecomte.com/background.html
-            
-        -->
-
         <meta charset="utf-8">
         <meta name="keywords" content="antoine, caillot, resume, engineer, phd, doctorat, ingenieur">
         <meta name="description" content="Personal website to share who I am and what I like">
         <title>CAILLOT Antoine</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./style/reset.css">
-        <link rel="stylesheet" href="./style/style.css">
-        <link rel="stylesheet" href="./style/index.css">
         <link rel="stylesheet" href="./style/colors.css">
+        <link rel="stylesheet" href="./style/index.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-        <script>
-            function loadHTML(file, elementId) {
-                fetch(file)
-                    .then(response => response.text())
-                    .then(data => {
-                        document.getElementById(elementId).innerHTML = data;
-                    });
-            }
-        </script>
+        <script src="script/base.js"></script>
     </head>
     <body onload="loadHTML('template/header.html', 'header'); loadHTML('template/footer.html', 'footer');">
         <div id="header"></div>
@@ -47,13 +21,16 @@
                 </div>
                 <div id="author">
                     <h1 id="authorName">Antoine CAILLOT</h1>
-                    <p id="authorWelcomeMsg">I am a postdoctoral fellow working at the <a href="https://unit.aist.go.jp/jrl-22022/index_en.html" alt="Link to the Joint Robotics Laboratory website">JRL</a> on <a href="https://en.wikipedia.org/wiki/Simultaneous_localization_and_mapping" alt="Link to SLAM">SLAM</a> with emergent image sensors. Beside, I am interested in (astro)photography and have some computer sciences related side project.</p>
-                    <!-- <p id="authorWelcomeMsg">Do not hesitate to navigate through my projects and hobbies.</p> -->
+                    <p id="authorWelcomeMsg">I am a postdoctoral fellow working at the CNRS-AIST Joint Robotics Laboratory on creating and using emergent vision sensor for Simultaneous Localization and Mapping (SLAM). My research interests are 
+                    <span class="researchInterest">Computer Vision</span>, 
+                    <span class="researchInterest">Omnidirectional Cameras</span>, 
+                    <span class="researchInterest">High Dynamic Range</span> and 
+                    <span class="researchInterest">Cooperative Robotics</span>. 
+                    Beside, I am interested in (astro)photography and have some computer sciences related side project.</p>
                 </div>
             </section>
-
+            
             <section id="links">
-                
                 <div id="linkPair" />
                     <a href="https://github.com/caillotantoine"><img src="image/github-mark.png" alt="Github"/></a>
                     <a href="https://cv.hal.science/antoine-caillot#"><img src="https://hal.science/assets/img/hal-logo-header.png" alt="HAL"/></a>
@@ -65,11 +42,64 @@
                 <div id="linkPair" />
                     <a href="https://scholar.google.com/citations?user=872afecAAAAJ&hl=en"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Google_Scholar_logo.svg/2048px-Google_Scholar_logo.svg.png" alt="Google Scholar"/></a>
                     <a href="https://www.linkedin.com/in/caillotantoine"><img src="image/LI-In-Bug.png" alt="LinkedIN"/></a>
-                </div>
-
+                </div>   
             </section>
-        </div>
+            
+            <section id="bio" class="normalSection">
+                <h1>Short biography</h1>
+                <ul>
+                    <li>
+                        <span class="title">JSPS Postdoctoral fellow</span> (2023 ~ 2025)<br />
+                        <span class="loc">JRL CNRS-AIST, Tsukuba, Ibaraki, Japan.</span>
+                    </li>
+                    <li>
+                        <span class="title">Ph. D of Robotics</span> (2019 ~ 2022)<br />
+                        <u>Thesis:</u> On cooperative perception V2X for autonomous navigiation. <br>
+                        <span class="loc">University of Rouen-Normandy, Rouen, France.</span>
+                    </li>
+                    <li>
+                        <span class="title">Application engineer</span> (2016 ~ 2019)<br />
+                        <u>Apprenticeship</u> at <span class="loc">National Instruments, Paris, France.</span><br>
+                        <u>Internship</u> at <span class="loc">National Instruments, Tokyo, Japan.</span>
+                    </li>
+                    <li>
+                        <span class="title">Master Degree of engineering</span> (2014 ~ 2019)<br />
+                        <u>Major:</u> Embedded systems dedicated to autonomous vehicles.<br>
+                        <span class="loc">ESIGELEC, Rouen, France.</span>
+                    </li>
+            
+                </ul>
+            </section>
+            
+            <section id="news" class="normalSection">
+                <h1>News:</h1>
+                <table id="newsList"></table>
+                <script>
+                    // document.getElementById('newsList').innerHTML = '<li>Bonjour<\li>';
+                    $.getJSON("./content/news.json", function(json) {
+                        // console.log(json.news.sort((a, b) => new Date(b.date) - new Date(a.date)));
+                        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    
+                        const sortedNews = json.news.sort((a, b) => new Date(b.date) - new Date(a.date))
+                        sortedNews.forEach(element => {
+                            const date = new Date(element.date)
+                            const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
+                            document.getElementById("newsList").innerHTML += "<tr><td class='date'>"+ formattedDate +"</td><td class='newsLabel'> " + element.en + "</td></tr>";
+                        });
+                    });
+                </script>
+            </section>
+            
+            <section id="contact" class="normalSection">
+                <h1>Contact:</h1>
+                <span class="title">Email:</span> 
+                antoine.caillot[at]aist.go.jp
+                <br /><br />
+            
+                
+                Tsukuba Central 1, 1-1-1 Umezono, Tsukuba, Ibaraki 305-8560, CNRS-AIST Joint Robotics Laboratory
+            </section>
+
         <div id="footer"></div>
-        <script src="script/base.js"></script>
     </body>
 </html>

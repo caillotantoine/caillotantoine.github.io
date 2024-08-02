@@ -1,0 +1,48 @@
+{
+    "news" : [
+        {
+            "date": "2022-09-01",
+            "en": "Paper <span class='title'>Survey on Cooperative Perception in an Automotive Context</span> has been published in IEEE Transactions on Intelligent Transportation Systems."
+        },
+        {
+            "date": "2022-10-08",
+            "en": "Paper <span class='title'>Multi-Agent Cooperative Camera-Based Evidential Occupancy Grid Generation</span> has been presented and published in IEEE 25th International Conference on Intelligent Transportation Systems (ITSC) in Macao."
+        },
+        {
+            "date": "2022-11-22",
+            "en": "Defended my thesis <span class='title'>Onboard/offboard extended perception for autonomous navigation</span> at ESIGELEC, Rouen."
+        },
+        {
+            "date": "2023-01-09",
+            "en": "Started the JSPS post-doctoral fellowship at CNRS-AIST JRL."
+        },
+        {
+            "date": "2023-12-15",
+            "en": "Poster presentation at the 27e Journée Francophone de la Recherche held at the Maison Franco-Japonaise, Tokyo, Japan."
+        },
+        {
+            "date": "2024-04-22",
+            "en": "Paper <span class='title'>Multi-Agent Cooperative Camera-Based Semantic Grid Generation</span> has been published in Journal of Intelligent & Robotic Systems."
+        },
+        {
+            "date": "2024-05-13",
+            "en": "Attendance to IEEE International Conference on Robotics and Automation (ICRA) in Yokohama, Japan."
+        },
+        {
+            "date": "2024-07-01",
+            "en": "Attendance to Reconnaissance des Formes, Image, Apprentissage et Perception (RFIAP) Conference in Lille, France."
+        }, 
+        {
+            "date": "2024-07-04",
+            "en": "Attendance to Capteurs visuels émergents et applications Journée inter GdR IASIS et Robotique GdR IASIS Conference in Paris, France."
+        }, 
+        {
+            "date": "2024-07-05",
+            "en": "Presentation of my work on emergent vision sensors at ESIGELEC in Rouen, France."
+        },
+        {
+            "date": "2024-07-08",
+            "en": "Begining of the supervision of GUILLAUME Constantin, inetern at the CNRS-AIST JRL."
+        }
+    ]
+}

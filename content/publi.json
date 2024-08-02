@@ -2,17 +2,44 @@
     "publication" : [
         {
             "name" : "Survey on Cooperative Perception in an Automotive Context",
-            "authors" : "Caillot Antoine, Safa Ouerghi, Pascal Vasseur, Rémi Boutteau, and Yohan Dupuis.", 
+            "authors" : ["Antoine Caillot", "Safa Ouerghi", "Pascal Vasseur", "Rémi Boutteau", "Yohan Dupuis"], 
             "link": "https://doi.org/10.1109/TITS.2022.3153815",
             "pub": "IEEE Transactions on Intelligent Transportation Systems (2022)",
-            "class": "journal"
+            "class": "journal",
+            "date": "2022-09-01"
         },
         {
             "name" : "Multi-Agent Cooperative Camera-Based Evidential Occupancy Grid Generation",
-            "authors" : "Antoine Caillot, Safa Ouerghi, Pascal Vasseur, Yohan Dupuis, and Rémi Boutteau.", 
+            "authors" : ["Antoine Caillot", "Safa Ouerghi", "Pascal Vasseur", "Yohan Dupuis", "Rémi Boutteau."], 
             "link": "https://doi.org/10.1109/ITSC55140.2022.9921855",
             "pub": "IEEE 25th International Conference on Intelligent Transportation Systems (ITSC) (2022)",
-            "class": "conference"
+            "class": "conference",
+            "date": "2022-10-08"
+        },
+        {
+            "name" : "Multi-Agent Cooperative Camera-Based Semantic Grid Generation",
+            "authors" : ["Antoine Caillot", "Safa Ouerghi", "Yohan Dupuis", "Pascal Vasseur", "Rémi Boutteau"], 
+            "link": "https://doi.org/10.1007/s10846-024-02093-4",
+            "pub": "Journal of Intelligent & Robotic Systems",
+            "class": "journal",
+            "date": "2024-04-22"
+        },
+        {
+            "name" : "Onboard/offboard extended perception for autonomous navigation",
+            "authors" : ["Antoine Caillot"], 
+            "link": "https://hal.science/tel-03984750",
+            "pub": "University of Rouen",
+            "class": "thesis",
+            "date": "2022-11-22"
+        }
+        ,
+        {
+            "name" : "ロボットの自動位置姿勢推定のための先進的視覚センサを用いたSLAM法の研究開発 ",
+            "authors" : ["Antoine Caillot"], 
+            "link": "https://app.dimensions.ai/details/grant/grant.13856232",
+            "pub": "Japan Society for the Promotion of Science (Tokyo, JP) ",
+            "class": "grant",
+            "date": "2023-04-25"
         }
     ]
 }

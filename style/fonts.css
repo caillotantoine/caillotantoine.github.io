@@ -1,4 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap');
+
 @font-face {
+    font-family: "MaziusDisplay";
+    src: url("../font/CLT Mazius Display/web/MaziusDisplay-Bold.woff2") format("woff2");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "MaziusDisplay";
+    src: url("../font/CLT Mazius Display/web/MaziusDisplay-Regular.woff2") format("woff2");
+    font-weight: normal;
+}
+
+
+
+/* @font-face {
     font-family: "Nordica";
     src: url("../font/nordica/NordicaRegular.otf") format("opentype");
     font-weight: bold;
@@ -129,4 +145,4 @@
     font-style: italic;
     src: url("../font/Cormorant_Garamond/CormorantGaramond-BoldItalic.ttf") format("truetype");
 }
-  
+   */

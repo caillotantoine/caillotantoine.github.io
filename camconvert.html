@@ -2,139 +2,129 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Camera model converter</title>
+        <meta name="keywords" content="antoine, caillot, resume, engineer, phd, doctorat, ingenieur">
+        <meta name="description" content="Personal website to share who I am and what I like">
+        <title>CAILLOT Antoine</title>
         <link rel="stylesheet" href="./style/reset.css">
-        <!-- <link rel="stylesheet" type="text/css" href=""> -->
-        <style>
-            body {
-                width: 95%;
-                max-width: 1024px;
-                min-width: 256px;
-                margin-left: 2%;
-            }
-            h1{
-                font-weight: bold;
-                font-size: larger;
-            }
-            h2 {
-                font-weight: bold;
-            }
-            p{
-                word-wrap: normal;
-            }
-        </style>
+        <link rel="stylesheet" href="./style/colors.css">
+        <link rel="stylesheet" href="./style/index.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="script/base.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.2/math.js" integrity="sha512-SZF47arYfRSVmLDgkgsUNkKNha7brZ5WTCEIPNga3sh0Vw+Vs8hkslDKz0hvmovPqJrCKdH/4OlkxOFzueC+DA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="script/opencv.js"></script>
     </head>
-    <body>
-        <h1>Camera converter</h1>
-        <br>
-        <p>Version &#x3B1; 0.5 : For now, only equidistant to omnidirectional and Kannala-Brandt conversion are supported</p>
-        <br>
-        <form id="cam_param" name="Camera parameter" action="" method="GET" style="border: 1px solid black; width: 256px; border-radius: 5px; padding: 10px;">
-            <label for="f_length">Focal length (in m) </label><br>
-            <input type="text" id="f_length" name="f_length" value="2.7e-3"><br>
-            <label for="fov">Field of view (in degrees)</label><br>
-            <input type="text" id="fov" name="fov" value="185"><br>
-            <label for="pix_elem_size">Size of a pixel (in meter)</label><br>
-            <input type="text" id="pix_elem_size" name="pix_elem_size" value="5.5e-6"><br>
-            <!-- <label for="zoomFactor">Zoom factor</label><br>
-            <input type="text" id="zoomFactor" name="zoomFactor" value="1"><br><br> -->
-            <!-- <label for="sensor_width">Width of the sensor (in pixel)</label><br>
-            <input type="number" id="sensor_width" name="sensor_width" value="2048"><br>
-            <label for="sensor_height">Height of the sensor (in pixel)</label><br>
-            <input type="number" id="sensor_height" name="sensor_height" value="2048"><br><br> -->
-            <input type="file" name="filename" id="file" onchange="load_img()"><br><br>
-            <input type="submit">
-        </form>
-        <br>
-        <div id="noImg">Select an image to preview the image circle.</div>
-        <canvas id="canvas" hidden="true"></canvas>
-        <div id="img_center">
-            <label for="zoomFactor">Zoom factor</label> : &nbsp;&nbsp;<input type="text" id="zoomFactor" name="zoomFactor" value="1"> <button id="maskZF">Export the mask</button><br><br>
-            <label for="Cu">Center pixel Cu</label> : &nbsp;&nbsp;<input type="number" name="Cu" id="Cu" value=0><br>
-            <label for="Cv">Center pixel Cv</label> : &nbsp;&nbsp;<input type="number" name="Cv" id="Cv" value=0>
-        </div>
-        <img hidden="true" id="maskExport" width="256px"/>
-        <br>
-        <h2>Equidistant parameters:</h2>
-        <table>
-            <tr>
-                <td>f factor : </td>
-                <td id="f_au_equi">-1</td>
-            </tr>
-            <tr>
-                <td>image circle : </td>
-                <td id="img_circ_equ">0</td>
-            </tr>
-        </table><br>
-        <button id="maskEqu">Export the mask</button>
-        <br>
-        <br>
-        <br>
-        <h2>Omnidirectional parameters:</h2>
-        <table>
-            <tr>
-                <td>f factor : </td>
-                <td id="f_au">-1</td>
-            </tr>
-            <tr>
-                <td>ξ (Xi) : </td>
-                <td id="Xi">-1</td>
-            </tr>
-            <tr>
-                <td>Residual : </td>
-                <td id="residual">-1</td>
-            </tr>
-            <tr>
-                <td>Image circle : </td>
-                <td id="img_circ">0</td>
-            </tr>
-        </table>
-        <br>
-        <button id="maskUCM">Export the mask</button>
-        <br>
-        <br>
-        <br>
-        <h2>OpenCV Kannala-Brandt parameters:</h2>
-        <table>
-            <tr>
-                <td>f factor : </td>
-                <td id="f_au_kb">-1</td>
-            </tr>
-            <tr>
-                <td>k1 : </td>
-                <td id="k1_kb">0</td>
-            </tr>
-            <tr>
-                <td>k2 : </td>
-                <td id="k2_kb">0</td>
-            </tr>
-            <tr>
-                <td>k3 : </td>
-                <td id="k3_kb">0</td>
-            </tr>
-            <tr>
-                <td>k4 : </td>
-                <td id="k4_kb">0</td>
-            </tr>
-        </table>
-        <br>
-        <!-- style="display:none;" -->
-        <div style="display:none;"> 
-            <img id="imgContainer"/>
-        </div>
+    <body onload="loadHTML('template/header.html', 'header'); loadHTML('template/footer.html', 'footer');">
+        <div id="header"></div>
+        <div onclick="closeNavMenu()">
 
-        <div hidden="true">
-            <canvas id="maskCanvas"></canvas>
-        </div>
+        <section style="position:absolute; top: 15vh;">
+            <h1>Camera converter</h1>
+            <br>
+            <p>Version &#x3B1; 0.5 : For now, only equidistant to omnidirectional and Kannala-Brandt conversion are supported</p>
+            <br>
+            <form id="cam_param" name="Camera parameter" action="" method="GET" style="border: 1px solid black; width: 256px; border-radius: 5px; padding: 10px;">
+                <label for="f_length">Focal length (in m) </label><br>
+                <input type="text" id="f_length" name="f_length" value="2.7e-3"><br>
+                <label for="fov">Field of view (in degrees)</label><br>
+                <input type="text" id="fov" name="fov" value="185"><br>
+                <label for="pix_elem_size">Size of a pixel (in meter)</label><br>
+                <input type="text" id="pix_elem_size" name="pix_elem_size" value="5.5e-6"><br>
+                <!-- <label for="zoomFactor">Zoom factor</label><br>
+                <input type="text" id="zoomFactor" name="zoomFactor" value="1"><br><br> -->
+                <!-- <label for="sensor_width">Width of the sensor (in pixel)</label><br>
+                <input type="number" id="sensor_width" name="sensor_width" value="2048"><br>
+                <label for="sensor_height">Height of the sensor (in pixel)</label><br>
+                <input type="number" id="sensor_height" name="sensor_height" value="2048"><br><br> -->
+                <input type="file" name="filename" id="file" onchange="load_img()"><br><br>
+                <input type="submit">
+            </form>
+            <br>
+            <div id="noImg">Select an image to preview the image circle.</div>
+            <canvas id="canvas" hidden="true"></canvas>
+            <div id="img_center">
+                <label for="zoomFactor">Zoom factor</label> : &nbsp;&nbsp;<input type="text" id="zoomFactor" name="zoomFactor" value="1"> <button id="maskZF">Export the mask</button><br><br>
+                <label for="Cu">Center pixel Cu</label> : &nbsp;&nbsp;<input type="number" name="Cu" id="Cu" value=0><br>
+                <label for="Cv">Center pixel Cv</label> : &nbsp;&nbsp;<input type="number" name="Cv" id="Cv" value=0>
+            </div>
+            <img hidden="true" id="maskExport" width="256px"/>
+            <br>
+            <h2>Equidistant parameters:</h2>
+            <table>
+                <tr>
+                    <td>f factor : </td>
+                    <td id="f_au_equi">-1</td>
+                </tr>
+                <tr>
+                    <td>image circle : </td>
+                    <td id="img_circ_equ">0</td>
+                </tr>
+            </table><br>
+            <button id="maskEqu">Export the mask</button>
+            <br>
+            <br>
+            <br>
+            <h2>Omnidirectional parameters:</h2>
+            <table>
+                <tr>
+                    <td>f factor : </td>
+                    <td id="f_au">-1</td>
+                </tr>
+                <tr>
+                    <td>ξ (Xi) : </td>
+                    <td id="Xi">-1</td>
+                </tr>
+                <tr>
+                    <td>Residual : </td>
+                    <td id="residual">-1</td>
+                </tr>
+                <tr>
+                    <td>Image circle : </td>
+                    <td id="img_circ">0</td>
+                </tr>
+            </table>
+            <br>
+            <button id="maskUCM">Export the mask</button>
+            <br>
+            <br>
+            <br>
+            <h2>OpenCV Kannala-Brandt parameters:</h2>
+            <table>
+                <tr>
+                    <td>f factor : </td>
+                    <td id="f_au_kb">-1</td>
+                </tr>
+                <tr>
+                    <td>k1 : </td>
+                    <td id="k1_kb">0</td>
+                </tr>
+                <tr>
+                    <td>k2 : </td>
+                    <td id="k2_kb">0</td>
+                </tr>
+                <tr>
+                    <td>k3 : </td>
+                    <td id="k3_kb">0</td>
+                </tr>
+                <tr>
+                    <td>k4 : </td>
+                    <td id="k4_kb">0</td>
+                </tr>
+            </table>
+            <br>
+            <!-- style="display:none;" -->
+            <div style="display:none;"> 
+                <img id="imgContainer"/>
+            </div>
 
-        <script src="script/cam_convert.js"></script>
-        <br/><br/><br/><br/>
+            <div hidden="true">
+                <canvas id="maskCanvas"></canvas>
+            </div>
 
-        <footer > 
-            <!-- style="position:absolute; bottom: 10px;" -->
             Algorithm from <a href="https://github.com/PerceptionRobotique/libPeR_base">LibPER</a>.
-        </footer>
+
+            <script src="script/cam_convert.js"></script>
+        </section>
+
+        <div id="footer"></div>
     </body>
 </html>

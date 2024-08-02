@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!--
+        For dev : -->
+        <!-- <meta http-equiv="refresh" content="10"> -->
+        <!---->
+
+        <!-- 
+            file:///Users/caillotantoine/Documents/Projets/site_antoine/index.html
+            https://taishiro70okazaki.com
+            https://www.boutteau.fr/index.php
+            http://www.mauriciokugler.com
+            https://robinlecomte.com/background.html
+            
+        -->
+
+
+        <!--SVG curves : https://sean.brunnock.com/SVG/SVGPathGenerator/ -->
+
+        <meta charset="utf-8">
+        <meta name="keywords" content="antoine, caillot, resume, engineer, phd, doctorat, ingenieur">
+        <meta name="description" content="Personal website to share who I am and what I like">
+        <title>CAILLOT Antoine</title>
+        <link rel="stylesheet" href="./style/reset.css">
+        <link rel="stylesheet" href="./style/style.css">
+        <link rel="stylesheet" href="./style/index.css">
+        <link rel="stylesheet" href="./style/colors.css">
+        <link rel="stylesheet" href="./style/project.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul class="idx_nav">
+                    <li>
+                        <div class="idx_nav_elem">
+                            <a href="index.html" class="idx_nav_elem_inner">Home</a>
+                            <!-- <span class="idx_nav_elem_inner">Home</span> -->
+                        </div>
+                    </li>
+                    <li>
+                        <div class="idx_nav_elem" >
+                            <a href="whoami.html" class="idx_nav_elem_inner">Who am I</a>
+                            <!-- <span class="idx_nav_elem_inner" style="color: var(--comp); text-decoration: underline;">Who am I</span> -->
+                        </div>
+                    </li>
+                    <li>
+                        <div class="idx_nav_elem">
+                            <!-- <span class="idx_nav_elem_inner">Research</span> -->
+                            <a href="research.html" class="idx_nav_elem_inner">Research</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="idx_nav_elem">
+                            <a href="projects.html" class="idx_nav_elem_inner" style="color: var(--comp); text-decoration: underline;">Projects</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="idx_nav_elem">
+                            <a href="gallery.html" class="idx_nav_elem_inner">Gallery</a>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <div class="idx_nav_elem">
+                            <a href="contact.html" class="idx_nav_elem_inner">Contact</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <menu label="Language" style="display: inline; top: 2.8vh;">
+                <command onclick=""><p style="display: inline; text-decoration: underline;">EN</p></command> | 
+                <command onclick=""><p style="display: inline; text-decoration: none;"><s>FR</s></p></command> | 
+                <command onclick=""><p style="display: inline; text-decoration: none;"><s>JP</s></p></command>
+            </menu>
+        </header>
+        <br />
+
+        <section
+            id="pin"
+            style="
+            width: 75%;
+            display: inline-block; 
+            position: relative; 
+            top: 10vh; 
+            margin-bottom: 50px;
+            /* border: 1px black solid; */
+            text-align: left;
+            vertical-align:top;
+            ">
+
+            <h1 style="
+            text-align: left;
+            margin-top: 25px;
+            margin-bottom: 60px;
+            font-size: 4vh;
+            /* text-decoration: underline; */
+            letter-spacing: 1vh;
+            color: var(--dark);
+            font-family: petitefrance;
+            ">
+                Pinned projects
+            </h1>
+
+        </section>
+
+        <section id="pro"
+            style="
+            width: 75%;
+            display: inline-block; 
+            position: relative; 
+            top: 10vh; 
+            margin-bottom: 50px;
+            /* border: 1px black solid; */
+            text-align: left;
+            vertical-align:top;
+            ">
+
+            <h1 
+            style="
+            text-align: left;
+            margin-top: 25px;
+            margin-bottom: 60px;
+            font-size: 4vh;
+            /* text-decoration: underline; */
+            letter-spacing: 1vh;
+            color: var(--dark);
+            font-family: petitefrance;
+            ">
+                Work projects
+            </h1>
+
+
+        </section>
+
+        <section id="perso"
+            style="
+            width: 75%;
+            display: inline-block; 
+            position: relative; 
+            top: 10vh; 
+            margin-bottom: 50px;
+            /* border: 1px black solid; */
+            text-align: left;
+            vertical-align:top;
+            ">
+
+            <h1 style="
+            text-align: left;
+            margin-top: 25px;
+            margin-bottom: 60px;
+            font-size: 4vh;
+            /* text-decoration: underline; */
+            letter-spacing: 1vh;
+            color: var(--dark);
+            font-family: petitefrance;
+            ">
+                Side projects
+            </h1>
+
+
+        </section>
+
+
+        <footer style="position: relative; bottom: 0;">
+            Website by <span id="webmaster"></span> <br>
+            Edited <span id="lastedited"></span> <br>
+            Images are not free to use. Contact me for any authorization.
+            Font used: <span id="fontused"></span> 
+        </footer>
+        <script>
+            $.getJSON("https://caillotantoine.github.io/content/footer.json", function(json) {
+                console.log(json);
+                document.getElementById("webmaster").innerText = json.webmaster;
+                document.getElementById("lastedited").innerText = json.edited;
+                json.font.forEach(element => {
+                    document.getElementById("fontused").innerText += element + ",";
+                });
+            });
+
+            var pinID = 0;
+            var proID = 0;
+            var persoID = 0;
+            $.getJSON("https://caillotantoine.github.io/content/proj.json", function(json) {
+                console.log(json);
+                json.projets.forEach(element => {
+                    if(element.pin === true) {
+                        document.getElementById("pin").innerHTML += "<div id=\"projbox\" class=\"projbox" + pinID%3 + "\"><h2><a href=\""+ element.link +"\" alt=\"Link to the project "+ element.name + "\">"+ element.name + "</a></h2><img src=\"" + element.image + "\" width=\"100%\"/><p>" + element.text + "</p></div>";
+                        pinID += 1;
+                    }
+                    if(element.class === "pro") {
+                        document.getElementById("pro").innerHTML += "<div id=\"projbox\" class=\"projbox" + proID%3 + "\"><h2><a href=\""+ element.link +"\" alt=\"Link to the project "+ element.name + "\">"+ element.name + "</a></h2><img src=\"" + element.image + "\" width=\"100%\"/><p>" + element.text + "</p></div>";
+                        proID += 1;
+                    }
+                    if(element.class === "perso") {
+                        document.getElementById("perso").innerHTML += "<div id=\"projbox\" class=\"projbox" + persoID%3 + "\"><h2><a href=\""+ element.link +"\" alt=\"Link to the project "+ element.name + "\">"+ element.name + "</a></h2><img src=\"" + element.image + "\" width=\"100%\"/><p>" + element.text + "</p></div>";
+                        persoID += 1;
+                    }
+                });
+            });
+            // console.log(footer_json_obj);
+            // document.getElementById("demo").innerHTML = "Oui";
+        </script>
+    </body>
+</html>
+
+<!-- <div id="projbox" class="projbox0"> 
+    <h2><a href="https://github.com/caillotantoine/carla-V2X-dataset-generator" alt="Link to the Dataset Generator project on Github">CARLA Dataset Generator</a></h2>
+    <img src="image/CARLA_2.png" width="100%"/>
+    <p>This project aims to help to generate dataset with the CARLA simulator. I used it in my Ph.D. project to build cooperative dataset featuring vehicles and road side (infrastructure) ooint of view.</p>
+</div> -->
