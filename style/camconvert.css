@@ -1,0 +1,143 @@
+@import './fonts.css';
+@import './colors.css';
+
+#camconverter {
+    width: fit-content;
+    max-width: 50%;
+    margin: auto;
+    margin-top: 15vh;
+    margin-bottom: 15vh;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 32pt;
+}
+
+h2 {
+    font-size: 18pt;
+}
+
+h3 {
+    font-size: 16;
+    font-weight: bold;
+}
+
+#cam_param {
+    border-radius: 5px; 
+    padding: 10px;
+
+    width: fit-content; 
+    margin: auto;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+#cam_param .label {
+    text-align: left;
+    padding-right: 1vw;
+    padding-bottom: 1vh;
+}
+
+#cam_param #file {
+    margin: auto;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+#cam_param hr {
+    width: 60%;
+    margin-bottom: 1vh;
+}
+
+
+
+#OutParamBlocThreeBlocs {
+    display: flex;
+    width: 100%;
+    margin: auto;
+    flex-direction: row;
+
+    align-items: stretch;
+    margin-top: 2vh;
+}
+
+#OutParamBloc {
+    border: 1px solid var(--black);
+    border-radius: 5px;
+    width: fit-content;
+    padding: 5px;
+    width: 29%; 
+    /* margin-right: auto; */
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#OutParamBloc table {
+    width: 100%;
+    margin-bottom: 1vh;
+}
+
+#OutParamBloc #labelParam {
+    text-align: left;
+}
+
+#OutParamBloc #flushBottom {
+    padding-bottom: 0;
+}
+
+#OutParamBloc caption {
+    font-weight: bold;
+    margin-bottom: 1vh;
+}
+
+#noImg {
+    width: 10vw;
+    height: 10vw;
+    background-color: black;
+    color: var(--white);
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1vh;
+}
+
+#noImg p {
+    padding: 15%;
+}
+
+#img_center {
+    width: fit-content;
+    margin: auto;
+}
+
+#img_center table {
+    border-collapse: separate;
+    border-spacing: 1vh 0vh;
+    width: fit-content;
+    margin: auto;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+#img_center input {
+    width: 50pt;
+}
+
+#MaxRayAngle {
+    margin-top: 1vh;
+}
+
+#canvas
+{
+    margin: auto;
+    margin-bottom: 1vh;
+}
+
+#fCorrected 
+{
+    display: none;
+}
