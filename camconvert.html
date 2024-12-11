@@ -13,205 +13,164 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.2/math.js" integrity="sha512-SZF47arYfRSVmLDgkgsUNkKNha7brZ5WTCEIPNga3sh0Vw+Vs8hkslDKz0hvmovPqJrCKdH/4OlkxOFzueC+DA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="script/opencv.js"></script>
         <script src="script/camera.js"></script>
+        
     </head>
-    <body onload="loadHTML('template/header.html', 'header'); loadHTML('template/footer.html', 'footer'); MaxRayAngle.value = parseFloat(fov.value) / 2.0;">
+    <body onload="pageLoader();">
         <div id="header"></div>
-        <div onclick="closeNavMenu()">
+        <div onclick="closeNavMenu()" id="mainmatter">
 
-        <section id="camconverter">
             <h1>Camera converter</h1>
             <br>
             <p>Version &#x3B1; 0.6 : For now, only equidistant to omnidirectional and Kannala-Brandt conversion are supported.</p>
-            <br>
-            <form id="cam_param" name="Camera parameter" action="" method="GET">
-                <!-- TODO Cookies to remember previous parameters -->
-                <h2>Camera parameters</h2><br>
-                <table>
+            <br><br>
+
+            <!-- TODO Cookies to remember previous parameters -->
+
+            <section>
+                <h2>Input parameters</h2><br>
+                <label for="inputParamChoice">Convert from :</label>
+                <select id="inputParamChoice" name="inputParamChoice" onchange="updater();">
+                    <option value="cam_param" id="cam_param">Camera parameters</option>
+                    <option value="equi_param" id="equi_param" >Equidistant</option>
+                    <!--disabled="false"-->
+                </select><br><br>
+
+                <table id="cvtToTable">
                     <tr>
-                        <td class="label"><label for="f_length">Focal length (in meter) </label></td>
-                        <td><input type="text" id="f_length" name="f_length" value="2.7e-3" style="width: 50pt;"></td>
+                        <td rowspan="3" id="cvtToTitle">Convert to:</td>
+                        <td><input type="checkbox" value="cvtToEquidist" name="cvtToEquidist" id="cvtToEquidist" checked="true" onchange="updater();"> <label for="cvtToEquidist" id="cvtToEquidistLabel">Equidistant</label></td>
                     </tr>
                     <tr>
-                        <td class="label"><label for="fov">Field of view (in degrees)</label></td>
-                        <td><input type="text" id="fov" name="fov" value="185" style="width: 50pt;"></td>
+                        <td><input type="checkbox" value="cvtToUCM" name="cvtToUCM" id="cvtToUCM" onchange="updater();"  checked="true" disabled="true" title="Not possible with this input parameters."> <label for="cvtToUCM" style="color: var(--grey);" id="cvtToUCMLabel">Unified Central</label></td>
                     </tr>
                     <tr>
-                        <td class="label"><label for="pix_elem_size">Size of a pixel (in meter)</label></td>
-                        <td><input type="text" id="pix_elem_size" name="pix_elem_size" value="5.5e-6" style="width: 50pt;"></td>
+                        <td><input type="checkbox" value="cvtToFOCV" name="cvtToFOCV" id="cvtToFOCV" onchange="updater();" disabled="true" title="Not possible with this input parameters."> <label for="cvtToFOCV" style="color: var(--grey);" id="cvtToFOCVLabel">Fisheye OpenCV</label></td>
                     </tr>
                 </table>
-
-                <hr>
-
-                <!-- <label for="sensor_width">Width of the sensor (in pixel)</label><br>
-                <input type="number" id="sensor_width" name="sensor_width" value="2048"><br>
-                <label for="sensor_height">Height of the sensor (in pixel)</label><br>
-                <input type="number" id="sensor_height" name="sensor_height" value="2048"><br><br> -->
-
-
-
-
-                <!-- TODO : Drag and drop zone -->
-                <label for="file" id="fileLabel"><u>Optional:</u> import an image to preview<br>image circle and export masks.</label><br>
-                <input type="file" name="filename" id="file" onchange="load_img()">
-                <br><hr>
-                <input type="submit">
-            </form>
-            
-            <section>
-                <div id="noImg"><p>Select an image to preview the image circle.</p></div>
-
-                <canvas id="canvas" hidden="true"></canvas>
-
-                <!-- <label for="zoomFactor">Zoom factor</label> : &nbsp;&nbsp;<input type="text" id="zoomFactor" name="zoomFactor" value="1" style="width: 30pt;"> <button id="maskZF">Export the mask</button><br><br> -->
-                
-                <div id="img_center">
-                    <h3>Image center</h3>
+                <br>
+                <div class="paramBloc" id="camParam">
+                    <h3>Camera parameters</h3>
                     <table>
-                        <thead>
-                            <tr>
-                                <th><label for="Cu">Cu</label></th>
-                                <th><label for="Cv">Cv</label></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><input type="number" name="Cu" id="Cu" value=0></td>
-                                <td><input type="number" name="Cv" id="Cv" value=0></td>
-                            </tr>
-                        </tbody>
+                        <tr>
+                            <td>Focal length: </td>
+                            <td style="text-align: right;"><input type="text" name="focal_length" id="focal_length" value="2.7e-3" onchange="updater();"/></td>
+                            <td>m</td>
+                        </tr>
+                        <tr>
+                            <td title="Field Of View">FOV: </td>
+                            <td style="text-align: right;"><input type="text" name="fov" id="fov" value="185" onchange="updater();"/></td>
+                            <td>&deg;</td>
+                        </tr>
+                        <tr>
+                            <td >Pixel size: </td>
+                            <td style="text-align: right;"><input type="text" name="k" id="k" value="5.5e-6" onchange="updater();"/></td>
+                            <td>m</td>
+                        </tr>
                     </table>
-                    <hr style="width: 20%">
-
-                    <h3>Maximal incidence ray angle</h3>
-                    <label for="MaxRayAngle">&#x3B8 = </label>
-                    <input type="text" name="MaxRayAngle" id="MaxRayAngle" value="92.5" style="width: 30pt;" title="Angle of the light ray from the normal of the image plan. In degrees."/>
                 </div>
-                <img hidden="true" id="maskExport" width="256px"/><br>
-                <a id="downloadMaskImg" hidden="true" >Download Mask</a>
+                <div class="paramBloc" id="equiParam" style="display: none;">
+                    <h3>Equidistant</h3>
+                    <table>
+                        <tr>
+                            <td>&alpha;: </td>
+                            <td style="text-align: right;"><input type="text" name="f_factor" id="f_factor" value="490.91" onchange="updater();"/></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td title="Field Of View">FOV: </td>
+                            <td style="text-align: right;"><input type="text" name="fov" id="fov" value="185" onchange="updater();"/></td>
+                            <td>&deg;</td>
+                        </tr>
+                        <tr>
+                            <td >Pixel size: </td>
+                            <td style="text-align: right;"><input type="text" name="k" id="k" value="5.5e-6" onchange="updater();"/></td>
+                            <td>m</td>
+                        </tr>
+                    </table>
+                </div>
             </section>
             <br><br>
-            <section>
-                <!-- TODO : Responsive design for mobile & vertical -->
-                <h2>Computed parameters</h2>
-                <div id="OutParamBlocThreeBlocs">
-                    <div id="OutParamBloc">
+            <section id="outParamSec">
+                <h2>Computed parameters</h2><br>
+                <div id="outParams"></div>
+            </section>
+            <br><br>
+            <section id="outImgSec">
+                <h2>Computed image circle & mask</h2><br>
+                <h3>Image upload</h3>
+                <label for="file" id="fileLabel"><u>Optional:</u> import an image to preview<br>image circle and export masks.</label><br>
+                <input type="file" name="filename" id="file" onchange="load_img()">
+                
+                <br><br>
+
+                <div id="noImg"><p>Select an image to preview the image circle.</p></div>
+                <canvas id="canvas" hidden="true"></canvas>
+                <br>
+
+                <!-- <hr style="width: 30%; margin-top: 10pt; margin-bottom: 10pt;"> -->
+                <div id="maskCtrl">
+                    <div>
+                        <h3>Image center</h3>
                         <table>
-                            <caption>Equidistant</caption>
-                            <tr>
-                                <td id="labelParam">f factor : </td>
-                                <td id="f_au_equi">-1</td>
-                            </tr>
-                            <tr id="fCorrected">
-                                <td id="labelParam">f corrected : </td>
-                                <td id="f_au_equi_cor">-1</td>
-                            </tr>
-                            <tr>
-                                <td id="labelParam">image circle : </td>
-                                <td id="img_circ_equ">0</td>
-                            </tr>
-                        </table><br>
-                        <div id="flushBottom">
-                            <label>Show computed image circle?</label>
-                            <input type="checkbox" id="imgCircEqui" name="imgCircEqui" value="EquiCirc"><br>
-                            <button id="maskEqui">Export the mask</button>
-                        </div>
+                            <thead>
+                                <tr>
+                                    <th><label for="Cu">Cu</label></th>
+                                    <th><label for="Cv">Cv</label></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="number" name="Cu" id="Cu" value=0></td>
+                                    <td><input type="number" name="Cv" id="Cv" value=0></td>
+                                    <td><button onclick="resetCuCv();">Reset</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button onclick="searchImgCenter()">Search image center</button>
+                        <input type="checkbox" id="showEllipse" name="showEllipse"/><label for="showEllipse" style="font-size: 10pt;">Show</label>
                     </div>
-                    <div id="OutParamBloc">
-                        <table>
-                            <caption>Omnidirectional</caption>
-                            <tr>
-                                <td id="labelParam">f factor : </td>
-                                <td id="f_au">-1</td>
-                            </tr>
-                            <tr id="fCorrected">
-                                <td id="labelParam">f corrected : </td>
-                                <td id="f_au_cor">-1</td>
-                            </tr>
-                            <tr>
-                                <td id="labelParam">ξ (Xi) : </td>
-                                <td id="Xi">-1</td>
-                            </tr>
-                            <tr>
-                                <td id="labelParam">Residual : </td>
-                                <td id="residual">-1</td>
-                            </tr>
-                            <tr>
-                                <td id="labelParam">Image circle : </td>
-                                <td id="img_circ">0</td>
-                            </tr>
-                        </table>
-                        <br>
-                        <div id="flushBottom">
-                            <label>Show computed image circle?</label>
-                            <input type="checkbox" id="imgCircUCM" name="imgCircUCM" value="UCMCirc"><br>
-                            <button id="maskUCM">Export the mask</button>
-                        </div>
+                    <hr style="width: 30%; margin-top: 10pt; margin-bottom: 10pt;">
+                    <div>
+                        <h3>Desired incidence<br> ray angle</h3>
+                        <label for="MaxRayAngle">&theta; = </label>
+                        <input type="text" name="MaxRayAngle" id="MaxRayAngle" value="92.5" style="width: 30pt; text-align:right;" title="Angle of the light ray from the normal of the image plan. In degrees."/>&deg;<br><br>
+                        <button onclick="resetRayAngle(); drawImg();">Reset to FOV/2</button>
                     </div>
-                    
-                    <div id="OutParamBloc">
-                        <table>
-                            <caption>OpenCV Fisheye</caption>
-                            <tr>
-                                <td id="labelParam">f factor : </td>
-                                <td id="f_au_kb">-1</td>
-                            </tr>
-                            <tr id="fCorrected">
-                                <td id="labelParam">f corrected : </td>
-                                <td id="f_au_kb_cor">-1</td>
-                            </tr>
-                            <tr>
-                                <td id="labelParam">k1 : </td>
-                                <td id="k1_kb">0</td>
-                            </tr>
-                            <tr>
-                                <td id="labelParam">k2 : </td>
-                                <td id="k2_kb">0</td>
-                            </tr>
-                            <tr>
-                                <td id="labelParam">k3 : </td>
-                                <td id="k3_kb">0</td>
-                            </tr>
-                            <tr>
-                                <td id="labelParam">k4 : </td>
-                                <td id="k4_kb">0</td>
-                            </tr>
-                            <tr>
-                                <td id="labelParam">Image circle : </td>
-                                <td id="img_circ_focv">0</td>
-                            </tr>
-                        </table>
-                        <table id="WARNFOCV" style="display: none;">
-                            <tr style="font-weight: bold;">
-                                <td style="color: red;">&#x26A0;</td>
-                                <td>This model doesn't work when the <span title="Field Of View">FOV</span> &GreaterEqual; 180º.</td>
-                                <td style="color: red;">&#x26A0;</td>
-                            </tr>
-                        </table>
-                        <div id="flushBottom">
-                            <label>Show computed image circle?</label>
-                            <input type="checkbox" id="imgCircFOCV" name="imgCircFOCV" value="FOCVCirc"><br>
-                            <button id="maskFOCV">Export the mask</button>
-                        </div>
+                    <div>
+                        <h3>Generate mask</h3>
+                        <form id="MaskToGenerate" onchange="drawMask()"></form><br>
+                        <button onclick="maskExport.hidden^=true; downloadMaskImgButton.hidden^=true;">Toggle mask preview</button>
                     </div>
                 </div>
             </section>
-            
             <br>
-            <!-- style="display:none;" -->
-            <div style="display:none;"> 
+            <img hidden="true" id="maskExport" width="256px"/><br>
+
+            <!-- <canvas id="outputCanvas">To delete</canvas> -->
+
+
+            <div style="display: none;"> 
                 <img id="imgContainer"/>
             </div>
 
-            <div hidden="true">
+            <div hidden="false">
                 <canvas id="maskCanvas"></canvas>
             </div>
 
-            Algorithm from <a href="https://github.com/PerceptionRobotique/libPeR_base">LibPER</a>.
+            
+            
+            <a id="downloadMaskImg" hidden="true" >Download Mask</a>
+            <button onclick="downloadMaskImg.click();" hidden="true" id="downloadMaskImgButton">Download Mask</button>
 
-            <script src="script/cam_convert.js"></script>
-        </section>
+            <!-- <div style="height: 5vh;"> </div> -->
 
+            
+        </div>
+
+        Algorithm from <a href="https://github.com/PerceptionRobotique/libPeR_base">LibPER</a>.<br><br>
         <div id="footer"></div>
+
+        <script src="script/cam_convert.js"></script>
     </body>
 </html>

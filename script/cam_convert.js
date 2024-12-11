@@ -1,59 +1,243 @@
+const Models = {
+    camera: "Camera parameters",
+    equidistant: "Equidistant parameters",
+    fisheyeOCV: "Fisheye OpenCV parameters",
+    ucm: "UCM parameters",
+};
+
 var State = {
+    /** @type {Models} */
+    sourceModel: Models.camera,
+
+    /** @type {Array<Models>} */
+    target: [Models.equidistant],
+
+    /** @type {Boolean} */
     imgLoaded: false,
+
+    /** @type {Boolean} */
     bigImg: false,
+
+    /** @type {Number} */
     zf: 1,
 
-    camEquist: null,
-    camUCM: null,
-    camFOCV: null,
+    /** @type {Array<Camera>} */
+    outputCameras: [],
+
+    /** @type {Boolean} */
+    drawFoundCircleEllipse: false,
+    foundCircleEllipse: {center: {x: 0, y: 0}, size: {width: 0, height: 0}, angle: 0},
 }
 
-const computeParam = () => {
-    form = new FormData(cam_param);
-    const f = parseFloat(form.get("f_length"));
-    const fov = parseFloat(form.get("fov"));
-    const k = parseFloat(form.get("pix_elem_size"));
-    // State.zf = zoomFactor.value;
+const pageLoader = () => {
+    loadHTML('template/header.html', 'header'); 
+    loadHTML('template/footer.html', 'footer'); 
+    resetRayAngle();
 
-    if(fov >= 180) {
-        WARNFOCV.style.display = 'block';
-    }
-    else
-    {
-        WARNFOCV.style.display = 'none';
-    }
 
-    State.camEquist = new Equidistant(f, {x: k, y: k}, fov);
-    State.camUCM = new UCM(f, {x: k, y: k}, fov);
-    var conversionResibual = State.camUCM.fromEquidistant();
-    State.camFOCV = new FisheyeOCV(f, {x: k, y: k}, fov);
+    updater();
 
-    f_au.innerHTML =        (State.camUCM.alpha_x_ucm).toFixed(2); 
-    // + (State.zf != 1 ? "<br>(corrected: " + (State.camUCM.alpha_x_ucm * State.zf).toFixed(2) + " )" : "");
-    f_au_equi.innerHTML =   (State.camEquist.alpha_x).toFixed(2); 
-    // + (State.zf != 1 ? "<br>(corrected: " + (State.camEquist.alpha_x * State.zf).toFixed(2) + " )" : "");
-    f_au_kb.innerHTML =     (State.camFOCV.alpha_x).toFixed(2); 
-    // + (State.zf != 1 ? "<br>(corrected: " + (State.camFOCV.alpha_x * State.zf).toFixed(2) + " )" : "");
-    Xi.innerHTML =          (State.camUCM.xi).toFixed(5);
-    residual.innerHTML =    (conversionResibual).toFixed(5);
+    // TO DELETE: Fake an upload for dev purpose
+    // const testImgURL = "http://127.0.0.1:3000/tmp/aaa.png";
+    // fetch(testImgURL)
+    //     .then(response => response.blob())
+    //     .then(blob => {
+    //         const imageURL = URL.createObjectURL(blob);
 
-    var angleMax = radians(fov / 2.0);
-    img_circ.innerHTML = (State.camUCM.ray(angleMax) * 2.0).toFixed(2) + " px<br>(" + (State.camUCM.ray(angleMax) * 2.0 * k * 1000).toFixed(2) + " mm)";
-    img_circ_equ.innerHTML = (State.camEquist.ray(angleMax) * 2.0).toFixed(2) + " px<br>(" + (State.camEquist.ray(angleMax) * 2.0 * k * 1000).toFixed(2) + " mm)";  
-    img_circ_focv.innerHTML = (State.camFOCV.ray(angleMax) * 2.0).toFixed(2) + " px<br>(" + (State.camFOCV.ray(angleMax) * 2.0 * k * 1000).toFixed(2) + " mm)";
+    //         imgContainer.src = imageURL;
+    //         State.imgLoaded = true;
+    //     })
+    //     .catch(error => console.error("Error fetching image:", error));
+    // END TO DELETE
 }
 
-const drawImg = () => {
-    // const canvas = document.getElementById("canvas");
-    // var noImg = document.getElementById("noImg");
-    
+const updater = () => {
+
+    // Set the inputs
+    switch(inputParamChoice.value) {
+        case "cam_param" :
+            // Set the inputs 
+            camParam.style.display = "block";
+            equiParam.style.display = "none";
+
+            // Set possible outputs
+            cvtToEquidist.disabled = false;
+            cvtToUCM.disabled = false;
+            cvtToFOCV.disabled = false;
+            cvtToEquidist.title = "";
+            cvtToUCM.title = "";
+            cvtToFOCV.title = "";
+            cvtToEquidistLabel.style.color = "var(--black)";
+            cvtToUCMLabel.style.color = "var(--black)";
+            cvtToFOCVLabel.style.color = "var(--black)";
+            break;
+
+        case "equi_param" :
+            // Set the inputs 
+            camParam.style.display = "none";
+            equiParam.style.display = "block";
+
+            // Set possible outputs
+            cvtToEquidist.disabled = false;
+            cvtToUCM.disabled = false;
+            cvtToFOCV.disabled = false;
+            cvtToEquidist.title = "";
+            cvtToUCM.title = "";
+            cvtToFOCV.title = "";
+            cvtToEquidistLabel.style.color = "var(--black)";
+            cvtToUCMLabel.style.color = "var(--black)";
+            cvtToFOCVLabel.style.color = "var(--black)";
+            break;
+
+        default:
+            alert("Problem found. Please open an issue \"Unknown input parameter choice.\".");
+            break;
+    }
+
+    State.outputCameras = [];
+    if(cvtToEquidist.checked) {
+        switch(inputParamChoice.value) {
+            case "cam_param":
+                State.outputCameras.push(createCameraFromParam(
+                    CameraType.Equidistant, 
+                    parseFloat(camParam.querySelector("#focal_length").value),
+                    createPixel(parseFloat(camParam.querySelector("#k").value)),
+                    parseFloat(camParam.querySelector("#fov").value)
+                ));
+                break;
+            
+            case "equi_param":
+                State.outputCameras.push(new Equidistant(
+                    parseFloat(equiParam.querySelector("#f_factor").value), 
+                    createPixel(parseFloat(equiParam.querySelector("#k").value)), 
+                    parseFloat(equiParam.querySelector("#fov").value)
+                ));
+                break;
+
+            default:
+                errorMsg = "Problem found. Please open an issue \"Impossible to convert " + inputParamChoice.value + " to Equidistant\"."
+                alert(errorMsg);
+                throw Error(errorMsg);
+        }
+    }
+
+    if(cvtToUCM.checked) {
+        switch(inputParamChoice.value) {
+            case "cam_param":
+                State.outputCameras.push(createCameraFromParam(
+                    CameraType.UCM, 
+                    parseFloat(camParam.querySelector("#focal_length").value),
+                    createPixel(parseFloat(camParam.querySelector("#k").value)),
+                    parseFloat(camParam.querySelector("#fov").value)
+                ));
+                break;
+            
+            case "equi_param":
+            {
+                let intermed = new Equidistant(
+                    parseFloat(equiParam.querySelector("#f_factor").value), 
+                    createPixel(parseFloat(equiParam.querySelector("#k").value)), 
+                    parseFloat(equiParam.querySelector("#fov").value)
+                );
+                State.outputCameras.push(intermed.convertTo(CameraType.UCM));
+                break;
+            }
+                
+
+            default:
+                errorMsg = "Problem found. Please open an issue \"Impossible to convert " + inputParamChoice.value + " to UCM\"."
+                alert(errorMsg);
+                throw Error(errorMsg);
+        }
+    }
+
+    if(cvtToFOCV.checked) {
+        switch(inputParamChoice.value) {
+            case "cam_param":
+                State.outputCameras.push(createCameraFromParam(
+                    CameraType.FisheyeOCV, 
+                    parseFloat(camParam.querySelector("#focal_length").value),
+                    createPixel(parseFloat(camParam.querySelector("#k").value)),
+                    parseFloat(camParam.querySelector("#fov").value)
+                ));
+                break;
+            
+            case "equi_param":
+            {
+                let intermed = new Equidistant(
+                    parseFloat(equiParam.querySelector("#f_factor").value), 
+                    createPixel(parseFloat(equiParam.querySelector("#k").value)), 
+                    parseFloat(equiParam.querySelector("#fov").value)
+                );
+                State.outputCameras.push(intermed.convertTo(CameraType.FisheyeOCV));
+                break;
+            }
+                
+
+            default:
+                errorMsg = "Problem found. Please open an issue \"Impossible to convert " + inputParamChoice.value + " to OpenCV Fisheye\"."
+                alert(errorMsg);
+                throw Error(errorMsg);
+        }
+    }
+
+    const maxPerRow = 2;
+    var nInRow = 0, nInAll = 0; 
+    outParams.innerHTML = "";
+
+
+    MaskToGenerate.innerHTML = "";
+    State.outputCameras.forEach(outCam => {
+        if(nInRow == 0)
+        {
+            outParams.innerHTML += "<div id=\"outParamRow\"></div><br>";
+        }
+
+        targetDivPack = outParams.querySelectorAll("#outParamRow")[outParams.querySelectorAll("#outParamRow").length - 1];
+        // outParamRow instanceof HTMLCollection ? outParamRow[outParamRow.length - 1] : outParamRow;
+
+        // class=\"paramBloc\"
+        targetDivPack.innerHTML += "<div  id=\"outParamBloc\"><h3>"+ outCam.typeName +"</h3></div>";
+        lastMadeDiv = targetDivPack.querySelectorAll("div")[targetDivPack.querySelectorAll("div").length - 1]; 
+
+        outCam.conversions.forEach(conv => {
+            lastMadeDiv.innerHTML += conv + " &rightarrow; ";
+        });
+        lastMadeDiv.innerHTML += outCam.typeName + "<br><br>";
+
+        lastMadeDiv.innerHTML += outCam.exportHTMLBlock();
+
+        const idName = "dispImgCirc"+ nInAll;
+
+        lastMadeDiv.innerHTML += "<span><label for=\"dispImgCirc\">Display the image circle</label>: <input type=\"checkbox\" id=\""+ idName +"\" data-camera-id=\"" + nInAll + "\" name=\"dispImgCirc\"/><span>";
+
+        MaskToGenerate.innerHTML += "<label><input type=\"radio\" name=\"maskOutSelection\" value=\"" + nInAll + "\"> " + outCam.typeName + "</label><br>";
+
+        // ADD Radio button for the mask
+        
+
+        // const test = lastMadeDiv.querySelector("#dispImgCirc");
+        
+        // test.
+
+        nInRow++;
+        nInAll++;
+        if(nInRow >= maxPerRow) nInRow = 0;
+    }); 
+
+    const checkBoxes = outParams.querySelectorAll("input");
+    checkBoxes.forEach(labox => {
+        labox.addEventListener('change', event => {
+            State.outputCameras[event.target.dataset.cameraId].drawImgCircle = event.target.checked;
+            drawImg();
+        });      
+    });
+}
+
+const drawImg = () => {    
     if(State.imgLoaded) {
         canvas.style.display = 'block';
         noImg.style.display = 'none';   
-
-
-
-        // const imgSizeAndMarg = imgContainer.width - window.innerWidth * 0.1;
 
         const biggestimg = imgContainer.width / (window.innerWidth * 0.95 > 1024 ? 1024 : window.innerWidth * 0.95);
         const img_div = State.bigImg ? biggestimg : 8;
@@ -63,34 +247,34 @@ const drawImg = () => {
         const ctx = canvas.getContext("2d");
         ctx.drawImage(imgContainer, 0, 0, imgContainer.width/img_div, imgContainer.height/img_div);
 
-        if(imgCircEqui.checked)
-        {
-            const radius = State.camEquist.ray(radians(parseFloat(MaxRayAngle.value)));
-            ctx.strokeStyle = "lightgreen";
+
+        State.outputCameras.forEach(cam => {
+            if(cam.drawImgCircle) {
+                const radius = cam.ray(radians(parseFloat(MaxRayAngle.value)));
+                ctx.strokeStyle = cam.color;
+                ctx.beginPath();
+                ctx.ellipse(((Cu.value*2.0)/img_div) / 2, ((Cv.value*2.0)/img_div) / 2, radius / img_div, radius / img_div, 0, 0, 2 * Math.PI);
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
+        });
+
+        if(State.drawFoundCircleEllipse) {
+            const centerX = (State.foundCircleEllipse.center.x*2.0/img_div) / 2;
+            const centerY = (State.foundCircleEllipse.center.y*2.0/img_div) / 2;
+            const radiusX = State.foundCircleEllipse.size.width / 2.0 / img_div;  
+            const radiusY = State.foundCircleEllipse.size.height / 2.0 / img_div;  
+            const rotation = State.foundCircleEllipse.angle;
+            const startAngle = 0;
+            const endAngle = 2 * Math.PI;
+
             ctx.beginPath();
-            ctx.ellipse(((Cu.value*2.0)/img_div) / 2, ((Cv.value*2.0)/img_div) / 2, radius / img_div, radius / img_div, 0, 0, 2 * Math.PI);
+            ctx.ellipse(centerX, centerY, radiusX, radiusY, rotation, startAngle, endAngle);
+            ctx.strokeStyle = "red";
+            ctx.lineWidth = 1;
             ctx.stroke();
         }
-        // if(radius != -1){
-        //     ctx.strokeStyle = "lightgreen";
-        //     ctx.beginPath();
-        //     ctx.ellipse(((Cu.value*2.0)/img_div) / 2, ((Cv.value*2.0)/img_div) / 2, radius / img_div, radius / img_div, 0, 0, 2 * Math.PI);
-        //     ctx.stroke();
-        // }
-        // if(radius_equ != -1)
-        // {
-        //     ctx.strokeStyle = "blue";
-        //     ctx.beginPath();
-        //     ctx.ellipse(((Cu.value*2.0)/img_div) / 2, ((Cv.value*2.0)/img_div) / 2, radius_equ / img_div, radius_equ / img_div, 0, 0, 2 * Math.PI);
-        //     ctx.stroke();
-        // }
-        // if(zf != 1)
-        // {
-        //     ctx.strokeStyle = "red";
-        //     ctx.beginPath();
-        //     ctx.ellipse(((Cu.value*2.0)/img_div) / 2, ((Cv.value*2.0)/img_div) / 2, radius * zf / img_div, radius * zf / img_div, 0, 0, 2 * Math.PI);
-        //     ctx.stroke();
-        // }
+
     }
     else {
         // var canvas = document.getElementById("canvas");
@@ -100,90 +284,131 @@ const drawImg = () => {
     }
 }
 
-// const drawMask = (radius_) => {
-//     if(radius_ == -1)
-//     {
-//         alert("You must compute the parameter first by pressing button Submit.");
-//         return;
-//     }
-//     if(imgLoaded == false)
-//     {
-//         alert("You must upload an image first.");
-//         return;
-//     }
-//     maskCanvas.setAttribute("width", imgContainer.width);
-//     maskCanvas.setAttribute("height", imgContainer.height);
-//     const ctx = maskCanvas.getContext("2d");
-//     ctx.fillStyle = "black";
-//     ctx.fillRect(0, 0, imgContainer.width, imgContainer.height);
-//     ctx.fill();
-//     ctx.fillStyle = "white";
-//     ctx.beginPath();
-//     ctx.ellipse(Cu.value, Cv.value, radius_, radius_, 0, 0, 2 * Math.PI);
-//     ctx.fill();
+const drawMask = () => {
+    if(State.imgLoaded == false)
+    {
+        alert("You must upload an image first.");
+        return;
+    }
 
-//     let canvasUrl = maskCanvas.toDataURL("image/png");
-//     maskExport.hidden = false;
-//     maskExport.src = canvasUrl;
-//     downloadMaskImg.hidden = false;
-//     downloadMaskImg.href = maskCanvas.toDataURL("image/png");
-//     downloadMaskImg.download = 'MaskImage.png';
-// }
+    var radius_ = 0;
+    const radioMask = MaskToGenerate.querySelectorAll("input");
+    radioMask.forEach(radio => {
+        if(radio.checked) {
+            const cam = State.outputCameras[radio.value];
+            let angle = radians(parseFloat(MaxRayAngle.value));
+            radius_ = cam.ray(angle);
+        }
+    });
 
-// maskUCM.onclick = async (e) => {
-//     drawMask(radius);
-// }
+    maskCanvas.setAttribute("width", imgContainer.width);
+    maskCanvas.setAttribute("height", imgContainer.height);
+    const ctx = maskCanvas.getContext("2d");
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, imgContainer.width, imgContainer.height);
+    ctx.fill();
+    ctx.fillStyle = "white";
+    ctx.beginPath();
+    ctx.ellipse(Cu.value, Cv.value, radius_, radius_, 0, 0, 2 * Math.PI);
+    ctx.fill();
 
-// // maskEqu.onclick = async (e) => {
-// //     drawMask(radius_equ);
-// // }
+    let canvasUrl = maskCanvas.toDataURL("image/png");
+    maskExport.hidden = false;
+    maskExport.src = canvasUrl;
+    downloadMaskImgButton.hidden = false;
+    // downloadMaskImg.hidden = false;
+    downloadMaskImg.href = maskCanvas.toDataURL("image/png");
+    downloadMaskImg.download = 'MaskImage.png';
 
-// maskZF.onclick = async (e) => {
-//     drawMask(radius_equ * zf);
-// }
-
-canvas.onclick = async (e) => {
-    State.bigImg = !State.bigImg;
-    // drawImg();
+    // downloadMaskImg.click();
 }
 
-imgContainer.addEventListener("load", (e) => {
-    State.imgLoaded = true;
+
+/**
+ * search for image circle from the image and set the center to Cu and Cv.
+ */
+const searchImgCenter = () => {
+    let src = cv.imread(imgContainer);
+    let buffBin = new cv.Mat();
+    let srcdst = cv.Mat.zeros(src.rows, src.cols, cv.CV_8UC3);
+    cv.cvtColor(src, buffBin, cv.COLOR_RGB2GRAY, 0);
+    cv.threshold(buffBin, buffBin, 80, 255, cv.THRESH_BINARY);
+    let M = cv.Mat.ones(65, 65, cv.CV_8U);
+    cv.morphologyEx(buffBin, buffBin, cv.MORPH_CLOSE, M);
+    cv.morphologyEx(buffBin, buffBin, cv.MORPH_CLOSE, M);
+    cv.morphologyEx(buffBin, buffBin, cv.MORPH_CLOSE, M);
+
+    let contours = new cv.MatVector();
+    let hierarchy = new cv.Mat();
+    cv.findContours(buffBin, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
+    let cnt = contours.get(0);
+    let rotatedRect = cv.fitEllipse(cnt);
+
+    // // let contoursColor = new cv.Scalar(255, 255, 255);
+    // let ellipseColor = new cv.Scalar(255, 0, 0);
+    // // cv.drawContours(src, contours, 0, contoursColor, 1, 8, hierarchy, 100);
+    // cv.ellipse1(src, rotatedRect, ellipseColor, 1, cv.LINE_8);
+
+    console.log(rotatedRect);
+    // cv.imshow("outputCanvas", src);
+
+    let foundCenter = {x: Math.round(rotatedRect.center.x), y: Math.round(rotatedRect.center.y)};
+
+    Cu.value = foundCenter.x;
+    Cv.value = foundCenter.y;
+
+    State.foundCircleEllipse = rotatedRect;
+
+    drawImg();
+}
+
+const resetCuCv = () => {
     Cu.value = imgContainer.width / 2;
     Cv.value = imgContainer.height / 2;
-    // drawImg();
-});
-
-// Cu.onchange = async (e) => {
-//     drawImg();
-// }
-
-// Cv.onchange = async (e) => {
-//     drawImg();
-// }
-
-// MaxRayAngle.onchange = async (e) => {
-//     computeParam();
-//     drawImg();
-// }
-
-// zoomFactor.onchange = async (e) => {
-//     computeParam();
-//     // drawImg();
-// }
+    drawImg();
+}
+ 
+const resetRayAngle = () => {
+    MaxRayAngle.value = parseFloat(camParam.querySelector("#fov").value) / 2.0;
+}
 
 const load_img = () => {
     var file = document.getElementById('file').files[0];
+    console.log('Received an image'); 
     var reader  = new FileReader();
     reader.onload = function(e)  {
-
         imgContainer.src = e.target.result;
+        State.imgLoaded = true;
     }
     reader.readAsDataURL(file);
 }
 
-cam_param.onsubmit = async (e) => {
-    e.preventDefault();
-    computeParam();
+canvas.onclick = async (e) => {
+    State.bigImg = !State.bigImg;
+    drawImg();
+}
+
+imgContainer.addEventListener("load", (e) => {
+    State.imgLoaded = true;
+    resetCuCv();
+});
+
+Cu.onchange = async (e) => {
+    State.foundCircleEllipse.center.x = Cu.value;
+    drawImg();
+}
+
+Cv.onchange = async (e) => {
+    State.foundCircleEllipse.center.y = Cv.value;
+    drawImg();
+}
+
+MaxRayAngle.oninput = async (e) => {
+    drawImg();
+}
+
+showEllipse.onchange = async (e) => {
+    State.drawFoundCircleEllipse = showEllipse.checked;
+    console.log(showEllipse.checked);
     drawImg();
 }
