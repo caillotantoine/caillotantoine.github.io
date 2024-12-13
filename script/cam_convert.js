@@ -1,16 +1,19 @@
-const Models = {
-    camera: "Camera parameters",
-    equidistant: "Equidistant parameters",
-    fisheyeOCV: "Fisheye OpenCV parameters",
-    ucm: "UCM parameters",
-};
+// const Models = {
+//     camera: "Camera parameters",
+//     equidistant: "Equidistant parameters",
+//     fisheyeOCV: "Fisheye OpenCV parameters",
+//     ucm: "UCM parameters",
+//     equisolid: "Equisolid parameters",
+//     stereographic: "Stereographic parameters",
+//     orthographic: "Ortho orthographic",
+// };
 
 var State = {
-    /** @type {Models} */
-    sourceModel: Models.camera,
+    // /** @type {Models} */
+    // sourceModel: Models.camera,
 
-    /** @type {Array<Models>} */
-    target: [Models.equidistant],
+    // /** @type {Array<Models>} */
+    // target: [Models.equidistant],
 
     /** @type {Boolean} */
     imgLoaded: false,
@@ -18,8 +21,8 @@ var State = {
     /** @type {Boolean} */
     bigImg: false,
 
-    /** @type {Number} */
-    zf: 1,
+    // /** @type {Number} */
+    // zf: 1,
 
     /** @type {Array<Camera>} */
     outputCameras: [],
@@ -59,34 +62,192 @@ const updater = () => {
             // Set the inputs 
             camParam.style.display = "block";
             equiParam.style.display = "none";
+            equisolidParam.style.display = "none";
+            stereographic_param.style.display = "none";
+            orthographic_param.style.display = "none";
+            // stereographicParam.st
 
             // Set possible outputs
             cvtToEquidist.disabled = false;
-            cvtToUCM.disabled = false;
-            cvtToFOCV.disabled = false;
             cvtToEquidist.title = "";
-            cvtToUCM.title = "";
-            cvtToFOCV.title = "";
             cvtToEquidistLabel.style.color = "var(--black)";
+
+            cvtToUCM.disabled = false;
+            cvtToUCM.title = "";
             cvtToUCMLabel.style.color = "var(--black)";
+
+            cvtToFOCV.disabled = false;
+            cvtToFOCV.title = "";
             cvtToFOCVLabel.style.color = "var(--black)";
+
+            cvtToEquisolid.disabled = false;
+            cvtToEquisolid.title = "";
+            cvtToEquisolidLabel.style.color = "var(--black)";
+
+            cvtToStereographic.disabled = false;
+            cvtToStereographic.title = "";
+            cvtToStereographicLabel.style.color = "var(--black)";
+
+            cvtToOrthographic.disabled = false;
+            cvtToOrthographic.title = "";
+            cvtToOrthographicLabel.style.color = "var(--black)";
             break;
 
         case "equi_param" :
             // Set the inputs 
             camParam.style.display = "none";
             equiParam.style.display = "block";
+            equisolidParam.style.display = "none";
+            stereographic_param.style.display = "none";
+            orthographic_param.style.display = "none";
 
             // Set possible outputs
             cvtToEquidist.disabled = false;
-            cvtToUCM.disabled = false;
-            cvtToFOCV.disabled = false;
             cvtToEquidist.title = "";
-            cvtToUCM.title = "";
-            cvtToFOCV.title = "";
             cvtToEquidistLabel.style.color = "var(--black)";
+
+            cvtToUCM.disabled = false;
+            cvtToUCM.title = "";
             cvtToUCMLabel.style.color = "var(--black)";
+
+            cvtToFOCV.disabled = false;
+            cvtToFOCV.title = "";
             cvtToFOCVLabel.style.color = "var(--black)";
+
+            cvtToEquisolid.disabled = true;
+            cvtToEquisolid.checked = false;
+            cvtToEquisolid.title = "Not possible with this input parameters.";
+            cvtToEquisolidLabel.style.color = "var(--grey)";
+
+            cvtToStereographic.disabled = true;
+            cvtToStereographic.checked = false;
+            cvtToStereographic.title = "Not possible with this input parameters.";
+            cvtToStereographicLabel.style.color = "var(--grey)";
+
+            cvtToOrthographic.disabled = true;
+            cvtToOrthographic.checked = false;
+            cvtToOrthographic.title = "Not possible with this input parameters.";
+            cvtToOrthographicLabel.style.color = "var(--grey)";
+            break;
+
+        case "equisolid_param":
+            // Set the inputs 
+            camParam.style.display = "none";
+            equiParam.style.display = "none";
+            equisolidParam.style.display = "block";
+            stereographic_param.style.display = "none";
+            orthographic_param.style.display = "none";
+
+            // Set possible outputs
+            cvtToEquidist.disabled = true;
+            cvtToEquidist.checked = false;
+            cvtToEquidist.title = "Not possible with this input parameters.";
+            cvtToEquidistLabel.style.color = "var(--grey)";
+
+            cvtToUCM.disabled = true;
+            cvtToUCM.checked = false;
+            cvtToUCM.title = "Not possible with this input parameters.";
+            cvtToUCMLabel.style.color = "var(--grey)";
+
+            cvtToFOCV.disabled = true;
+            cvtToFOCV.checked = false;
+            cvtToFOCV.title = "Not possible with this input parameters.";
+            cvtToFOCVLabel.style.color = "var(--grey)";
+
+            cvtToEquisolid.disabled = false;
+            cvtToEquisolid.checked = true;
+            cvtToEquisolid.title = "";
+            cvtToEquisolidLabel.style.color = "var(--black)";
+
+            cvtToStereographic.disabled = true;
+            cvtToStereographic.checked = false;
+            cvtToStereographic.title = "Not possible with this input parameters.";
+            cvtToStereographicLabel.style.color = "var(--grey)";
+
+            cvtToOrthographic.disabled = true;
+            cvtToOrthographic.checked = false;
+            cvtToOrthographic.title = "Not possible with this input parameters.";
+            cvtToOrthographicLabel.style.color = "var(--grey)";
+            break;
+
+        case "stereographic_param":
+            // Set the inputs 
+            camParam.style.display = "none";
+            equiParam.style.display = "none";
+            equisolidParam.style.display = "block";
+            stereographic_param.style.display = "none";
+            orthographic_param.style.display = "none";
+
+            // Set possible outputs
+            cvtToEquidist.disabled = true;
+            cvtToEquidist.checked = false;
+            cvtToEquidist.title = "Not possible with this input parameters.";
+            cvtToEquidistLabel.style.color = "var(--grey)";
+
+            cvtToUCM.disabled = true;
+            cvtToUCM.checked = false;
+            cvtToUCM.title = "Not possible with this input parameters.";
+            cvtToUCMLabel.style.color = "var(--grey)";
+
+            cvtToFOCV.disabled = true;
+            cvtToFOCV.checked = false;
+            cvtToFOCV.title = "Not possible with this input parameters.";
+            cvtToFOCVLabel.style.color = "var(--grey)";
+
+            cvtToEquisolid.disabled = true;
+            cvtToEquisolid.checked = false;
+            cvtToEquisolid.title = "Not possible with this input parameters.";
+            cvtToEquisolidLabel.style.color = "var(--grey)";
+
+            cvtToStereographic.disabled = false;
+            cvtToStereographic.checked = true;
+            cvtToStereographic.title = "";
+            cvtToStereographicLabel.style.color = "var(--black)";
+
+            cvtToOrthographic.disabled = true;
+            cvtToOrthographic.checked = false;
+            cvtToOrthographic.title = "Not possible with this input parameters.";
+            cvtToOrthographicLabel.style.color = "var(--grey)";
+            break;
+
+        case "orthographic_param":
+            // Set the inputs 
+            camParam.style.display = "none";
+            equiParam.style.display = "none";
+            equisolidParam.style.display = "block";
+            stereographic_param.style.display = "none";
+            orthographic_param.style.display = "none";
+
+            // Set possible outputs
+            cvtToEquidist.disabled = true;
+            cvtToEquidist.checked = false;
+            cvtToEquidist.title = "Not possible with this input parameters.";
+            cvtToEquidistLabel.style.color = "var(--grey)";
+
+            cvtToUCM.disabled = true;
+            cvtToUCM.checked = false;
+            cvtToUCM.title = "Not possible with this input parameters.";
+            cvtToUCMLabel.style.color = "var(--grey)";
+
+            cvtToFOCV.disabled = true;
+            cvtToFOCV.checked = false;
+            cvtToFOCV.title = "Not possible with this input parameters.";
+            cvtToFOCVLabel.style.color = "var(--grey)";
+
+            cvtToEquisolid.disabled = true;
+            cvtToEquisolid.checked = false;
+            cvtToEquisolid.title = "Not possible with this input parameters.";
+            cvtToEquisolidLabel.style.color = "var(--grey)";
+
+            cvtToStereographic.disabled = true;
+            cvtToStereographic.checked = false;
+            cvtToStereographic.title = "Not possible with this input parameters.";
+            cvtToStereographicLabel.style.color = "var(--grey)";
+
+            cvtToOrthographic.disabled = false;
+            cvtToOrthographic.checked = true;
+            cvtToOrthographic.title = "";
+            cvtToOrthographicLabel.style.color = "var(--grey)";
             break;
 
         default:
@@ -176,6 +337,85 @@ const updater = () => {
 
             default:
                 errorMsg = "Problem found. Please open an issue \"Impossible to convert " + inputParamChoice.value + " to OpenCV Fisheye\"."
+                alert(errorMsg);
+                throw Error(errorMsg);
+        }
+    }
+
+    if(cvtToEquisolid.checked) {
+        switch(inputParamChoice.value) {
+            case "cam_param":
+                State.outputCameras.push(createCameraFromParam(
+                    CameraType.Equisolid, 
+                    parseFloat(camParam.querySelector("#focal_length").value),
+                    createPixel(parseFloat(camParam.querySelector("#k").value)),
+                    parseFloat(camParam.querySelector("#fov").value)
+                ));
+                break;
+            
+            case "equisolid_param":
+                State.outputCameras.push(new Equisolid(
+                    parseFloat(equiParam.querySelector("#f_factor").value), 
+                    createPixel(parseFloat(equiParam.querySelector("#k").value)), 
+                    parseFloat(equiParam.querySelector("#fov").value)
+                ));
+                break;
+
+            default:
+                errorMsg = "Problem found. Please open an issue \"Impossible to convert " + inputParamChoice.value + " to Equisolid\"."
+                alert(errorMsg);
+                throw Error(errorMsg);
+        }
+    }
+
+    if(cvtToStereographic.checked) {
+        switch(inputParamChoice.value) {
+            case "cam_param":
+                State.outputCameras.push(createCameraFromParam(
+                    CameraType.Stereographic, 
+                    parseFloat(camParam.querySelector("#focal_length").value),
+                    createPixel(parseFloat(camParam.querySelector("#k").value)),
+                    parseFloat(camParam.querySelector("#fov").value)
+                ));
+                break;
+            
+            case "stereographic_param":
+                State.outputCameras.push(new Stereographic(
+                    parseFloat(equiParam.querySelector("#f_factor").value), 
+                    createPixel(parseFloat(equiParam.querySelector("#k").value)), 
+                    parseFloat(equiParam.querySelector("#fov").value)
+                ));
+                break;
+
+            default:
+                errorMsg = "Problem found. Please open an issue \"Impossible to convert " + inputParamChoice.value + " to Equisolid\"."
+                alert(errorMsg);
+                throw Error(errorMsg);
+        }
+    }
+
+    if(cvtToOrthographic.checked) {
+        console.log("coucou" + cvtToOrthographic.value);
+        switch(inputParamChoice.value) {
+            case "cam_param":
+                State.outputCameras.push(createCameraFromParam(
+                    CameraType.Orthographic, 
+                    parseFloat(camParam.querySelector("#focal_length").value),
+                    createPixel(parseFloat(camParam.querySelector("#k").value)),
+                    parseFloat(camParam.querySelector("#fov").value)
+                ));
+                break;
+            
+            case "orthographic_param":
+                State.outputCameras.push(new Orthographic(
+                    parseFloat(equiParam.querySelector("#f_factor").value), 
+                    createPixel(parseFloat(equiParam.querySelector("#k").value)), 
+                    parseFloat(equiParam.querySelector("#fov").value)
+                ));
+                break;
+
+            default:
+                errorMsg = "Problem found. Please open an issue \"Impossible to convert " + inputParamChoice.value + " to Equisolid\"."
                 alert(errorMsg);
                 throw Error(errorMsg);
         }

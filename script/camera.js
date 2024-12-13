@@ -41,6 +41,9 @@ const CameraType = {
     Equidistant: "equidistant",
     FisheyeOCV: "opencv fisheye",
     UCM: "unified central model",
+    Equisolid: "equisolid",
+    Stereographic: "stereographic",
+    Orthographic: "orthographic",
 }
 
 /**
@@ -80,7 +83,27 @@ const createCameraFromParam = (cameraType, focal, pixSize, fov) => {
             intermed.conversions.push("Parameters");
             return intermed.convertTo(CameraType.UCM);
         }
-            
+
+        case CameraType.Equisolid:
+        {
+            let intermed = new Equisolid(focal/pixSize.x, pixSize, fov);
+            intermed.conversions.push("Parameters");
+            return intermed
+        }
+
+        case CameraType.Stereographic:
+        {
+            let intermed = new Stereographic(focal/pixSize.x, pixSize, fov);
+            intermed.conversions.push("Parameters");
+            return intermed
+        }
+
+        case CameraType.Orthographic:
+        {
+            let intermed = new Orthographic(focal/pixSize.x, pixSize, fov);
+            intermed.conversions.push("Parameters");
+            return intermed
+        }
 
         default:
             throw Error("Unknown camera type: " + cameraType);
@@ -398,6 +421,120 @@ class UCM extends Camera {
         var HTMLcode = "<table><caption>Parameters:</caption>";
         HTMLcode += "<tr><td>&alpha;</td><td><pre>" + (this.alpha_x).toFixed(3) + "</pre></td><td></td></tr>";
         HTMLcode += "<tr><td>&xi;</td><td><pre>" + (this.xi).toFixed(3) + "</pre></td><td></td></tr>";
+        HTMLcode += "<tr><td>Image circle</td><td><pre>" + (this.ray(radians(this.fov/2.0)) * 2.0).toFixed(0) + "</pre></td><td>px</td></tr>";
+        HTMLcode += "<tr><td>Image circle</td><td><pre>" + (this.ray(radians(this.fov/2.0)) * 2000.0 * this.pixSize.x).toFixed(2) + "</pre></td><td>mm</td></tr>";
+        HTMLcode += "</table>"
+        return HTMLcode;
+    }
+
+    convertTo(camType) {
+        switch(camType) {
+            default:
+                throw new Error("Impossible conversion to " + camType);
+        }
+    }
+}
+
+class Equisolid extends Camera {
+    /** @type {Number} */
+    alpha_x = null;
+    /** @type {Number} */
+    alpha_y = null;
+    typeName = "Equisolid";
+    color = "aqua";
+
+    constructor(alpha_x, pixSize, fov, residual_=null) {
+        super();
+        this.alpha_x = alpha_x;
+        this.pixSize = pixSize;
+        this.fov = fov;
+        this.residual_ = residual_;
+    }
+
+    ray(angle) {
+        return 2.0 * this.alpha_x * Math.sin(angle / 2.0);
+    }
+
+    exportHTMLBlock()
+    {
+        var HTMLcode = "<table><caption>Parameters:</caption>";
+        HTMLcode += "<tr><td>&alpha;</td><td><pre>" + (this.alpha_x).toFixed(3) + "</pre></td><td></td></tr>";
+        HTMLcode += "<tr><td>Image circle</td><td><pre>" + (this.ray(radians(this.fov/2.0)) * 2.0).toFixed(0) + "</pre></td><td>px</td></tr>";
+        HTMLcode += "<tr><td>Image circle</td><td><pre>" + (this.ray(radians(this.fov/2.0)) * 2000.0 * this.pixSize.x).toFixed(2) + "</pre></td><td>mm</td></tr>";
+        HTMLcode += "</table>"
+        return HTMLcode;
+    }
+
+    convertTo(camType) {
+        switch(camType) {
+            default:
+                throw new Error("Impossible conversion to " + camType);
+        }
+    }
+}
+
+class Stereographic extends Camera {
+    /** @type {Number} */
+    alpha_x = null;
+    /** @type {Number} */
+    alpha_y = null;
+    typeName = "Stereographic";
+    color = "GreenYellow";
+
+    constructor(alpha_x, pixSize, fov, residual_=null) {
+        super();
+        this.alpha_x = alpha_x;
+        this.pixSize = pixSize;
+        this.fov = fov;
+        this.residual_ = residual_;
+    }
+
+    ray(angle) {
+        return 2.0 * this.alpha_x * Math.tan(angle / 2.0);
+    }
+
+    exportHTMLBlock()
+    {
+        var HTMLcode = "<table><caption>Parameters:</caption>";
+        HTMLcode += "<tr><td>&alpha;</td><td><pre>" + (this.alpha_x).toFixed(3) + "</pre></td><td></td></tr>";
+        HTMLcode += "<tr><td>Image circle</td><td><pre>" + (this.ray(radians(this.fov/2.0)) * 2.0).toFixed(0) + "</pre></td><td>px</td></tr>";
+        HTMLcode += "<tr><td>Image circle</td><td><pre>" + (this.ray(radians(this.fov/2.0)) * 2000.0 * this.pixSize.x).toFixed(2) + "</pre></td><td>mm</td></tr>";
+        HTMLcode += "</table>"
+        return HTMLcode;
+    }
+
+    convertTo(camType) {
+        switch(camType) {
+            default:
+                throw new Error("Impossible conversion to " + camType);
+        }
+    }
+}
+
+class Orthographic extends Camera {
+    /** @type {Number} */
+    alpha_x = null;
+    /** @type {Number} */
+    alpha_y = null;
+    typeName = "Orthographic";
+    color = "DarkOrchid";
+
+    constructor(alpha_x, pixSize, fov, residual_=null) {
+        super();
+        this.alpha_x = alpha_x;
+        this.pixSize = pixSize;
+        this.fov = fov;
+        this.residual_ = residual_;
+    }
+
+    ray(angle) {
+        return this.alpha_x * Math.sin(angle);
+    }
+
+    exportHTMLBlock()
+    {
+        var HTMLcode = "<table><caption>Parameters:</caption>";
+        HTMLcode += "<tr><td>&alpha;</td><td><pre>" + (this.alpha_x).toFixed(3) + "</pre></td><td></td></tr>";
         HTMLcode += "<tr><td>Image circle</td><td><pre>" + (this.ray(radians(this.fov/2.0)) * 2.0).toFixed(0) + "</pre></td><td>px</td></tr>";
         HTMLcode += "<tr><td>Image circle</td><td><pre>" + (this.ray(radians(this.fov/2.0)) * 2000.0 * this.pixSize.x).toFixed(2) + "</pre></td><td>mm</td></tr>";
         HTMLcode += "</table>"

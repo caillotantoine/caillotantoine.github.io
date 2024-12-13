@@ -21,7 +21,7 @@
 
             <h1>Camera converter</h1>
             <br>
-            <p>Version &#x3B1; 0.6 : For now, only equidistant to omnidirectional and Kannala-Brandt conversion are supported.</p>
+            <p>Version: &alpha; 1.0 (December 13th, 2024)</p>
             <br><br>
 
             <!-- TODO Cookies to remember previous parameters -->
@@ -32,19 +32,36 @@
                 <select id="inputParamChoice" name="inputParamChoice" onchange="updater();">
                     <option value="cam_param" id="cam_param">Camera parameters</option>
                     <option value="equi_param" id="equi_param" >Equidistant</option>
+                    <option value="equisolid_param" id="equisolid_param" >Equisolid</option>
+                    <option value="stereographic_param" id="stereographic_param" >Stereographic</option>
+                    <option value="orthographic_param" id="orthographic_param" >Orthographic</option>
                     <!--disabled="false"-->
                 </select><br><br>
 
                 <table id="cvtToTable">
                     <tr>
-                        <td rowspan="3" id="cvtToTitle">Convert to:</td>
+                        <td id="cvtToTitle">Convert to:</td>
                         <td><input type="checkbox" value="cvtToEquidist" name="cvtToEquidist" id="cvtToEquidist" checked="true" onchange="updater();"> <label for="cvtToEquidist" id="cvtToEquidistLabel">Equidistant</label></td>
                     </tr>
                     <tr>
+                        <td></td>
                         <td><input type="checkbox" value="cvtToUCM" name="cvtToUCM" id="cvtToUCM" onchange="updater();"  checked="true" disabled="true" title="Not possible with this input parameters."> <label for="cvtToUCM" style="color: var(--grey);" id="cvtToUCMLabel">Unified Central</label></td>
                     </tr>
                     <tr>
+                        <td></td>
                         <td><input type="checkbox" value="cvtToFOCV" name="cvtToFOCV" id="cvtToFOCV" onchange="updater();" disabled="true" title="Not possible with this input parameters."> <label for="cvtToFOCV" style="color: var(--grey);" id="cvtToFOCVLabel">Fisheye OpenCV</label></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="checkbox" value="cvtToEquisolid" name="cvtToEquisolid" id="cvtToEquisolid" onchange="updater();" disabled="true" title="Not possible with this input parameters."> <label for="cvtToEquisolid" style="color: var(--grey);" id="cvtToEquisolidLabel">Equisolid</label></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="checkbox" value="cvtToStereographic" name="cvtToStereographic" id="cvtToStereographic" onchange="updater();" disabled="true" title="Not possible with this input parameters."> <label for="cvtToStereographic" style="color: var(--grey);" id="cvtToStereographicLabel">Stereographic</label></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="checkbox" value="cvtToOrthographic" name="cvtToOrthographic" id="cvtToOrthographic" onchange="updater();" disabled="true" title="Not possible with this input parameters."> <label for="cvtToOrthographic" style="color: var(--grey);" id="cvtToOrthographicLabel">Orthographic</label></td>
                     </tr>
                 </table>
                 <br>
@@ -66,10 +83,74 @@
                             <td style="text-align: right;"><input type="text" name="k" id="k" value="5.5e-6" onchange="updater();"/></td>
                             <td>m</td>
                         </tr>
+
+
                     </table>
                 </div>
                 <div class="paramBloc" id="equiParam" style="display: none;">
                     <h3>Equidistant</h3>
+                    <table>
+                        <tr>
+                            <td>&alpha;: </td>
+                            <td style="text-align: right;"><input type="text" name="f_factor" id="f_factor" value="490.91" onchange="updater();"/></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td title="Field Of View">FOV: </td>
+                            <td style="text-align: right;"><input type="text" name="fov" id="fov" value="185" onchange="updater();"/></td>
+                            <td>&deg;</td>
+                        </tr>
+                        <tr>
+                            <td >Pixel size: </td>
+                            <td style="text-align: right;"><input type="text" name="k" id="k" value="5.5e-6" onchange="updater();"/></td>
+                            <td>m</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="paramBloc" id="equisolidParam" style="display: none;">
+                    <h3>Equisolid</h3>
+                    <table>
+                        <tr>
+                            <td>&alpha;: </td>
+                            <td style="text-align: right;"><input type="text" name="f_factor" id="f_factor" value="490.91" onchange="updater();"/></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td title="Field Of View">FOV: </td>
+                            <td style="text-align: right;"><input type="text" name="fov" id="fov" value="185" onchange="updater();"/></td>
+                            <td>&deg;</td>
+                        </tr>
+                        <tr>
+                            <td >Pixel size: </td>
+                            <td style="text-align: right;"><input type="text" name="k" id="k" value="5.5e-6" onchange="updater();"/></td>
+                            <td>m</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="paramBloc" id="stereographicParam" style="display: none;">
+                    <h3>Stereographic</h3>
+                    <table>
+                        <tr>
+                            <td>&alpha;: </td>
+                            <td style="text-align: right;"><input type="text" name="f_factor" id="f_factor" value="490.91" onchange="updater();"/></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td title="Field Of View">FOV: </td>
+                            <td style="text-align: right;"><input type="text" name="fov" id="fov" value="185" onchange="updater();"/></td>
+                            <td>&deg;</td>
+                        </tr>
+                        <tr>
+                            <td >Pixel size: </td>
+                            <td style="text-align: right;"><input type="text" name="k" id="k" value="5.5e-6" onchange="updater();"/></td>
+                            <td>m</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="paramBloc" id="orthographicParam" style="display: none;">
+                    <h3>Orthographic</h3>
                     <table>
                         <tr>
                             <td>&alpha;: </td>
