@@ -9,6 +9,17 @@
         <link rel="stylesheet" href="./style/colors.css">
         <link rel="stylesheet" href="./style/index.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+        <!-- Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SH8G63HM9"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-8SH8G63HM9');
+        </script>
+        
         <script src="script/base.js"></script>
     </head>
     <body onload="loadHTML('template/header.html', 'header'); loadHTML('template/footer.html', 'footer');">
