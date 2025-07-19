@@ -60,55 +60,134 @@
             
 
         <script>
-            $.getJSON("./content/publi.json", function(json) {
-                var sortedNews = json.publication.sort((a, b) => new Date(a.date) - new Date(b.date));
-                const addPubli = (target, publi) => {
-                    var authlist = [];
-                    publi.authors.forEach(elem => {
-                        if(elem === 'Antoine Caillot') authlist.push("<span style='text-decoration: underline;'>" + elem + "</span>");
-                        else authlist.push(elem);
-                    });
-                    var auths;
-                    
-                    if(authlist.length === 0)
-                    {
-                        auths = 'No authors. Contact the webmaster.';
-                    }
-                    else if (authlist.length === 1)
-                    {
-                        auths = authlist[0];
-                    }
-                    else 
-                    {
-                        const allButLast = authlist.slice(0, -1).join(', ');
-                        const lastItem = authlist[authlist.length - 1];
-                        auths = allButLast + ", and " + lastItem;
-                    }
-                    document.getElementById(target).innerHTML += "<li><span style='font-weight: bold;'>" + publi.name + "</span><br />" + auths + " (" + (new Date(publi.date)).getFullYear() + ") <a href='" + publi.link + "'>" + publi.pub +"</a></li>";
-                };
-                sortedNews.forEach(element => {
-                    switch (element.class) {
-                        case 'journal':
-                            addPubli('journal', element);
-                            break;
+            // Your ORCID iD
+            const orcidId = "0000-0002-6843-7255";
 
-                        case 'conference':
-                            addPubli('conference', element);
-                            break;
+            // ORCID public API endpoint for works
+            const apiURL = `https://pub.orcid.org/v3.0/${orcidId}/works`;
 
-                        case 'thesis':
-                            addPubli('thesis', element);
-                            break;
+            // ORCID API requires specific headers for JSON
+            fetch(apiURL, {
+            headers: {
+                'Accept': 'application/json'
+            }
+            })
+            .then(response => response.json())
+            .then(data => {
+            // The works are inside data.group
+            const works = data.group;
 
-                        case 'grant':
-                            addPubli('grant', element);
-                            break;
-                    
-                        default:
-                            break;
-                    }
-                });
+            // Sort works by year descending
+            works.sort((a, b) => {
+                const dateA = a['work-summary'][0]['publication-date']?.year?.value || 0;
+                const dateB = b['work-summary'][0]['publication-date']?.year?.value || 0;
+                return dateA - dateB;
             });
+
+            // Helper to build author list -- ORCID does not give full authors in summary,
+            // so you may want to expand this with extra fetches if needed.
+
+            const addPubli = (target, work) => {
+                const summary = work['work-summary'][0];
+                const putCode = summary["put-code"];
+
+                fetch(`https://pub.orcid.org/v3.0/${orcidId}/work/${putCode}`, {
+                    headers: {
+                    'Accept': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(fullWork => {
+                    const title = fullWork.title?.title?.value || "No title";
+                    const year = fullWork['publication-date']?.year?.value || "n.d.";
+                    const externalLink = summary['external-ids']?.['external-id']?.[0]?.['external-id-url']?.value || "#";
+                    const containerTitle = fullWork['journal-title']?.value || "";
+
+
+                    let authlist = [];
+                    const contributors = fullWork.contributors?.contributor || [];
+                    contributors.forEach(contrib => {
+                    const name = contrib["credit-name"]?.value || "Unknown";
+                    if(name.includes("Antoine Caillot")) {
+                        authlist.push(`<span style='text-decoration: underline;'>${name}</span>`);
+                    } else {
+                        authlist.push(name);
+                    }
+                    });
+
+                    let auths;
+                    if(authlist.length === 0) {
+                    auths = 'No authors. Contact the webmaster.';
+                    } else if(authlist.length === 1) {
+                    auths = authlist[0];
+                    } else {
+                    const allButLast = authlist.slice(0, -1).join(', ');
+                    const lastItem = authlist[authlist.length - 1];
+                    auths = allButLast + ", and " + lastItem;
+                    }
+
+                    document.getElementById(target).innerHTML +=
+                    `<li><span style='font-weight: bold;'>${title}</span><br />${auths} (${year}) <a href='${externalLink}' target='_blank'>${containerTitle ? `<i>${containerTitle}</i>, ` : `${externalLink}`}</a></li>`;
+                })
+                .catch(error => console.error("Error fetching full work details:", error));
+                };
+
+            works.forEach(work => {
+                const type = work['work-summary'][0].type;
+                // Map ORCID types to your sections
+                switch(type) {
+                case 'journal-article':
+                    addPubli('journal', work);
+                    break;
+                case 'conference-paper':
+                    addPubli('conference', work);
+                    break;
+                case 'dissertation-thesis':
+                    addPubli('thesis', work);
+                    break;
+                // case 'GRANT':
+                //     addPubli('grant', work);
+                //     break;
+                default:
+                    // Skip or handle other types
+                    break;
+                }
+            });
+            })
+            .catch(error => {
+            console.error("Error fetching ORCID works:", error);
+            });
+
+            const fundingURL = `https://pub.orcid.org/v3.0/${orcidId}/fundings`;
+
+            fetch(fundingURL, {
+            headers: {
+                'Accept': 'application/json'
+            }
+            })
+            .then(response => response.json())
+            .then(data => {
+            const fundings = data.group;
+
+            console.log(fundings);
+            
+            fundings.forEach(fund => {
+                const summary = fund['funding-summary'][0];
+                const title = summary.title.title.value || "No title";
+                const year = summary['start-date']?.year?.value || "n.d.";
+                const funder = summary['organization'].name || "Unknown funder";
+                const externalLink = summary.url?.value || "#";
+                receiver = summary['source']['assertion-origin-name']?.value || "Unknown receiver";
+                if(receiver.includes("Antoine Caillot") || receiver.includes("Antoine CAILLOT")) {
+                    receiver = `<span style='text-decoration: underline;'>${receiver}</span>`;
+                }
+ 
+                document.getElementById('grant').innerHTML +=
+                `<li><span style='font-weight: bold;'>${title}</span><br />${receiver} (${year}) <a href='${externalLink}' target='_blank'>${funder}</a></li>`;
+            });
+            })
+            .catch(error => console.error("Error fetching ORCID funding:", error));
+
         </script>
 
         <div id="footer"></div>
