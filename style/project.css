@@ -31,6 +31,11 @@
     font-family: petitefrance;
 }
 
+#projbox h2 sup {
+  font-size: 0.6em;
+  vertical-align: super;
+}
+
 #projbox a {
     text-decoration: underline; 
     color: var(--dark);
@@ -40,3 +45,5 @@
     margin-top: 15px; 
     margin-bottom: 15px;
 }
+
+

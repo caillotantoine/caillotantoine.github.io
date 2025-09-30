@@ -42,7 +42,7 @@
         },
         {
             "date": "2024-07-08",
-            "en": "Begining of the supervision of GUILLAUME Constantin, intern at the CNRS-AIST JRL."
+            "en": "Begining of the supervision of GUILLAUME Constantin, 4 months intern at the CNRS-AIST JRL."
         },
         {
             "date": "2025-02-03",
@@ -51,6 +51,18 @@
         {
             "date": "2025-03-21",
             "en": "Received the French Master of Conference (Maître de Conférences) qualification from the 61st section (Computer Engineering, Automation, and Signal Processing)."
+        },
+        {
+            "date": "2025-09-29",
+            "en": "Visit of The State University of New York (SUNY) in Seoul, South Korea."
+        }, 
+        {
+            "date": "2025-09-30", 
+            "en": "Prenstation of <span class='title'><a href='humanoids2025.html'>RGB-D versus omnidirectional visual SLAM in humanoid robot positioning</a></span> at IEEE Humanoids 2025 in Seoul, South Korea."
+        },
+        {
+            "date": "2025-10-01",
+            "en": "Visit at Seoul National University (SNU) in Seoul, South Korea."
         }
     ]
 }

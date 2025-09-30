@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="keywords" content="antoine, caillot, resume, engineer, phd, doctorat, ingenieur">
+        <meta name="description" content="Personal website to share who I am and what I like">
+        <title>CAILLOT Antoine</title>
+        <link rel="stylesheet" href="./style/reset.css">
+        <link rel="stylesheet" href="./style/colors.css">
+        <link rel="stylesheet" href="./style/index.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+        <!-- Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SH8G63HM9"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-8SH8G63HM9');
+        </script>
+        
+        <script src="script/base.js"></script>
+    </head>
+    <body onload="loadHTML('template/header.html', 'header'); loadHTML('template/footer.html', 'footer');">
+        <div id="header"></div>
+        <div onclick="closeNavMenu()">
+
+        <div style="height: 10vh;"></div>
+        
+        <section class="normalSection">
+            <h1>RGB-D versus omnidirectional visual SLAM in humanoid robot positioning</h1>
+            <h3>
+                Antoine caillot<sup>1</sup>, 
+                Antoine N. André<sup>1</sup>, 
+                Thomas Duvinage<sup>1</sup>, 
+                Guillaume Caron<sup>1,2</sup>
+            </h3>
+            <br >
+            <p>
+                <sup>1</sup> CNRS-AIST Joint Robotics Laboratory (JRL), IRL, Tsukuba, Japan.<br>
+                <sup>2</sup> MIS laboratory, University of Picardie Jules Verne, Amiens, France. 
+            </p>
+            <br>
+            <div style="height: 3vh;"></div>
+            <div>
+                <a id="paperLink" href="https://hal.science/hal-05193891">Paper</a>
+                <!-- <span> | </span><a>Code</a> -->
+            </div>
+            <div style="height: 15vh;"></div>
+            <img src="image/robotAndCam.png" alt="HRP5P with 360º and RGB-D camera." id="titleImage" />
+            <div style="height: 3vh;"></div>
+            <br>
+            <div>
+                <!-- <p style="text-align: justify;">
+                RGB-D camera are the go to in mobile robotics and is the main sensor used in humanoid robots for Simultaneous Localization and Mapping (SLAM). However, they suffer from a limited field of view and a limited range. In this work, we compare the performance of a RGB-D camera (Microsoft Azure Kinect) with an omnidirectional camera (Insta 360 one X 2) for visual SLAM in the context of humanoid robotics. Both sensors were mounted on a humanoids robots and with the help of a state-of-the-art Visual SLAM (Stella VSLAM), we evaluated the performance of trajectory correction to reach a target. We show that the omnidirectional camera can outperform the RGB-D camera in terms of accuracy and robustness, especially in challenging situations such as changing environments.
+                </p> -->
+                <p style="text-align: justify;">
+                    Visual sensors are central to humanoid and mobile robotics, with <strong>RGB-D cameras</strong> widely used for <em>Simultaneous Localization and Mapping (SLAM)</em> thanks to their depth perception. However, they remain limited by their narrow field of view and restricted sensing range. In this work, we compare the performance of an RGB-D sensor (Microsoft Azure Kinect) with an <strong>omnidirectional camera</strong> (Insta360 One X2) for visual SLAM on humanoid robots. Using the state-of-the-art system <strong>Stella-VSLAM</strong>, we evaluate their ability to correct trajectories when reaching a target. Our results show that the omnidirectional camera can surpass the RGB-D camera in both <em>accuracy</em> and <em>robustness</em>, particularly in challenging or dynamic environments.
+                </p>
+            </div>
+        </section>
+
+        <section class="normalSection">
+            <h2>Abstract</h2>
+            <p style="text-align: justify;">
+            Visual Simultaneous Localization And Mapping (VSLAM) with an RGB-D camera is the gold standard to help correcting humanoid robots' drift while walking toward a goal pose indoors. But, the bounded range and Field Of View (FOV) of these cameras constrain the use cases for humanoids to few changes in the environment. At the same time, compact omnidirectional cameras capable of a 360º FOV are spreading quickly at low cost, offering more possibilities to the VSLAM system to observe reliable features whichever the robot orientation. 
+
+            Thus, this paper investigates the VSLAM with a 360º camera versus an RGB-D one in the humanoid head for correcting the walking drift of a baseline walking controller over several meters. The Baseline Biped Positioning hence made is evaluated regarding final pose accuracy improvement and robustness to environmental changes by leveraging multiple sets of real experiments on a 1.8m tall humanoid robot. 
+            </p>
+        </section>
+
+        <section class="normalSection">
+            <h2>Experiments</h2>
+
+            <img src="image/humanoids2025-exp.gif" alt="Experiment principle." width="100%"/>
+            <p>Experiment principle: for both camera feeding a VSLAM algorithm, correct the walking error to a target.</p>
+
+            <div style="height: 3vh;"></div>
+
+            <img src="image/cameras_sparse_dense_bar_filtered.jpg" alt="Environment where the experiments took place in." width="100%"/>
+            <p>Environment where the experiments took place in.</p>
+        </section>
+
+
+        <section class="normalSection">
+            <h2>BibTeX</h2>
+            <div id="bibtex_code">
+            <pre style="overflow-x: auto; width: 100%">
+@inproceedings{caillot2025rgbdOmni,
+    title={RGB-D versus omnidirectional visual SLAM in humanoid robot positioning},
+    author={Caillot, Antoine and André, Antoine N. and Duvinage, Thomas and and Caron, Guillaume},
+    booktitle={2025 24th IEEE Int. Conf. on Humanoids Robots},
+    year={2025},
+    organization={IEEE}
+}
+            </pre>
+            </div>
+
+        </section>
+        <!-- <div style="height: 70vh;"></div> -->
+
+        <div id="footer"></div>
+    </body>
+</html>

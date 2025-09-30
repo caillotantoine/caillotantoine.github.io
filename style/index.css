@@ -2,6 +2,7 @@
 @import './colors.css';
 
 
+
 #about_author {
     display: flex;
     flex-direction: column;
@@ -89,6 +90,41 @@
     list-style-type: disc;
 }
 
+sup {
+  font-size: 0.6em;
+  vertical-align: super;
+} 
+
+#bibtex_code {
+    border: 1px solid var(--grey);
+    border-radius: 15px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 1vh;
+    background-color: var(--white);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    text-align: left;
+    padding: 10px;
+}
+
+#paperLink {
+    border: 1px solid black;
+    border-radius: 10px;
+    text-decoration: none;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: var(--grey);
+    color: var(--white);
+}
+
+#paperLink:hover {
+    background-color: var(--black);
+    cursor: pointer;
+}
+
 @media (orientation: portrait)
 {
     
@@ -139,6 +175,7 @@
 
     .normalSection {
         font-size: 2rem;
+        width: 90%;
     }
 
     .normalSection h1{
@@ -158,6 +195,11 @@
     
     #news table {
         border-spacing: 0 2rem;
+    }
+    
+    #titleImage
+    {
+        width: 90%;
     }
 }
 
@@ -212,8 +254,19 @@
         margin-bottom: 5vh;
     }
 
+    .normalSection h2{
+        font-size: 2.4rem;
+        margin-bottom: 1vh;
+    }
+
+    .normalSection h3{
+        font-size: 1.7rem;
+        margin-bottom: 1vh;
+    }
+
     .normalSection {
         font-size: 1.4rem;
+        width: 70%;
     }
 
     .normalSection li {
@@ -223,5 +276,10 @@
 
     #news table {
         border-spacing: 0 2vh;
+    }
+
+    #titleImage
+    {
+        width: 60%;
     }
 }
