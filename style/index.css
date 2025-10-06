@@ -53,6 +53,15 @@
     list-style-type: disc;
 }
 
+.normalSection a {
+    text-decoration: underline;
+    color: var(--black);
+}
+
+.normalSection a:hover {
+    color: var(--comp);
+}
+
 #bio .loc{
     font-style: italic;
 }
@@ -267,6 +276,7 @@ sup {
     .normalSection {
         font-size: 1.4rem;
         width: 70%;
+        max-width: 80rem;
     }
 
     .normalSection li {
