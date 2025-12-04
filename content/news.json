@@ -63,6 +63,19 @@
         {
             "date": "2025-10-01",
             "en": "Visit at Seoul National University (SNU) in Seoul, South Korea."
+        },
+        {
+            "date": "2025-12-02",
+            "en": "Co-speaker with <a href='https://home.mis.u-picardie.fr/~g-caron/en/'>Guillaume Caron</a> at the <a href='https://www.image.media.kyoto-u.ac.jp/en/'>Image Informatics Laboratory of Kyoto University</a> hosted by Prof. <href='https://www.image.media.kyoto-u.ac.jp/en/author/takuya-funatomi/'>Takuya Funatomi</a>"
+        }
+        ,
+        {
+            "date": "2025-12-03",
+            "en": "Co-speaker with <a href='https://home.mis.u-picardie.fr/~g-caron/en/'>Guillaume Caron</a> at the <a href='https://omilab.naist.jp'>Optical Media Interface Lab of Nara Institute of Tech.</a> hosted by Prof. <href='https://omilab.naist.jp/~mukaigawa/'>Yasuhiro Mukaigawa</a>"
+        },
+        {
+            "date": "2025-12-04",
+            "en": "Visit of the <a href='https://carelab.info/en/'>Cybernetics And Reality Engineering of Nara Institute of Tech.</a> with <a href='https://home.mis.u-picardie.fr/~g-caron/en/'>Guillaume Caron</a> and Hideaki Uchiyama"
         }
     ]
 }
