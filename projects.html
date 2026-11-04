@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="keywords" content="antoine, caillot, resume, engineer, phd, doctorat, ingenieur">
         <meta name="description" content="Personal website to share who I am and what I like">
-        <title>CAILLOT Antoine</title>
+        <title>Projects — Antoine CAILLOT</title>
         <link rel="stylesheet" href="./style/reset.css">
         <link rel="stylesheet" href="./style/colors.css">
         <link rel="stylesheet" href="./style/index.css">
@@ -23,20 +23,28 @@
         </script>
         
         <script src="script/base.js"></script>
+        <script src="script/projects.js" defer></script>
     </head>
     <body onload="loadHTML('template/header.html', 'header'); loadHTML('template/footer.html', 'footer');">
         <div id="header"></div>
         <div onclick="closeNavMenu()">
 
-        <div style="height: 10vh;"></div>
-
-        <section class="normalSection" id="publist">
-            <h1>Being built!</h1>
-            This page will come soon, stay tuned.
-        </section>
-
-        <div style="height: 70vh;"></div>
-
+        <main class="projectPage">
+            <section class="normalSection">
+                <h1>Projects</h1>
+                <p class="pageIntro">A selection of research and personal projects. Publications with an existing project page link directly to that page.</p>
+            </section>
+            <section class="normalSection">
+                <h2>Research Projects</h2>
+                <div id="researchProjects" class="projectGrid"></div>
+            </section>
+            <section class="normalSection">
+                <h2>Personal Projects</h2>
+                <div id="personalProjects" class="projectGrid"></div>
+                <p id="projectsStatus" role="status"></p>
+            </section>
+        </main>
+        <script>document.addEventListener('DOMContentLoaded', loadProjects);</script>
         </div>
         <div id="footer"></div>
     </body>
