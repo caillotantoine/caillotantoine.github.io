@@ -43,6 +43,7 @@
         <link rel="stylesheet" href="./style/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <script src="script/base.js"></script>
+        <script src="script/news.js" defer></script>
     </head>
     <body onload="loadHTML('template/header.html', 'header'); loadHTML('template/footer.html', 'footer');">
         <div id="header"></div>
@@ -105,22 +106,11 @@
             </section>
             
             <section id="news" class="normalSection">
-                <h1>News:</h1>
+                <h1>Latest news</h1>
                 <table id="newsList"></table>
-                <script>
-                    // document.getElementById('newsList').innerHTML = '<li>Bonjour<\li>';
-                    $.getJSON("./content/news.json", function(json) {
-                        // console.log(json.news.sort((a, b) => new Date(b.date) - new Date(a.date)));
-                        const options = { year: 'numeric', month: 'short', day: 'numeric' };
-    
-                        const sortedNews = json.news.sort((a, b) => new Date(b.date) - new Date(a.date))
-                        sortedNews.forEach(element => {
-                            const date = new Date(element.date)
-                            const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
-                            document.getElementById("newsList").innerHTML += "<tr><td class='date'>"+ formattedDate +"</td><td class='newsLabel'> " + element.en + "</td></tr>";
-                        });
-                    });
-                </script>
+                <p id="newsStatus" role="status"></p>
+                <p class="newsMore"><a href="news.html">View all news &rarr;</a></p>
+                <script>document.addEventListener('DOMContentLoaded', () => loadNews(5));</script>
             </section>
             
             <section id="contact" class="normalSection">
