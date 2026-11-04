@@ -314,3 +314,6 @@ sup {
  .normalSection ul { width: 100%; text-align: left; }
  #news .newsLabel { padding-left: 0.75rem; }
 }
+
+/* Visible labels if a third-party social logo cannot load. */
+#links .social-fallback:not([hidden]) { display: inline-flex; align-items: center; justify-content: center; min-width: 2.75rem; min-height: 2.75rem; padding: 0.25rem; box-sizing: border-box; color: var(--main); font-family: 'Schibsted Grotesk', sans-serif; font-size: 0.8rem; font-weight: bold; }
