@@ -87,25 +87,29 @@
     border-left: 3px solid var(--comp);
 }
 
-/* A rounded fork joining the green main track to the secondary track. */
-#bio .careerBranch::before {
-    content: "";
+/* A smooth curve with vertical tangents at both tracks. */
+#bio .careerFork {
     position: absolute;
     top: -1.25rem;
     left: -3.5rem;
-    box-sizing: border-box;
     width: 3.5rem;
-    height: 2rem;
-    border-left: 3px solid var(--comp);
-    border-bottom: 3px solid var(--comp);
-    border-bottom-left-radius: 2rem;
+    height: 2.25rem;
+    overflow: visible;
+    pointer-events: none;
+}
+
+#bio .careerFork path {
+    fill: none;
+    stroke: var(--comp);
+    stroke-width: 3;
+    vector-effect: non-scaling-stroke;
 }
 
 #bio .careerBranch::after {
     content: "";
     position: absolute;
     top: 0.35rem;
-    left: -1.5px;
+    left: 1.5px;
     box-sizing: border-box;
     width: 0.8rem;
     height: 0.8rem;
