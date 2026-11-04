@@ -74,59 +74,89 @@
     font-size: 1rem;
 }
 
+/* The period has a real split (2016) and merge (2019).
+   The history runs newest-to-oldest, so the merge appears first. */
 #bio .careerParallel {
-    display: block;
+    --parallel-lane: 4.05rem;
+    min-height: 17rem;
+    padding-left: 6rem;
+    padding-bottom: 1.2rem;
 }
 
-/* Keep the parallel work next to the main career track, not across the page. */
-#bio .careerBranch {
-    position: relative;
-    box-sizing: border-box;
-    margin: 1.75rem 0 0 1.5rem;
-    padding: 0 0 0 1.25rem;
-    border-left: 3px solid var(--comp);
-}
-
-/* A smooth curve with vertical tangents at both tracks. */
-#bio .careerFork {
+#bio .careerParallel::after {
+    content: "";
     position: absolute;
-    top: -1.25rem;
-    left: -3.5rem;
-    width: 3.5rem;
-    height: 2.25rem;
+    left: var(--timeline-axis);
+    bottom: 0.25rem;
+    z-index: 1;
+    box-sizing: border-box;
+    width: 0.9rem;
+    height: 0.9rem;
+    transform: translateX(-50%);
+    border: 3px solid var(--main);
+    border-radius: 50%;
+    background: var(--white);
+}
+
+#bio .careerParallelLines {
+    position: absolute;
+    top: 0.65rem;
+    bottom: 0.65rem;
+    left: 0;
+    width: 5.625rem;
+    height: calc(100% - 1.3rem);
     overflow: visible;
     pointer-events: none;
 }
 
-#bio .careerFork path {
+#bio .careerParallelLines path {
     fill: none;
     stroke: var(--comp);
-    stroke-width: 3;
+    stroke-width: 3px;
     vector-effect: non-scaling-stroke;
 }
 
-#bio .careerBranch::after {
+#bio .careerParallelTracks {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1rem 0 1.75rem;
+}
+
+#bio .careerSecondary {
+    position: relative;
+}
+
+#bio .careerSecondary h2 {
+    color: var(--comp);
+}
+
+#bio .careerSecondary::before {
     content: "";
     position: absolute;
-    top: 0.35rem;
-    left: 1.5px;
+    top: 0.3rem;
+    left: -1.95rem;
     box-sizing: border-box;
-    width: 0.8rem;
-    height: 0.8rem;
+    width: 0.75rem;
+    height: 0.75rem;
     transform: translateX(-50%);
     border: 2px solid var(--comp);
     border-radius: 50%;
     background: var(--white);
 }
 
-#bio .careerBranch .careerDate {
-    color: var(--comp);
+#bio .careerSplitDate {
+    margin-bottom: 0;
 }
 
 @media (max-width: 700px) {
     #bio .careerEntry {
         margin-bottom: 1.75rem;
         padding-left: 3rem;
+    }
+
+    #bio .careerParallel {
+        padding-left: 6rem;
     }
 
     #bio .careerDetails h2 {
