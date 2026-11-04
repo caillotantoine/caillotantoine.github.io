@@ -163,3 +163,9 @@
         font-size: 1.05rem;
     }
 }
+
+/* Keep both connections visible but hide the split/merge markers. */
+#bio .careerParallel::before,
+#bio .careerParallel::after {
+    display: none;
+}
