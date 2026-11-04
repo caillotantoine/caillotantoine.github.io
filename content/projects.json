@@ -103,7 +103,7 @@
             "period": "Personal software project",
             "date": null,
             "pinned": true,
-            "description": "A personal camera conversion project, with its own page on this website.",
+            "description": "Camera conversion utility, available on its existing project page.",
             "tags": [
                 "Cameras",
                 "Software"
@@ -111,7 +111,7 @@
             "links": [
                 {
                     "label": "Project page",
-                    "url": "cam-converter.html"
+                    "url": "camconvert.html"
                 }
             ]
         }
