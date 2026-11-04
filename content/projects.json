@@ -1,0 +1,105 @@
+{
+    "projects": [
+        {
+            "category": "research",
+            "title": "Cooperative Evidential Occupancy Grids",
+            "period": "PhD · 2019–2022",
+            "description": "Cooperative camera-based occupancy mapping for autonomous driving, combining information from multiple agents using evidential reasoning.",
+            "tags": [
+                "Cooperative Perception",
+                "Evidential Mapping"
+            ],
+            "links": [
+                {
+                    "label": "Code",
+                    "url": "https://github.com/caillotantoine/Coop-Evidential-Occupancy-Grid"
+                }
+            ]
+        },
+        {
+            "category": "research",
+            "title": "Cooperative Evidential Semantic Grids",
+            "period": "PhD · 2019–2022",
+            "description": "Extending cooperative perception toward semantic grid generation and fusion.",
+            "tags": [
+                "Semantic Mapping",
+                "Cooperative Perception"
+            ],
+            "links": [
+                {
+                    "label": "Code",
+                    "url": "https://github.com/caillotantoine/Coop-Evidential-Semantic-Grid"
+                }
+            ]
+        },
+        {
+            "category": "research",
+            "title": "Omnidirectional Visual SLAM for Humanoids",
+            "period": "CNRS–AIST JRL · 2023–2026",
+            "description": "Comparing RGB-D and 360° camera-based visual SLAM for robust humanoid robot positioning.",
+            "tags": [
+                "Omnidirectional Vision",
+                "Visual SLAM"
+            ],
+            "links": [
+                {
+                    "label": "Project & Paper",
+                    "url": "humanoids2025.html"
+                },
+                {
+                    "label": "Paper",
+                    "url": "https://hal.science/hal-05193891"
+                }
+            ]
+        },
+        {
+            "category": "research",
+            "title": "Bio-inspired Navigation with 360° Vision",
+            "period": "CNRS–AIST JRL · 2025–2026",
+            "description": "Frugal robot navigation using omnidirectional vision, visual SLAM and bio-inspired navigation strategies.",
+            "tags": [
+                "Robot Navigation",
+                "360° Vision"
+            ],
+            "links": []
+        },
+        {
+            "category": "research",
+            "title": "High Dynamic Range Robot Perception",
+            "period": "CNRS–AIST JRL · 2023–2026",
+            "description": "Robust perception under challenging lighting using high dynamic range and dual-exposure imaging, including legged robot experiments.",
+            "tags": [
+                "HDR",
+                "Robust Perception"
+            ],
+            "links": [
+                {
+                    "label": "HDR code",
+                    "url": "https://github.com/caillotantoine/HDRomniCompact"
+                }
+            ]
+        },
+        {
+            "category": "research",
+            "title": "Advection Fields and 4D Visualization",
+            "period": "Kyoto University · 2026–present",
+            "description": "Ongoing research on advection models, 4D visualization and radar-derived data augmentation.",
+            "tags": [
+                "Computational Imaging",
+                "4D Visualization"
+            ],
+            "links": []
+        },
+        {
+            "category": "personal",
+            "title": "Cam Converter",
+            "period": "Personal software project",
+            "description": "A camera conversion utility. Project documentation and source links will be added when ready.",
+            "tags": [
+                "Camera Tools",
+                "Software"
+            ],
+            "links": []
+        }
+    ]
+}
