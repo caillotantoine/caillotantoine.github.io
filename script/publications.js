@@ -3,7 +3,8 @@ const orcidBase = 'https://pub.orcid.org/v3.0/' + orcidId;
 
 // Additional project-page links are maintained here, independently from ORCID.
 const publicationProjects = {
-    '10.1109/humanoids65713.2025.11203080': 'humanoids2025.html'
+    '10.1109/humanoids65713.2025.11203080': 'humanoids2025.html',
+    '10.1109/rap.2026.3710124': 'rap2026.html'
 };
 
 function orcidJSON(url) {
