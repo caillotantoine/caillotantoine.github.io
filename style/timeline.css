@@ -123,6 +123,30 @@
     margin: 1rem 0 1.75rem;
 }
 
+/* Engineering milestone belongs to the main green track. */
+#bio .careerEngineering {
+    position: relative;
+}
+
+#bio .careerEngineering::before {
+    content: "";
+    position: absolute;
+    top: 0.2rem;
+    left: -5rem;
+    z-index: 1;
+    box-sizing: border-box;
+    width: 0.9rem;
+    height: 0.9rem;
+    transform: translateX(-50%);
+    border: 3px solid var(--main);
+    border-radius: 50%;
+    background: var(--white);
+}
+
+#bio .careerSecondary .careerDate {
+    color: var(--comp);
+}
+
 #bio .careerSecondary {
     position: relative;
 }
