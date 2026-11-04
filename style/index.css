@@ -317,3 +317,44 @@ sup {
 
 /* Visible labels if a third-party social logo cannot load. */
 #links .social-fallback:not([hidden]) { display: inline-flex; align-items: center; justify-content: center; min-width: 2.75rem; min-height: 2.75rem; padding: 0.25rem; box-sizing: border-box; color: var(--main); font-family: 'Schibsted Grotesk', sans-serif; font-size: 0.8rem; font-weight: bold; }
+
+/* News archive and homepage preview */
+#news table {
+    width: 100%;
+    max-width: 70rem;
+    border-collapse: separate;
+    border-spacing: 0 1.25rem;
+}
+#news .date {
+    width: 8.5rem;
+    vertical-align: top;
+    white-space: nowrap;
+    color: var(--grey);
+    font-size: 0.85em;
+}
+#news .newsLabel {
+    vertical-align: top;
+    line-height: 1.5;
+}
+.newsMore {
+    margin-top: 1rem;
+    text-align: right;
+}
+.newsMore a {
+    color: var(--main);
+    text-decoration: underline;
+    text-underline-offset: 0.2rem;
+}
+.archiveContent {
+    min-height: 65vh;
+    padding-top: clamp(3rem, 8vw, 7rem);
+}
+@media (max-width: 600px) {
+    #news .date {
+        width: 6.5rem;
+        font-size: 0.8rem;
+    }
+    #news .newsLabel {
+        padding-left: 0.75rem;
+    }
+}
