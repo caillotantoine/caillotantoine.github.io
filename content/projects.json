@@ -2,40 +2,33 @@
     "projects": [
         {
             "category": "research",
-            "title": "Cooperative Evidential Occupancy Grids",
-            "period": "PhD · 2019–2022",
-            "description": "Cooperative camera-based occupancy mapping for autonomous driving, combining information from multiple agents using evidential reasoning.",
+            "title": "Dual-Exposure Omnidirectional Visual SLAM",
+            "period": "IEEE Robotics and Automation Practice · 2026",
+            "date": "2026-10-01",
+            "pinned": false,
+            "description": "Dual-exposure imaging for robust omnidirectional visual SLAM under challenging lighting conditions, evaluated for robot navigation.",
             "tags": [
-                "Cooperative Perception",
-                "Evidential Mapping"
+                "Dual Exposure",
+                "HDR",
+                "Omnidirectional SLAM"
             ],
             "links": [
                 {
-                    "label": "Code",
-                    "url": "https://github.com/caillotantoine/Coop-Evidential-Occupancy-Grid"
-                }
-            ]
-        },
-        {
-            "category": "research",
-            "title": "Cooperative Evidential Semantic Grids",
-            "period": "PhD · 2019–2022",
-            "description": "Extending cooperative perception toward semantic grid generation and fusion.",
-            "tags": [
-                "Semantic Mapping",
-                "Cooperative Perception"
-            ],
-            "links": [
+                    "label": "Paper (HAL)",
+                    "url": "https://hal.science/hal-05667611"
+                },
                 {
-                    "label": "Code",
-                    "url": "https://github.com/caillotantoine/Coop-Evidential-Semantic-Grid"
+                    "label": "DOI",
+                    "url": "https://doi.org/10.1109/RAP.2026.3710124"
                 }
             ]
         },
         {
             "category": "research",
             "title": "Omnidirectional Visual SLAM for Humanoids",
-            "period": "CNRS–AIST JRL · 2023–2026",
+            "period": "IEEE Humanoids · 2025",
+            "date": "2025-09-30",
+            "pinned": false,
             "description": "Comparing RGB-D and 360° camera-based visual SLAM for robust humanoid robot positioning.",
             "tags": [
                 "Omnidirectional Vision",
@@ -47,59 +40,72 @@
                     "url": "humanoids2025.html"
                 },
                 {
-                    "label": "Paper",
+                    "label": "Paper (HAL)",
                     "url": "https://hal.science/hal-05193891"
                 }
             ]
         },
         {
             "category": "research",
-            "title": "Bio-inspired Navigation with 360° Vision",
-            "period": "CNRS–AIST JRL · 2025–2026",
-            "description": "Frugal robot navigation using omnidirectional vision, visual SLAM and bio-inspired navigation strategies.",
+            "title": "Cooperative Evidential Semantic Grids",
+            "period": "Journal of Intelligent & Robotic Systems · 2024",
+            "date": "2024-04-22",
+            "pinned": false,
+            "description": "Cooperative camera-based semantic grid generation and fusion for intelligent vehicles.",
             "tags": [
-                "Robot Navigation",
-                "360° Vision"
-            ],
-            "links": []
-        },
-        {
-            "category": "research",
-            "title": "High Dynamic Range Robot Perception",
-            "period": "CNRS–AIST JRL · 2023–2026",
-            "description": "Robust perception under challenging lighting using high dynamic range and dual-exposure imaging, including legged robot experiments.",
-            "tags": [
-                "HDR",
-                "Robust Perception"
+                "Semantic Mapping",
+                "Cooperative Perception"
             ],
             "links": [
                 {
-                    "label": "HDR code",
-                    "url": "https://github.com/caillotantoine/HDRomniCompact"
+                    "label": "Code",
+                    "url": "https://github.com/caillotantoine/Coop-Evidential-Semantic-Grid"
+                },
+                {
+                    "label": "Paper",
+                    "url": "https://doi.org/10.1007/s10846-024-02093-4"
                 }
             ]
         },
         {
             "category": "research",
-            "title": "Advection Fields and 4D Visualization",
-            "period": "Kyoto University · 2026–present",
-            "description": "Ongoing research on advection models, 4D visualization and radar-derived data augmentation.",
+            "title": "Cooperative Evidential Occupancy Grids",
+            "period": "IEEE ITSC · 2022",
+            "date": "2022-10-08",
+            "pinned": false,
+            "description": "Cooperative camera-based occupancy grid generation for autonomous driving using evidential reasoning.",
             "tags": [
-                "Computational Imaging",
-                "4D Visualization"
+                "Cooperative Perception",
+                "Evidential Mapping"
             ],
-            "links": []
+            "links": [
+                {
+                    "label": "Code",
+                    "url": "https://github.com/caillotantoine/Coop-Evidential-Occupancy-Grid"
+                },
+                {
+                    "label": "Paper",
+                    "url": "https://doi.org/10.1109/ITSC55140.2022.9921855"
+                }
+            ]
         },
         {
             "category": "personal",
             "title": "Cam Converter",
             "period": "Personal software project",
-            "description": "A camera conversion utility. Project documentation and source links will be added when ready.",
+            "date": null,
+            "pinned": true,
+            "description": "A personal camera conversion project, with its own page on this website.",
             "tags": [
-                "Camera Tools",
+                "Cameras",
                 "Software"
             ],
-            "links": []
+            "links": [
+                {
+                    "label": "Project page",
+                    "url": "cam-converter.html"
+                }
+            ]
         }
     ]
 }
