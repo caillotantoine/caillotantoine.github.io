@@ -53,7 +53,7 @@ footer {
     font-family: 'Schibsted Grotesk';
     font-style: italic;
     font-weight: lighter;
-    font-size: 1vh;
+    font-size: 0.8rem;
 } 
 
 .idx_nav_elem:hover{
@@ -107,7 +107,7 @@ footer {
         /* padding: 2rem; */
         padding-top: 2rem;
         padding-bottom: 2rem;
-        font-size: 5rem;
+        font-size: clamp(1.2rem, 5vw, 2rem);
         color: var(--comp);
         text-decoration: none;
     }
@@ -151,7 +151,7 @@ footer {
         font-family: 'Schibsted Grotesk';
         font-style: italic;
         font-weight: lighter;
-        font-size: 1vh;
+        font-size: 0.8rem;
 
     } 
 }

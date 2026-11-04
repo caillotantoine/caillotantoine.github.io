@@ -1,5 +1,5 @@
 {
-    "news" : [
+    "news": [
         {
             "date": "2022-09-01",
             "en": "Paper <span class='title'>Survey on Cooperative Perception in an Automotive Context</span> has been published in IEEE Transactions on Intelligent Transportation Systems."
@@ -31,11 +31,11 @@
         {
             "date": "2024-07-01",
             "en": "Attendance to Reconnaissance des Formes, Image, Apprentissage et Perception (RFIAP) Conference in Lille, France."
-        }, 
+        },
         {
             "date": "2024-07-04",
             "en": "Attendance to Capteurs visuels émergents et applications Journée inter GdR IASIS et Robotique GdR IASIS Conference in Paris, France."
-        }, 
+        },
         {
             "date": "2024-07-05",
             "en": "Presentation of my work on emergent vision sensors at ESIGELEC in Rouen, France."
@@ -55,9 +55,9 @@
         {
             "date": "2025-09-29",
             "en": "Visit of The State University of New York (SUNY) in Seoul, South Korea."
-        }, 
+        },
         {
-            "date": "2025-09-30", 
+            "date": "2025-09-30",
             "en": "Prenstation of <span class='title'><a href='humanoids2025.html'>RGB-D versus omnidirectional visual SLAM in humanoid robot positioning</a></span> at IEEE Humanoids 2025 in Seoul, South Korea."
         },
         {
@@ -67,8 +67,7 @@
         {
             "date": "2025-12-02",
             "en": "Co-speaker with <a href='https://home.mis.u-picardie.fr/~g-caron/en/'>Guillaume Caron</a> at the <a href='https://www.image.media.kyoto-u.ac.jp/en/'>Image Informatics Laboratory of Kyoto University</a> hosted by Prof. <a href='https://www.image.media.kyoto-u.ac.jp/en/author/takuya-funatomi/'>Takuya Funatomi</a>"
-        }
-        ,
+        },
         {
             "date": "2025-12-03",
             "en": "Co-speaker with <a href='https://home.mis.u-picardie.fr/~g-caron/en/'>Guillaume Caron</a> at the <a href='https://omilab.naist.jp'>Optical Media Interface Lab of Nara Institute of Tech.</a> hosted by Prof. <a href='https://omilab.naist.jp/~mukaigawa/'>Yasuhiro Mukaigawa</a>"
@@ -76,6 +75,10 @@
         {
             "date": "2025-12-04",
             "en": "Visit of the <a href='https://carelab.info/en/'>Cybernetics And Reality Engineering of Nara Institute of Tech.</a> with <a href='https://home.mis.u-picardie.fr/~g-caron/en/'>Guillaume Caron</a> and Hideaki Uchiyama"
+        },
+        {
+            "date": "2026-11-02",
+            "en": "Started a new position as a <span class='title'>Postdoctoral Researcher</span> at Kyoto University's <a href='https://www.image.media.kyoto-u.ac.jp/en/'>Image Informatics Laboratory</a> (ACCMS), working with Prof. Takuya Funatomi."
         }
     ]
 }

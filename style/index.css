@@ -219,7 +219,8 @@ sup {
         flex-direction: row;
         align-items: center;
         max-width: 80rem;
-        margin-left: calc(50% - 40rem);
+        margin-left: auto;
+        margin-right: auto;
         margin-top: 25vh;
         margin-bottom: 15vh;
     }
@@ -235,7 +236,7 @@ sup {
 
     #author {
         width: 50%;
-        margin: left;
+        margin: 0;
         text-align: justify;
     }
 
@@ -292,4 +293,24 @@ sup {
     {
         width: 60%;
     }
+}
+
+/* Responsive improvements */
+#about_author { box-sizing: border-box; padding-inline: 1rem; }
+#authorName, #authorWelcomeMsg { overflow-wrap: anywhere; }
+#links { flex-wrap: wrap; justify-content: center; gap: 1.5rem; max-width: 100%; }
+#links .linkPair { display: flex; align-items: center; gap: 1.25rem; }
+#links img { width: 3rem; height: 3rem; object-fit: contain; margin: 0; }
+@media (max-width: 800px) {
+ #about_author { flex-direction: column; margin: 6rem auto 3rem; }
+ #img_cont { width: min(75%, 18rem); margin: 0 auto; }
+ #author { width: 100%; margin: 1.5rem auto 0; text-align: left; }
+ #authorName { font-size: clamp(2rem, 8vw, 4rem); }
+ #authorWelcomeMsg { box-sizing: border-box; font-size: 1rem; line-height: 1.6; width: 100%; }
+ #links { flex-direction: row; margin-bottom: 3rem; }
+ #links img { width: 2.75rem; height: 2.75rem; }
+ .normalSection { width: 90%; font-size: 1rem; }
+ .normalSection h1 { font-size: clamp(1.8rem, 7vw, 3rem); }
+ .normalSection ul { width: 100%; text-align: left; }
+ #news .newsLabel { padding-left: 0.75rem; }
 }
