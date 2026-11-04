@@ -18,6 +18,10 @@
                     "url": "rap2026.html"
                 },
                 {
+                    "label": "GitHub",
+                    "url": "https://github.com/isri-aist/DualExp4VSLAM"
+                },
+                {
                     "label": "Paper (HAL)",
                     "url": "https://hal.science/hal-05667611"
                 },
