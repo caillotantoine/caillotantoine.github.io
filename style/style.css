@@ -2,267 +2,142 @@
 @import './colors.css';
 
 body {
-    font-family: 'Schibsted Grotesk';
+    font-family: 'Schibsted Grotesk', sans-serif;
     background-color: var(--white);
-    text-align: center;
     color: var(--black);
+    text-align: center;
 }
 
 header {
-    position: absolute;
-    top: 0;
+    position: relative;
     width: 100%;
+    height: 4.25rem;
     background-color: var(--main);
     color: var(--white);
-    height: 7vh;
-    /* max-height: 70pt; */
-    font-size: 18pt;
-    z-index: 2;
+    z-index: 3;
 }
 
-#menu:hover {
-    font-weight: 500;
+#header_content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: min(100% - 2rem, 80rem);
+    height: 100%;
+    margin: auto;
 }
 
-#open{
-    display: block;
-    /* visibility: visible; */
+#website_title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    white-space: nowrap;
 }
 
-#close {
-    display: none;
-    /* visibility: hidden; */
-}
-
-#website_title a{
+#website_title a,
+#landscapeMenu a {
+    color: var(--white);
     text-decoration: none;
-    color: var(--white);
 }
 
-footer {
-    /* position: absolute; */
-    bottom: 0;
-    /* margin-top: 10vh; */
-    /* padding-bottom: 2vh; */
-    /* bottom: 5vh; */
-    width: 100%;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
-    background-color: var(--main);
-    color: var(--white);
-    font-family: 'Schibsted Grotesk';
-    font-style: italic;
-    font-weight: lighter;
-    font-size: 0.8rem;
-} 
+#website_title a:hover,
+#landscapeMenu a:hover {
+    text-decoration: underline;
+}
 
-.idx_nav_elem:hover{
-    background-color: rgba(0, 0, 0, 0.1);
+#landscapeMenu {
+    display: flex;
+    gap: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+}
+
+#menu {
+    display: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 0.3rem;
+    background: transparent;
+    color: var(--white);
+    cursor: pointer;
+}
+
+.menuLine {
+    display: block;
+    height: 2px;
+    width: 100%;
+    margin: 4px 0;
+    background-color: currentColor;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+#menu[aria-expanded="true"] .menuLine:first-child {
+    transform: translateY(6px) rotate(45deg);
+}
+#menu[aria-expanded="true"] .menuLine:nth-child(2) {
+    opacity: 0;
+}
+#menu[aria-expanded="true"] .menuLine:last-child {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+#mobileNav[hidden] {
+    display: none !important;
+}
+
+#mobileNav {
+    position: absolute;
+    top: 4.25rem;
+    right: 0;
+    left: 0;
+    z-index: 2;
+    background: var(--white);
+    box-shadow: 0 0.7rem 1.2rem rgba(0, 0, 0, 0.12);
 }
 
 .idx_nav_elem_inner {
     display: block;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(107, 63, 57, 0.15);
+    text-align: left;
+    color: var(--black);
+    text-decoration: none;
+}
+
+.idx_nav_elem_inner:hover,
+.idx_nav_elem_inner:focus-visible {
+    background-color: rgba(57, 107, 84, 0.09);
+}
+
+footer {
     width: 100%;
-    height:100%;
-    text-align: center;
+    padding: 1rem 0;
+    background-color: var(--main);
+    color: var(--white);
+    font-size: 0.8rem;
+    font-style: italic;
 }
 
-@media (orientation: portrait)
-{
-    #menu{
-        display: block;
-    }
-
-    #landscapeMenu{
+@media (max-width: 800px) {
+    #landscapeMenu {
         display: none;
-    }
-
-    nav {
-        display: none;
-        position: absolute;
-        top: 7vh;
-        width: 100vw;
-        /* max-width: 500px; */
-        /* border: 1px solid black; */
-        /* background-color: var(--white); */
-        animation: createBox .5s;
-        z-index: 1;
-        backdrop-filter: blur(50px);
-        -webkit-backdrop-filter: blur(50px);
-    }
-    @keyframes createBox {
-        from {
-            top: -1000%;
-        }
-        to {
-            top: 7vh;
-        }
-      }
-
-    .idx_nav_elem{
-        border-bottom: 0.125rem solid var(--comp);
-    }
-
-    .idx_nav_elem_inner {
-        /* padding: 2rem; */
-        padding-top: 2rem;
-        padding-bottom: 2rem;
-        font-size: clamp(1.2rem, 5vw, 2rem);
-        color: var(--comp);
-        text-decoration: none;
-    }
-
-
-    #header_content{
-        width: 100%;
-        margin: 0;
-        position: absolute;
-        top: calc(50% - 2vh);
-        font-size: 4vh;
-        /* -ms-transform: translateY(-50%);
-        transform: translateY(-50%); */
     }
 
     #menu {
-        position: absolute;
-        right: 1vw;
-        font-weight: lighter;
-        padding-left: 1vw;
-        padding-right: 1vw;
-    }
-    
-    #website_title {
-        position: absolute;
-        left: 2vw;
-        font-family: "Cormorant Garamond";
-    }
-
-    footer {
-        /* position: absolute; */
-        bottom: 0;
-        /* margin-top: 10vh; */
-        /* padding-bottom: 2vh; */
-        /* bottom: 5vh; */
-        width: 100%;
-        padding-top: 1vh;
-        padding-bottom: 1vh;
-        background-color: var(--main);
-        color: var(--white);
-        font-family: 'Schibsted Grotesk';
-        font-style: italic;
-        font-weight: lighter;
-        font-size: 0.8rem;
-
-    } 
-}
-
-@media (orientation: landscape)
-{
-    #menu{
-        display: none;
-    }
-
-    #landscapeMenu{
-        font-family: "Cormorant Garamond";
-        position: absolute;
         display: block;
-        right: 1rem;
-        width: fit-content;
-    }
-    #landscapeMenu a{
-        color: var(--white);
-        text-decoration: none;
-        margin-left: 3rem;
-    }
-    #landscapeMenu a:hover{
-        text-decoration: underline;
-    }
-
-    nav {
-        display: none;
-        position: absolute;
-        top: 7vh;
-        width: 25vw;
-        right:0;
-        animation: createBox .5s;
-        z-index: 1;
-        backdrop-filter: blur(50px);
-        -webkit-backdrop-filter: blur(50px);
-    }
-    @keyframes createBox {
-        from {
-            top: -1000%;
-        }
-        to {
-            top: 7vh;
-        }
-      }
-
-    .idx_nav_elem{
-        border-bottom: 0.1rem solid var(--comp);
-        border-left: 0.1rem solid var(--comp);
-    }
-
-    .idx_nav_elem_inner {
-        /* padding: 1rem; */
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        font-size: 2rem;
-        color: var(--comp);
-        text-decoration: none;
-    }
-
-
-    #header_content{
-        width: 100%;
-        margin: 0;
-        position: absolute;
-        top: calc(50% - 2vh);
-        font-size: 4vh;
-        /* -ms-transform: translateY(-50%);
-        transform: translateY(-50%); */
-    }
-
-    #menu {
-        position: absolute;
-        right: 1vw;
-        font-weight: lighter;
-        padding-left: 1vw;
-        padding-right: 1vw;
-    }
-    
-    #website_title {
-        position: absolute;
-        left: 2vw;
-        font-family: "Cormorant Garamond";
-    }
-
-    #website_title:hover {
-        text-decoration: underline;
+        flex-shrink: 0;
     }
 }
 
-
-
-
-/* @media (width < 800px) {
-    #spacer {
-        visibility: hidden;
-        margin-left: 1%;
-        margin-right: 1%;
-        border: 1px solid black;  
-        padding-right: 50%; 
-        background-color: var(--light);
+@media (min-width: 801px) {
+    #mobileNav {
+        display: none !important;
     }
 }
 
-@media (width >= 800px) {
-    #spacer {
-        visibility: hidden;
-        margin-left: 1%;
-        margin-right: 1%;
-        border: 1px solid black;  
-        padding-right: 50%; 
-        background-color: var(--comp);
+@media (prefers-reduced-motion: reduce) {
+    .menuLine {
+        transition: none;
     }
-} */
+}
