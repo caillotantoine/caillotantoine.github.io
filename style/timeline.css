@@ -1,0 +1,138 @@
+/* Career timeline: the secondary track represents parallel experience. */
+#bio .bioIntro {
+    margin-bottom: 2rem;
+    color: var(--grey);
+    line-height: 1.5;
+    text-align: left;
+}
+
+#bio .careerTimeline {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+}
+
+#bio .careerTimeline::before {
+    content: "";
+    position: absolute;
+    top: 0.5rem;
+    bottom: 1.5rem;
+    left: 0.875rem;
+    width: 3px;
+    border-radius: 3px;
+    background: var(--main);
+}
+
+#bio .careerEntry {
+    position: relative;
+    box-sizing: border-box;
+    min-height: 5.5rem;
+    margin: 0 0 2rem;
+    padding: 0 0 0 3rem;
+    list-style: none;
+}
+
+#bio .careerEntry::before {
+    content: "";
+    position: absolute;
+    top: 0.2rem;
+    left: 0.45rem;
+    z-index: 1;
+    width: 0.9rem;
+    height: 0.9rem;
+    border: 3px solid var(--main);
+    border-radius: 50%;
+    background: var(--white);
+}
+
+#bio .careerDate {
+    display: block;
+    margin: 0 0 0.4rem;
+    color: var(--main);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+#bio .careerDetails h2 {
+    margin: 0 0 0.35rem;
+    font-family: 'Schibsted Grotesk', sans-serif;
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+#bio .careerDetails p {
+    margin: 0.2rem 0;
+    line-height: 1.5;
+    font-size: 1rem;
+}
+
+#bio .careerParallel {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2.5rem;
+}
+
+#bio .careerParallel > .careerDate,
+#bio .careerParallel > .careerDetails {
+    grid-column: 1;
+}
+
+#bio .careerBranch {
+    position: relative;
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: start;
+    padding: 0 0 0 1.25rem;
+    border-left: 3px solid var(--comp);
+}
+
+#bio .careerBranch::before {
+    content: "";
+    position: absolute;
+    top: 0.5rem;
+    right: 100%;
+    width: 2.5rem;
+    border-top: 3px solid var(--comp);
+}
+
+#bio .careerBranch::after {
+    content: "";
+    position: absolute;
+    top: 0.15rem;
+    left: -0.45rem;
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 50%;
+    background: var(--comp);
+}
+
+#bio .careerBranch .careerDate {
+    color: var(--comp);
+}
+
+@media (max-width: 700px) {
+    #bio .careerParallel {
+        display: block;
+    }
+
+    #bio .careerBranch {
+        margin: 1.5rem 0 0 1.25rem;
+    }
+
+    #bio .careerBranch::before {
+        width: 1.25rem;
+    }
+
+    #bio .careerEntry {
+        margin-bottom: 1.75rem;
+        padding-left: 2.5rem;
+    }
+
+    #bio .careerDetails h2 {
+        font-size: 1.05rem;
+    }
+}
