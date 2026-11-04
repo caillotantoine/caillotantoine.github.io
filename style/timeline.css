@@ -7,6 +7,7 @@
 }
 
 #bio .careerTimeline {
+    --timeline-axis: 1rem;
     position: relative;
     width: 100%;
     margin: 0;
@@ -20,8 +21,9 @@
     position: absolute;
     top: 0.5rem;
     bottom: 1.5rem;
-    left: 0.875rem;
+    left: var(--timeline-axis);
     width: 3px;
+    transform: translateX(-50%);
     border-radius: 3px;
     background: var(--main);
 }
@@ -39,10 +41,12 @@
     content: "";
     position: absolute;
     top: 0.2rem;
-    left: 0.45rem;
+    left: var(--timeline-axis);
     z-index: 1;
+    box-sizing: border-box;
     width: 0.9rem;
     height: 0.9rem;
+    transform: translateX(-50%);
     border: 3px solid var(--main);
     border-radius: 50%;
     background: var(--white);
@@ -71,43 +75,44 @@
 }
 
 #bio .careerParallel {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 2.5rem;
+    display: block;
 }
 
-#bio .careerParallel > .careerDate,
-#bio .careerParallel > .careerDetails {
-    grid-column: 1;
-}
-
+/* Keep the parallel work next to the main career track, not across the page. */
 #bio .careerBranch {
     position: relative;
-    grid-column: 2;
-    grid-row: 1 / span 2;
-    align-self: start;
+    box-sizing: border-box;
+    margin: 1.75rem 0 0 1.5rem;
     padding: 0 0 0 1.25rem;
     border-left: 3px solid var(--comp);
 }
 
+/* A rounded fork joining the green main track to the secondary track. */
 #bio .careerBranch::before {
     content: "";
     position: absolute;
-    top: 0.5rem;
-    right: 100%;
-    width: 2.5rem;
-    border-top: 3px solid var(--comp);
+    top: -1.25rem;
+    left: -3.5rem;
+    box-sizing: border-box;
+    width: 3.5rem;
+    height: 2rem;
+    border-left: 3px solid var(--comp);
+    border-bottom: 3px solid var(--comp);
+    border-bottom-left-radius: 2rem;
 }
 
 #bio .careerBranch::after {
     content: "";
     position: absolute;
-    top: 0.15rem;
-    left: -0.45rem;
-    width: 0.65rem;
-    height: 0.65rem;
+    top: 0.35rem;
+    left: -1.5px;
+    box-sizing: border-box;
+    width: 0.8rem;
+    height: 0.8rem;
+    transform: translateX(-50%);
+    border: 2px solid var(--comp);
     border-radius: 50%;
-    background: var(--comp);
+    background: var(--white);
 }
 
 #bio .careerBranch .careerDate {
@@ -115,21 +120,9 @@
 }
 
 @media (max-width: 700px) {
-    #bio .careerParallel {
-        display: block;
-    }
-
-    #bio .careerBranch {
-        margin: 1.5rem 0 0 1.25rem;
-    }
-
-    #bio .careerBranch::before {
-        width: 1.25rem;
-    }
-
     #bio .careerEntry {
         margin-bottom: 1.75rem;
-        padding-left: 2.5rem;
+        padding-left: 3rem;
     }
 
     #bio .careerDetails h2 {
