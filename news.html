@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="News and research updates from Antoine Caillot.">
+        <title>News — Antoine CAILLOT</title>
+        <link rel="stylesheet" href="./style/reset.css">
+        <link rel="stylesheet" href="./style/colors.css">
+        <link rel="stylesheet" href="./style/index.css">
+        <link rel="stylesheet" href="./style/style.css">
+        <script src="script/base.js" defer></script>
+        <script src="script/news.js" defer></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-8SH8G63HM9"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-8SH8G63HM9');
+        </script>
+    </head>
+    <body>
+        <div id="header"></div>
+        <main class="archiveContent">
+            <section id="news" class="normalSection">
+                <h1>News</h1>
+                <table id="newsList"></table>
+                <p id="newsStatus" role="status"></p>
+            </section>
+        </main>
+        <div id="footer"></div>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                loadHTML('template/header.html', 'header');
+                loadHTML('template/footer.html', 'footer');
+                loadNews();
+            });
+        </script>
+    </body>
+</html>
