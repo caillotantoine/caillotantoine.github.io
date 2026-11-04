@@ -452,3 +452,12 @@ sup {
     .projectGrid { grid-template-columns: 1fr; }
     .projectCard { padding: 1rem; }
 }
+
+/* Featured projects keep the existing card style with a subtle accent. */
+#pinnedProjects .projectCard {
+    border-left: 4px solid var(--main);
+}
+#pinnedSection[hidden],
+#personalSection[hidden] {
+    display: none;
+}
