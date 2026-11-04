@@ -1,284 +1,177 @@
 @import './fonts.css';
 @import './colors.css';
 
+/* Camera Converter: isolated styles, shared site typography and palette. */
 #mainmatter {
-    width: fit-content;
-    min-width: 50%;
-    margin: auto;
-    margin-top: 15vh;
-    margin-bottom: 15vh;
-    min-height: 100vh;
-}
-
-h1 {
-    font-weight: bold;
-    font-size: 32pt;
-}
-
-h2 {
-    font-size: 18pt;
-}
-
-h3 {
-    font-size: 16;
-    font-weight: bold;
-    margin-bottom: 5pt;
-}
-
-/* .grayedOut {
-    color: var(--grey);
-} */
-
-#cvtToTable {
-    width: fit-content;
-    margin: auto;
+    box-sizing: border-box;
+    width: min(100% - 2rem, 70rem);
+    min-height: 70vh;
+    margin: clamp(3rem, 7vw, 6rem) auto 4rem;
     text-align: left;
-    border-collapse: separate;
-    border-spacing: 1vh 0.5vh;
 }
-
-#cvtToTitle {
-    margin-left: 10pt;
+#mainmatter .camPageHeading { margin-bottom: 2.5rem; }
+#mainmatter .camEyebrow {
+    color: var(--main);
+    font-size: .9rem;
+    font-weight: 600;
+    letter-spacing: .04em;
 }
-
-.paramBloc {
-    border: 1px solid black;
-    border-radius: 5px;
-    min-width: 30%;
-    width: fit-content;
-    margin: auto;
-    padding: 5px;
+#mainmatter h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.7rem, 7vw, 4.5rem);
+    line-height: 1.1;
+    font-weight: 600;
+    margin: .5rem 0 .75rem;
 }
-
-.paramBloc table {
-    border-collapse: separate;
-    border-spacing: 1vh 0.5vh;
-    text-align: left;
-    width: 100%;
-    margin: auto;
+#mainmatter .camDescription {
+    max-width: 45rem;
+    line-height: 1.65;
+    font-size: 1.05rem;
 }
-
-.paramBloc table input {
-    width: 50pt;
-    text-align: right;
+#mainmatter .camVersion { color: var(--grey); font-size: .85rem; margin-top: .7rem; }
+#mainmatter h2, .camReferences h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin-bottom: 1.25rem;
+    line-height: 1.2;
 }
-
-#outImgSec table {
-    margin: auto;
-    border-collapse: separate;
-    border-spacing: 1vh 0.5vh;
+#mainmatter h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: .8rem; }
+#mainmatter .camPanel {
+    box-sizing: border-box;
+    margin-bottom: 1.6rem;
+    padding: clamp(1.2rem, 3vw, 2rem);
+    border: 1px solid rgba(119,114,114,.25);
+    border-radius: .55rem;
+    background: var(--white);
 }
-
-#outImgSec table input {
-    width: 30pt;
+#mainmatter select,
+#mainmatter input[type="text"],
+#mainmatter input[type="number"],
+#mainmatter input[type="file"] {
+    box-sizing: border-box;
+    max-width: 100%;
+    min-height: 2.4rem;
+    padding: .45rem .55rem;
+    border: 1px solid rgba(119,114,114,.55);
+    border-radius: .3rem;
+    background: #fff;
+    color: var(--black);
+    font: inherit;
 }
-
-#noImg {
-    width: 10vw;
-    height: 10vw;
-    background-color: black;
+#mainmatter input[type="checkbox"] { accent-color: var(--main); }
+#mainmatter button,
+#mainmatter #downloadMaskImgButton {
+    box-sizing: border-box;
+    padding: .55rem .9rem;
+    border: 1px solid var(--main);
+    border-radius: .35rem;
+    background: var(--main);
     color: var(--white);
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1vh;
+    font: inherit;
+    font-size: .9rem;
+    cursor: pointer;
 }
-
-#noImg p {
-    padding: 15%;
+#mainmatter button:hover, #mainmatter button:focus-visible {
+    background: var(--black);
+    border-color: var(--black);
 }
-
-#maskCtrl {
-    display: flex;
-    width: fit-content;
-    margin: auto;
-    flex-direction: row; 
-    /* flex-direction: column;  */
-    justify-content: space-between;
-}
-
-#maskCtrl div {
-    width: fit-content;
-    margin-inline: 10pt;
-    /* margin: auto; */
-}
-
-#maskCtrl div br {
-    display: inline;
-}
-
-#maskCtrl hr {
-    display: none;
-}
-
-#outParamRow {
-    display: flex;
-    width: 100%;
-    margin: auto;
-    flex-direction: row;
-
-    align-items: stretch; 
-}
-
-#outParamBloc {
-    margin-inline: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border: 1px solid black;
-    border-radius: 5px;
-    min-width: 45%;
-    width:fit-content;
-    padding: 5pt;
-}
-
-#outParamBloc table {
+#mainmatter input:focus-visible,
+#mainmatter select:focus-visible,
+#mainmatter button:focus-visible { outline: 2px solid var(--main); outline-offset: 2px; }
+#mainmatter table {
+    width: auto;
+    max-width: 100%;
     border-collapse: separate;
-    border-spacing: 1vh 0.5vh;
+    border-spacing: .6rem .65rem;
     text-align: left;
+}
+#mainmatter #cvtToTable { margin: .6rem 0 1.2rem; }
+#mainmatter .paramBloc, #mainmatter #outParamBloc {
+    box-sizing: border-box;
     width: 100%;
-    margin: auto;
+    max-width: 30rem;
+    min-width: 0;
+    margin: 1rem 0;
+    padding: 1.2rem;
+    border: 1px solid rgba(119,114,114,.3);
+    border-radius: .4rem;
 }
-
-#outParamBloc caption {
-    text-decoration: underline;
-}
-
-#outParamBloc pre {
-    text-align: right;
-    font-family: 'Courier New', Courier, monospace;
-}
-
-#canvas
-{
-    margin: auto;
-    margin-bottom: 1vh;
-}
-
-#MaskToGenerate 
-{
-    text-align: left;
-    margin: auto;
-}
-
-#maskExport
-{
-    text-align: left;
-    margin: auto;
-    margin-top: 5pt;
-    margin-bottom: 5pt;
-}
-
-/*
-#cam_param {
-    border-radius: 5px; 
-    padding: 10px;
-
-    width: fit-content; 
-    margin: auto;
-    margin-top: 1vh;
-    margin-bottom: 1vh;
-}
-
-#cam_param .label {
-    text-align: left;
-    padding-right: 1vw;
-    padding-bottom: 1vh;
-}
-
-#cam_param #file {
-    margin: auto;
-    margin-top: 1vh;
-    margin-bottom: 1vh;
-}
-
-#cam_param hr {
-    width: 60%;
-    margin-bottom: 1vh;
-}
-
-
-
-#OutParamBlocThreeBlocs {
+#mainmatter .paramBloc table input { width: 7.5rem; }
+#mainmatter #outParamRow {
     display: flex;
-    width: 100%;
-    margin: auto;
-    flex-direction: row;
-
+    flex-wrap: wrap;
+    gap: 1rem;
     align-items: stretch;
-    margin-top: 2vh;
 }
-
-#OutParamBloc {
-    border: 1px solid var(--black);
-    border-radius: 5px;
-    width: fit-content;
-    padding: 5px;
-    width: 29%; 
-    margin-inline: auto;
+#mainmatter #outParamBloc { flex: 1 1 16rem; margin: 0; }
+#mainmatter #outParamBloc pre { font-family: 'Courier New', monospace; text-align: right; }
+#mainmatter #outParamBloc caption { font-weight: 600; text-align: left; }
+#mainmatter #outImgSec table input { width: 5rem; }
+#mainmatter #noImg {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-#OutParamBloc table {
-    width: 100%;
-    margin-bottom: 1vh;
-}
-
-#OutParamBloc #labelParam {
-    text-align: left;
-}
-
-#OutParamBloc #flushBottom {
-    padding-bottom: 0;
-}
-
-#OutParamBloc caption {
-    font-weight: bold;
-    margin-bottom: 1vh;
-}
-
-#noImg {
-    width: 10vw;
-    height: 10vw;
-    background-color: black;
-    color: var(--white);
-    margin: auto;
-    display: flex;
-    justify-content: center;
     align-items: center;
-    margin-bottom: 1vh;
+    justify-content: center;
+    width: min(100%, 21rem);
+    min-height: 12rem;
+    height: auto;
+    margin: 1rem 0;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    border: 1px dashed rgba(119,114,114,.55);
+    border-radius: .4rem;
+    background: rgba(57,107,84,.05);
+    color: var(--grey);
+    text-align: center;
 }
-
-#noImg p {
-    padding: 15%;
+#mainmatter #noImg p { padding: 0; }
+#mainmatter #canvas, #mainmatter #maskExport {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 1rem 0;
 }
-
-#img_center {
-    width: fit-content;
-    margin: auto;
+#mainmatter #canvas[hidden], #mainmatter #maskExport[hidden],
+#mainmatter #downloadMaskImgButton[hidden], #mainmatter [hidden] {
+    display: none !important;
 }
-
-#img_center table {
-    border-collapse: separate;
-    border-spacing: 1vh 0vh;
-    width: fit-content;
-    margin: auto;
-    margin-top: 1vh;
-    margin-bottom: 1vh;
+#mainmatter #maskCtrl {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    align-items: stretch;
+    width: 100%;
+    margin: 1.5rem 0;
 }
-
-#img_center input {
-    width: 50pt;
+#mainmatter #maskCtrl > div {
+    flex: 1 1 15rem;
+    box-sizing: border-box;
+    min-width: 0;
+    margin: 0;
+    padding: 1.2rem;
+    border: 1px solid rgba(119,114,114,.3);
+    border-radius: .4rem;
 }
-
-#MaxRayAngle {
-    margin-top: 1vh;
+#mainmatter #maskCtrl hr { display: none; }
+#mainmatter #MaskToGenerate { text-align: left; }
+#mainmatter #maskCtrl button { margin: .4rem 0; }
+.camReferences {
+    box-sizing: border-box;
+    width: min(100% - 2rem, 70rem);
+    margin: 0 auto 5rem;
+    text-align: left;
+    line-height: 1.65;
 }
-
-#fCorrected 
-{
-    display: none;
+.camReferences a { color: var(--main); text-decoration: underline; }
+.camReferences table { width: 100%; border-collapse: separate; border-spacing: .75rem .75rem; }
+.camReferences td { vertical-align: top; }
+.camReferences td:first-child { white-space: nowrap; font-weight: 600; }
+@media (max-width: 700px) {
+    #mainmatter { width: min(100% - 1.5rem, 70rem); margin-top: 2.5rem; }
+    #mainmatter .camPanel { padding: 1rem; }
+    #mainmatter table { border-spacing: .35rem .6rem; }
+    #mainmatter .paramBloc { padding: .7rem; }
+    #mainmatter .paramBloc table input { width: 5.5rem; }
+    #mainmatter #maskCtrl > div { flex-basis: 100%; padding: 1rem; }
+    #mainmatter #outParamRow { flex-direction: column; }
+    .camReferences { width: min(100% - 1.5rem, 70rem); }
 }
