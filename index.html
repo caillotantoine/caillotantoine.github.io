@@ -40,6 +40,7 @@
         <link rel="stylesheet" href="./style/reset.css">
         <link rel="stylesheet" href="./style/colors.css">
         <link rel="stylesheet" href="./style/index.css">
+        <link rel="stylesheet" href="./style/timeline.css">
         <link rel="stylesheet" href="./style/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         <script src="script/base.js"></script>
@@ -76,35 +77,67 @@
             
             <section id="bio" class="normalSection">
                 <h1>Short biography</h1>
-                <ul>
-                    <li><span class="title">Postdoctoral Researcher</span> (Nov. 2026 – present)<br /><span class="loc">Image Informatics Laboratory, ACCMS, Kyoto University, Kyoto, Japan.</span></li>
-                    <li>
-                        <span class="title">CNRS Postdoctoral Researcher</span> (Feb. 2025 – Sep. 2026)<br />
-                        <span class="loc">JRL CNRS-AIST, Tsukuba, Ibaraki, Japan.</span>
+                <p class="bioIntro">A career path with parallel experiences, much like branches in a Git history.</p>
+                <ol class="careerTimeline">
+                    <li class="careerEntry">
+                        <span class="careerDate">Nov. 2026 – Present</span>
+                        <div class="careerDetails">
+                            <h2>Postdoctoral Researcher</h2>
+                            <p class="loc">Image Informatics Laboratory, ACCMS, Kyoto University, Kyoto, Japan.</p>
+                        </div>
                     </li>
-                    <li>
-                        <span class="title">JSPS Postdoctoral Fellow</span> (Jan. 2023 – Jan. 2025)<br />
-                        <span class="loc">JRL CNRS-AIST, Tsukuba, Ibaraki, Japan.</span>
+                    <li class="careerEntry">
+                        <span class="careerDate">Feb. 2025 – Sep. 2026</span>
+                        <div class="careerDetails">
+                            <h2>CNRS Postdoctoral Researcher</h2>
+                            <p class="loc">CNRS-AIST Joint Robotics Laboratory, Tsukuba, Japan.</p>
+                        </div>
                     </li>
-                    <li>
-                        <span class="title">Ph. D of Robotics</span> (2019 ~ 2022)<br />
-                        <u>Thesis:</u> On cooperative perception V2X for autonomous navigation. <br>
-                        <span class="loc">University of Rouen-Normandy, Rouen, France.</span>
+                    <li class="careerEntry">
+                        <span class="careerDate">Jan. 2023 – Jan. 2025</span>
+                        <div class="careerDetails">
+                            <h2>JSPS Postdoctoral Fellow</h2>
+                            <p class="loc">CNRS-AIST Joint Robotics Laboratory, Tsukuba, Japan.</p>
+                        </div>
                     </li>
-                    <li>
-                        <span class="title">Application engineer</span> (2016 ~ 2019)<br />
-                        <u>Apprenticeship</u> at <span class="loc">National Instruments, Paris, France.</span><br>
-                        <u>Internship</u> at <span class="loc">National Instruments, Tokyo, Japan.</span>
+                    <li class="careerEntry">
+                        <span class="careerDate">2019 – 2022</span>
+                        <div class="careerDetails">
+                            <h2>PhD in Robotics</h2>
+                            <p>Cooperative V2X perception for autonomous navigation.</p>
+                            <p class="loc">University of Rouen Normandy, Rouen, France.</p>
+                        </div>
                     </li>
-                    <li>
-                        <span class="title">Master Degree of engineering</span> (2014 ~ 2019)<br />
-                        <u>Major:</u> Embedded systems dedicated to autonomous vehicles.<br>
-                        <span class="loc">ESIGELEC, Rouen, France.</span>
+                    <li class="careerEntry careerParallel">
+                        <svg class="careerParallelLines" viewBox="0 0 90 100" preserveAspectRatio="none" aria-hidden="true">
+                            <path d="M 16 0 C 16 20 65 5 65 28 L 65 72 C 65 95 16 80 16 100"></path>
+                        </svg>
+                        <span class="careerParallelMarker careerMainMarker" aria-hidden="true"></span>
+                        <span class="careerParallelMarker careerSideMarker" aria-hidden="true"></span>
+                        <div class="careerParallelTracks">
+                            <div class="careerDetails careerEngineering">
+                                <span class="careerDate">2016 – 2019</span>
+                                <h2>Engineering Cycle — ESIGELEC</h2>
+                                <p>Embedded systems for autonomous vehicles.</p>
+                                <p class="loc">Rouen, France.</p>
+                            </div>
+                            <div class="careerDetails careerSecondary">
+                                <span class="careerDate">2016 – 2019 · In parallel</span>
+                                <h2>Apprenticeship — National Instruments</h2>
+                                <p>Application engineering in France, with an internship in Tokyo, Japan.</p>
+                            </div>
+                        </div>
                     </li>
-            
-                </ul>
+                    <li class="careerEntry">
+                        <span class="careerDate">2014 – 2016</span>
+                        <div class="careerDetails">
+                            <h2>Preparatory Cycle (CPII)</h2>
+                            <p class="loc">ESIGELEC, Rouen, France.</p>
+                        </div>
+                    </li>
+                </ol>
             </section>
-            
+
             <section id="news" class="normalSection">
                 <h1>Latest news</h1>
                 <table id="newsList"></table>

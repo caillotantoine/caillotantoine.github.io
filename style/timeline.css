@@ -1,0 +1,191 @@
+/* Career timeline: the secondary track represents parallel experience. */
+#bio .bioIntro {
+    margin-bottom: 2rem;
+    color: var(--grey);
+    line-height: 1.5;
+    text-align: left;
+}
+
+#bio .careerTimeline {
+    --timeline-axis: 1rem;
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+}
+
+#bio .careerTimeline::before {
+    content: "";
+    position: absolute;
+    top: 0.5rem;
+    bottom: 1.5rem;
+    left: var(--timeline-axis);
+    width: 3px;
+    transform: translateX(-50%);
+    border-radius: 3px;
+    background: var(--main);
+}
+
+#bio .careerEntry {
+    position: relative;
+    box-sizing: border-box;
+    min-height: 5.5rem;
+    margin: 0 0 2rem;
+    padding: 0 0 0 3rem;
+    list-style: none;
+}
+
+#bio .careerEntry::before {
+    content: "";
+    position: absolute;
+    top: 0.2rem;
+    left: var(--timeline-axis);
+    z-index: 1;
+    box-sizing: border-box;
+    width: 0.9rem;
+    height: 0.9rem;
+    transform: translateX(-50%);
+    border: 3px solid var(--main);
+    border-radius: 50%;
+    background: var(--white);
+}
+
+#bio .careerDate {
+    display: block;
+    margin: 0 0 0.4rem;
+    color: var(--main);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+#bio .careerDetails h2 {
+    margin: 0 0 0.35rem;
+    font-family: 'Schibsted Grotesk', sans-serif;
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+#bio .careerDetails p {
+    margin: 0.2rem 0;
+    line-height: 1.5;
+    font-size: 1rem;
+}
+
+/* The period has a real split (2016) and merge (2019).
+   The history runs newest-to-oldest, so the merge appears first. */
+#bio .careerParallel {
+    --parallel-lane: 4.05rem;
+    min-height: 17rem;
+    padding-left: 6rem;
+    padding-bottom: 1.2rem;
+}
+
+#bio .careerParallel::after {
+    content: "";
+    position: absolute;
+    left: var(--timeline-axis);
+    bottom: 0.25rem;
+    z-index: 1;
+    box-sizing: border-box;
+    width: 0.9rem;
+    height: 0.9rem;
+    transform: translateX(-50%);
+    border: 3px solid var(--main);
+    border-radius: 50%;
+    background: var(--white);
+}
+
+#bio .careerParallelLines {
+    position: absolute;
+    top: 0.65rem;
+    bottom: 0.65rem;
+    left: 0;
+    width: 5.625rem;
+    height: calc(100% - 1.3rem);
+    overflow: visible;
+    pointer-events: none;
+}
+
+#bio .careerParallelLines path {
+    fill: none;
+    stroke: var(--comp);
+    stroke-width: 3px;
+    vector-effect: non-scaling-stroke;
+}
+
+#bio .careerParallelTracks {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1rem 0 1.75rem;
+}
+
+/* Engineering milestone belongs to the main green track. */
+#bio .careerEngineering {
+    position: relative;
+}
+
+#bio .careerSecondary .careerDate {
+    color: var(--comp);
+}
+
+#bio .careerSecondary {
+    position: relative;
+}
+
+#bio .careerSecondary h2 {
+    color: var(--comp);
+}
+
+#bio .careerSplitDate {
+    margin-bottom: 0;
+}
+
+@media (max-width: 700px) {
+    #bio .careerEntry {
+        margin-bottom: 1.75rem;
+        padding-left: 3rem;
+    }
+
+    #bio .careerParallel {
+        padding-left: 6rem;
+    }
+
+    #bio .careerDetails h2 {
+        font-size: 1.05rem;
+    }
+}
+
+/* Keep both connections visible but hide the split/merge markers. */
+#bio .careerParallel::before,
+#bio .careerParallel::after {
+    display: none;
+}
+
+/* Both 2016–2019 milestones share the exact same vertical coordinate.
+   Markers sit on the green main line and brown parallel lane. */
+#bio .careerParallelMarker {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    box-sizing: border-box;
+    width: 0.9rem;
+    height: 0.9rem;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: var(--white);
+    pointer-events: none;
+}
+
+#bio .careerMainMarker {
+    left: var(--timeline-axis);
+    border: 3px solid var(--main);
+}
+
+#bio .careerSideMarker {
+    left: var(--parallel-lane);
+    border: 3px solid var(--comp);
+}
