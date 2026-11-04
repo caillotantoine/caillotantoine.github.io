@@ -5,7 +5,7 @@
             "title": "Dual-Exposure Omnidirectional Visual SLAM",
             "period": "IEEE Robotics and Automation Practice · 2026",
             "date": "2026",
-            "pinned": false,
+            "pinned": true,
             "description": "Dual-exposure imaging for robust omnidirectional visual SLAM under challenging lighting conditions, evaluated for robot navigation.",
             "tags": [
                 "Dual Exposure",
@@ -110,7 +110,7 @@
             ],
             "links": [
                 {
-                    "label": "Project page",
+                    "label": "Application",
                     "url": "camconvert.html"
                 }
             ]
