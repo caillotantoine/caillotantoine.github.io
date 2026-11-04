@@ -1,8 +1,9 @@
 function loadProjects() {
+    const pinned = document.getElementById('pinnedProjects');
     const research = document.getElementById('researchProjects');
     const personal = document.getElementById('personalProjects');
     const status = document.getElementById('projectsStatus');
-    if (!research || !personal) return;
+    if (!pinned || !research || !personal) return;
 
     fetch('./content/projects.json')
         .then(response => {
@@ -10,10 +11,16 @@ function loadProjects() {
             return response.json();
         })
         .then(data => {
+            pinned.replaceChildren();
             research.replaceChildren();
             personal.replaceChildren();
 
-            data.projects.forEach(project => {
+            // A missing date is placed last. The featured list has its own order.
+            const projects = [...data.projects].sort((a, b) =>
+                (b.date || '').localeCompare(a.date || '')
+            );
+
+            function projectCard(project) {
                 const article = document.createElement('article');
                 article.className = 'projectCard';
 
@@ -30,11 +37,11 @@ function loadProjects() {
 
                 const tags = document.createElement('p');
                 tags.className = 'projectTags';
-                tags.textContent = project.tags.join(' · ');
+                tags.textContent = (project.tags || []).join(' · ');
 
                 const links = document.createElement('div');
                 links.className = 'projectLinks';
-                project.links.forEach(link => {
+                (project.links || []).forEach(link => {
                     const anchor = document.createElement('a');
                     anchor.href = link.url;
                     anchor.textContent = link.label;
@@ -46,9 +53,21 @@ function loadProjects() {
                 });
 
                 article.append(period, title, description, tags, links);
-                (project.category === 'personal' ? personal : research).appendChild(article);
+                return article;
+            }
+
+            projects.filter(project => project.pinned)
+                .forEach(project => pinned.appendChild(projectCard(project)));
+
+            projects.forEach(project => {
+                const target = project.category === 'personal' ? personal : research;
+                target.appendChild(projectCard(project));
             });
 
+            const pinnedSection = document.getElementById('pinnedSection');
+            if (pinnedSection) pinnedSection.hidden = pinned.children.length === 0;
+            const personalSection = document.getElementById('personalSection');
+            if (personalSection) personalSection.hidden = personal.children.length === 0;
             if (status) status.textContent = '';
         })
         .catch(error => {
