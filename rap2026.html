@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Dual-exposure omnidirectional visual SLAM research by Antoine Caillot and collaborators.">
+        <title>Dual-Exposure Omnidirectional Visual SLAM — Antoine CAILLOT</title>
+        <link rel="stylesheet" href="./style/reset.css">
+        <link rel="stylesheet" href="./style/colors.css">
+        <link rel="stylesheet" href="./style/index.css">
+        <link rel="stylesheet" href="./style/style.css">
+        <script src="script/base.js" defer></script>
+    </head>
+    <body>
+        <div id="header"></div>
+        <main class="projectPage">
+            <section class="normalSection">
+                <p class="projectPeriod">IEEE Robotics and Automation Practice · 2026</p>
+                <h1>Dual-Exposure for Improving Omnidirectional Visual Simultaneous Localization And Mapping</h1>
+                <p class="pageIntro">Antoine Caillot, Eva Goichon, Ryusuke Sagawa, and Guillaume Caron.</p>
+                <p class="pageIntro">This work investigates dual-exposure image acquisition for robust omnidirectional visual SLAM in challenging lighting conditions. The system combines short and long exposures to preserve visual information across large illumination changes, including indoor-to-outdoor transitions.</p>
+                <div class="projectLinks">
+                    <a href="https://hal.science/hal-05667611" target="_blank" rel="noopener noreferrer">Paper (HAL)</a>
+                    <a href="https://doi.org/10.1109/RAP.2026.3710124" target="_blank" rel="noopener noreferrer">DOI</a>
+                </div>
+                <p class="pageIntro"><a href="projects.html">Back to Projects</a></p>
+            </section>
+        </main>
+        <div id="footer"></div>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                loadHTML('template/header.html', 'header');
+                loadHTML('template/footer.html', 'footer');
+            });
+        </script>
+    </body>
+</html>
