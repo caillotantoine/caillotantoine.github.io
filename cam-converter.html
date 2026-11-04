@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Cam Converter, a personal camera software project by Antoine Caillot.">
+        <title>Cam Converter — Antoine CAILLOT</title>
+        <link rel="stylesheet" href="./style/reset.css">
+        <link rel="stylesheet" href="./style/colors.css">
+        <link rel="stylesheet" href="./style/index.css">
+        <link rel="stylesheet" href="./style/style.css">
+        <script src="script/base.js" defer></script>
+    </head>
+    <body>
+        <div id="header"></div>
+        <main class="projectPage">
+            <section class="normalSection">
+                <p class="projectPeriod">Personal Project</p>
+                <h1>Cam Converter</h1>
+                <p class="pageIntro">Cam Converter is a personal software project for working with camera conversions.</p>
+                <p class="pageIntro">More technical details, demonstrations and source code links can be added here.</p>
+                <p class="pageIntro"><a href="projects.html">Back to Projects</a></p>
+            </section>
+        </main>
+        <div id="footer"></div>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                loadHTML('template/header.html', 'header');
+                loadHTML('template/footer.html', 'footer');
+            });
+        </script>
+    </body>
+</html>
