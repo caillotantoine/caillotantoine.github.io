@@ -1,56 +1,66 @@
-var menuState = false;
-
-const PageStates = {
-    INDEX: 'index',
-    RESEARCH: 'research',
-    PROJECTS: 'projects'
-};
-var pageState = PageStates.INDEX;
-
 function loadHTML(file, elementId) {
-    fetch(file)
-        .then(response => response.text())
+    return fetch(file)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to load ' + file);
+            }
+            return response.text();
+        })
         .then(data => {
             document.getElementById(elementId).innerHTML = data;
-        });
-}
-
-function loadContent() {
-    switch (pageState) {
-        case PageStates.INDEX:
-            loadHTML('content/frontpage.html', 'contentMatter');
-            break;
-
-        case PageStates.RESEARCH:
-            break;
-    
-        default:
-            loadHTML('content/frontpage.html', 'contentMatter');
-            break;
-    }
+        })
+        .catch(error => console.error(error));
 }
 
 function openNavMenu() {
-    document.querySelector("nav").style.setProperty('display', 'block');
-    document.getElementById("open").style["display"] = "none";
-    document.getElementById("close").style["display"] = "block";
-    menuState = true;
+    const nav = document.getElementById('mobileNav');
+    const button = document.getElementById('menu');
+    if (!nav || !button) return;
+
+    nav.hidden = false;
+    button.setAttribute('aria-expanded', 'true');
+    button.setAttribute('aria-label', 'Close navigation menu');
 }
 
 function closeNavMenu() {
-    document.querySelector("nav").style.setProperty('display', 'none');
-    document.getElementById("open").style["display"] = "block";
-    document.getElementById("close").style["display"] = "none";
-        
-    menuState = false;
+    const nav = document.getElementById('mobileNav');
+    const button = document.getElementById('menu');
+    if (!nav || !button) return;
+
+    nav.hidden = true;
+    button.setAttribute('aria-expanded', 'false');
+    button.setAttribute('aria-label', 'Open navigation menu');
 }
 
 function toggleMenu() {
-    if(menuState)
-    {
+    const button = document.getElementById('menu');
+    if (!button) return;
+
+    if (button.getAttribute('aria-expanded') === 'true') {
         closeNavMenu();
-    }
-    else{
+    } else {
         openNavMenu();
     }
 }
+
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+        const button = document.getElementById('menu');
+        if (button && button.getAttribute('aria-expanded') === 'true') {
+            closeNavMenu();
+            button.focus();
+        }
+    }
+});
+
+document.addEventListener('click', event => {
+    const nav = document.getElementById('mobileNav');
+    const button = document.getElementById('menu');
+    if (nav && button && !nav.hidden && !nav.contains(event.target) && !button.contains(event.target)) {
+        closeNavMenu();
+    }
+});
+
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 800) closeNavMenu();
+});
