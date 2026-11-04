@@ -358,3 +358,106 @@ sup {
         padding-left: 0.75rem;
     }
 }
+
+/* Research publications and project catalog */
+.researchPage, .projectPage {
+    min-height: 65vh;
+    padding-top: clamp(3rem, 7vw, 6rem);
+}
+.researchPage .normalSection,
+.projectPage .normalSection {
+    width: min(90%, 70rem);
+}
+.researchPage .normalSection h2,
+.projectPage .normalSection h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+.pageIntro {
+    text-align: left;
+    line-height: 1.6;
+    max-width: 55rem;
+    margin: 0 auto 2rem;
+}
+.publicationList {
+    list-style: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+}
+.publicationItem {
+    text-align: left;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid rgba(119, 114, 114, 0.25);
+    margin: 0 !important;
+}
+.publicationItem h3,
+.projectCard h3 {
+    font-size: clamp(1.05rem, 2vw, 1.35rem) !important;
+    line-height: 1.35;
+    font-weight: 600;
+    margin: 0 0 0.4rem;
+}
+.publicationMeta,
+.projectPeriod,
+.projectTags {
+    color: var(--grey);
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+.publicationLinks,
+.projectLinks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 0.8rem;
+}
+.publicationLinks a,
+.projectLinks a {
+    display: inline-block;
+    border: 1px solid var(--main);
+    border-radius: 0.35rem;
+    padding: 0.35rem 0.8rem;
+    text-decoration: none;
+    color: var(--main);
+    font-size: 0.88rem;
+}
+.publicationLinks a:hover,
+.projectLinks a:hover {
+    background-color: var(--main);
+    color: var(--white);
+}
+.projectGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+.projectCard {
+    border: 1px solid rgba(119, 114, 114, 0.3);
+    border-radius: 0.45rem;
+    padding: 1.5rem;
+    text-align: left;
+    background-color: var(--white);
+}
+.projectCard h3 {
+    margin-top: 0.5rem;
+}
+.projectDescription {
+    margin: 0.8rem 0;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+@media (max-width: 700px) {
+    .projectGrid { grid-template-columns: 1fr; }
+    .projectCard { padding: 1rem; }
+}
+
+/* Featured projects keep the existing card style with a subtle accent. */
+#pinnedProjects .projectCard {
+    border-left: 4px solid var(--main);
+}
+#pinnedSection[hidden],
+#personalSection[hidden] {
+    display: none;
+}

@@ -1,0 +1,119 @@
+{
+    "projects": [
+        {
+            "category": "research",
+            "title": "Dual-Exposure Omnidirectional Visual SLAM",
+            "period": "IEEE Robotics and Automation Practice · 2026",
+            "date": "2026",
+            "pinned": true,
+            "description": "Dual-exposure imaging for robust omnidirectional visual SLAM under challenging lighting conditions, evaluated for robot navigation.",
+            "tags": [
+                "Dual Exposure",
+                "HDR",
+                "Omnidirectional SLAM"
+            ],
+            "links": [
+                {
+                    "label": "Project & Paper",
+                    "url": "rap2026.html"
+                },
+                {
+                    "label": "GitHub",
+                    "url": "https://github.com/isri-aist/DualExp4VSLAM"
+                },
+                {
+                    "label": "Paper (HAL)",
+                    "url": "https://hal.science/hal-05667611"
+                },
+                {
+                    "label": "DOI",
+                    "url": "https://doi.org/10.1109/RAP.2026.3710124"
+                }
+            ]
+        },
+        {
+            "category": "research",
+            "title": "Omnidirectional Visual SLAM for Humanoids",
+            "period": "IEEE Humanoids · 2025",
+            "date": "2025-09-30",
+            "pinned": false,
+            "description": "Comparing RGB-D and 360° camera-based visual SLAM for robust humanoid robot positioning.",
+            "tags": [
+                "Omnidirectional Vision",
+                "Visual SLAM"
+            ],
+            "links": [
+                {
+                    "label": "Project & Paper",
+                    "url": "humanoids2025.html"
+                },
+                {
+                    "label": "Paper (HAL)",
+                    "url": "https://hal.science/hal-05193891"
+                }
+            ]
+        },
+        {
+            "category": "research",
+            "title": "Cooperative Evidential Semantic Grids",
+            "period": "Journal of Intelligent & Robotic Systems · 2024",
+            "date": "2024-04-22",
+            "pinned": false,
+            "description": "Cooperative camera-based semantic grid generation and fusion for intelligent vehicles.",
+            "tags": [
+                "Semantic Mapping",
+                "Cooperative Perception"
+            ],
+            "links": [
+                {
+                    "label": "Code",
+                    "url": "https://github.com/caillotantoine/Coop-Evidential-Semantic-Grid"
+                },
+                {
+                    "label": "Paper",
+                    "url": "https://doi.org/10.1007/s10846-024-02093-4"
+                }
+            ]
+        },
+        {
+            "category": "research",
+            "title": "Cooperative Evidential Occupancy Grids",
+            "period": "IEEE ITSC · 2022",
+            "date": "2022-10-08",
+            "pinned": false,
+            "description": "Cooperative camera-based occupancy grid generation for autonomous driving using evidential reasoning.",
+            "tags": [
+                "Cooperative Perception",
+                "Evidential Mapping"
+            ],
+            "links": [
+                {
+                    "label": "Code",
+                    "url": "https://github.com/caillotantoine/Coop-Evidential-Occupancy-Grid"
+                },
+                {
+                    "label": "Paper",
+                    "url": "https://doi.org/10.1109/ITSC55140.2022.9921855"
+                }
+            ]
+        },
+        {
+            "category": "personal",
+            "title": "Cam Converter",
+            "period": "Personal software project",
+            "date": null,
+            "pinned": true,
+            "description": "Camera conversion utility, available on its existing project page.",
+            "tags": [
+                "Cameras",
+                "Software"
+            ],
+            "links": [
+                {
+                    "label": "Application",
+                    "url": "camconvert.html"
+                }
+            ]
+        }
+    ]
+}
